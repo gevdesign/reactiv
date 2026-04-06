@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Reactiv</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ─── DESIGN TOKENS ───────────────────────────────────── */
+:root{
+  --c-hero:#1c1c1e;
+  --c-bg:#ffffff;
+  --c-bg-alt:#f5f5f7;
+  --c-text:#111111;
+  --c-sub:#6e6e73;
+  --c-border:#e5e5e5;
+  --c-btn:#111111;
+  --c-btn-text:#fff;
+  --font:'Inter',sans-serif;
+  --max:1100px;
+  --r:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--c-text);background:var(--c-bg);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--c-hero);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:56px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-logo{font-weight:700;font-size:17px;color:#fff;cursor:pointer}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;color:rgba(255,255,255,.75);font-weight:400;transition:color .15s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-dropdown{position:relative;cursor:pointer}
+.nav-dropdown>span{font-size:14px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:4px}
+.nav-dropdown>span::after{content:'▾';font-size:10px}
+.dropdown-menu{
+  display:none;position:absolute;top:100%;left:0;
+  background:#fff;border:1px solid var(--c-border);border-radius:var(--r);
+  padding:14px 6px 6px;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.12);
+}
+.nav-dropdown.open .dropdown-menu{display:block}
+.dropdown-menu a{display:block;padding:8px 12px;font-size:13px;color:var(--c-text);border-radius:4px;cursor:pointer}
+.dropdown-menu a:hover{background:var(--c-bg-alt);color:var(--c-text)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;border:none}
+.btn-primary{background:var(--c-btn);color:var(--c-btn-text)}
+.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn-outline:hover{border-color:#fff}
+.btn-outline-dark{background:transparent;color:var(--c-text);border:1px solid var(--c-border)}
+.btn-outline-dark:hover{border-color:#999}
+
+/* ─── PAGE SYSTEM ─────────────────────────────────────── */
+.page{display:none}
+.page.active{display:block}
+
+/* ─── HERO ────────────────────────────────────────────── */
+.hero{
+  background:var(--c-hero);
+  padding:80px 40px 90px;
+  position:relative;overflow:hidden;
+}
+.hero-inner{max-width:var(--max);margin:0 auto}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:20px}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:#fff;line-height:1.08;max-width:640px;margin-bottom:20px}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:500px;line-height:1.6;margin-bottom:32px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero-right{position:absolute;right:80px;top:50%;transform:translateY(-50%)}
+.hero-qr{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:20px 24px;text-align:center;width:180px}
+.hero-qr-box{width:100px;height:100px;background:rgba(255,255,255,.15);border-radius:6px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center}
+.hero-qr-box svg{opacity:.4;width:48px;height:48px}
+.hero-qr p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.4}
+
+/* ─── LOGO STRIP ──────────────────────────────────────── */
+.logo-strip-section{
+  background:var(--c-hero);
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:28px 40px;
+}
+.logo-strip-label{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);text-align:center;margin-bottom:20px;
+}
+.logo-strip{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.logo-pill{
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  padding:8px 16px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;
+}
+
+/* ─── SECTIONS ────────────────────────────────────────── */
+section{padding:80px 40px}
+section.alt{background:var(--c-bg-alt)}
+.wrap{max-width:var(--max);margin:0 auto}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.two-col.reverse .col-text{order:2}
+.two-col.reverse .col-img{order:1}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;gap:40px}}
+
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;line-height:1.1;margin-bottom:16px}
+h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--c-sub);margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--c-sub);line-height:1.6;max-width:520px;margin-bottom:32px}
+.section-sub-sm{font-size:14px;color:var(--c-sub);line-height:1.6;max-width:440px;margin-top:16px}
+
+/* image placeholder */
+.img-placeholder{
+  background:var(--c-bg-alt);border:1px solid var(--c-border);
+  border-radius:8px;aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;
+}
+.img-placeholder svg{width:48px;height:48px;opacity:.25}
+section.alt .img-placeholder{background:#ebebed}
+
+/* bullet list */
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:16px 0 24px}
+.feature-list li{font-size:15px;padding-left:20px;position:relative;line-height:1.5}
+.feature-list li::before{content:'·';position:absolute;left:0;color:var(--c-sub);font-size:18px;line-height:1.3}
+
+/* ─── STEPS ───────────────────────────────────────────── */
+.steps-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.steps-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--c-sub);margin-bottom:20px}
+.steps-list{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:0}
+.steps-list li{
+  counter-increment:step;font-size:20px;font-weight:700;
+  padding:20px 0;border-bottom:1px solid var(--c-border);
+  display:flex;align-items:center;gap:16px;
+}
+.steps-list li::before{content:counter(step)".";color:var(--c-sub);font-weight:400;font-size:20px;min-width:28px}
+.steps-note{font-size:14px;color:var(--c-sub);margin-top:16px;line-height:1.5}
+
+/* ─── GRID CARDS ──────────────────────────────────────── */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--c-border);border-left:1px solid var(--c-border)}
+.card{padding:28px 24px;border-right:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:var(--c-sub);line-height:1.5}
+.card .proof{font-size:12px;color:var(--c-sub);margin-top:8px;font-style:italic}
+.card .card-link{font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px;margin-top:8px;display:inline-block}
+
+/* ─── WHAT YOU GET ────────────────────────────────────── */
+.what-you-get{padding:80px 40px;background:var(--c-hero)}
+.what-you-get h2{color:#fff}
+.what-you-get .feature-list li{color:rgba(255,255,255,.7)}
+.what-you-get .feature-list li::before{color:rgba(255,255,255,.3)}
+
+/* ─── CTA BAND ────────────────────────────────────────── */
+.cta-band{padding:100px 40px;text-align:center}
+.cta-band h2{font-size:clamp(32px,5vw,52px);font-weight:800;margin-bottom:16px}
+.cta-band p{font-size:16px;color:var(--c-sub);margin-bottom:32px}
+.cta-band .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ─── FAQ ─────────────────────────────────────────────── */
+.faq-section{padding:80px 40px;background:var(--c-bg-alt)}
+.faq-section h2{text-align:center;margin-bottom:48px}
+.faq{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--c-border)}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 0;cursor:pointer;font-size:14px;font-weight:600;gap:16px;
+}
+.faq-q .ico{font-size:18px;color:var(--c-sub);flex-shrink:0;line-height:1;transition:.2s}
+.faq-item.open .faq-q .ico{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--c-sub);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:16px}
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+footer{background:var(--c-bg-alt);padding:60px 40px 32px;border-top:1px solid var(--c-border)}
+.footer-inner{max-width:var(--max);margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--c-border)}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c-sub);margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:var(--c-sub);margin-bottom:8px;cursor:pointer}
+.footer-col a:hover{color:var(--c-text)}
+.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-size:13px;font-weight:700}
+.footer-copy{font-size:12px;color:var(--c-sub)}
+
+/* ─── STATS ROW ───────────────────────────────────────── */
+.stats-row{display:flex;gap:0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border);margin:48px 0}
+.stat{flex:1;padding:32px 24px;border-right:1px solid var(--c-border);text-align:center}
+.stat:last-child{border-right:none}
+.stat .num{font-size:36px;font-weight:800;margin-bottom:4px}
+.stat .label{font-size:13px;color:var(--c-sub)}
+
+/* ─── INTEGRATION LOGOS ───────────────────────────────── */
+.int-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.int-chip{background:#111;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:600;letter-spacing:.04em}
+
+/* ─── CUSTOMERS PAGE ──────────────────────────────────── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.filter-pill{
+  padding:7px 16px;border-radius:20px;font-size:13px;font-weight:500;
+  border:1px solid var(--c-border);background:#fff;color:var(--c-sub);
+  cursor:pointer;transition:.15s;
+}
+.filter-pill:hover{border-color:#999;color:var(--c-text)}
+.filter-pill.active{background:var(--c-text);color:#fff;border-color:var(--c-text)}
+.card-tag{
+  display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;
+  font-weight:600;background:var(--c-bg-alt);color:var(--c-sub);margin-right:4px;margin-top:8px;
+}
+.card-hidden{display:none}
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:700px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .hero{padding:60px 20px 70px}
+  .hero-right{display:none}
+  section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-left:20px;padding-right:20px}
+  .card-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .stats-row{flex-wrap:wrap}
+  .steps-wrap{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<script>
+const CONTENT = {
+  brand: "Reactiv",
+  nav: {
+    links: ["Platform","App Clips","Customers"],
+    solutions: [
+      {label:"Increase Ad Conversion",        page:"sol-ads"},
+      {label:"Reduce Download Friction",       page:"sol-download"},
+      {label:"Innovate at Retail",             page:"sol-retail"},
+      {label:"Power Venues and Events",        page:"sol-venues"},
+      {label:"Grow App Installs",              page:"sol-installs"},
+    ],
+    cta: "Book a demo",
+    ctaUrl: "#"
+  },
+  customerLogos: ["Indigo","Suntory","Mejuri","Cozy Earth","Maev","EVEREVE","Hobbiesville","MSQC","Obvi","Vitae"],
+
+  // ── HOME ──
+  home: {
+    eyebrow: "App / Build for enterprise",
+    headline: "Build mobile apps\npeople don't have\nto download.",
+    sub: "Reactiv uses Apple App Clips to turn high-intent moments from ads, QR codes, email, and SMS into instant native experiences.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    qr: false,
+    stat: {
+      label: "The Install Problem",
+      heading: "Most shoppers never\ndownload a new app.",
+      sub: "Most traffic stays on slow, broken mobile web. Most installs fail at the top of the funnel. App Clips fix this gap.",
+      stats: [
+        {num:"65%", label:"Reduction in CAC"},
+        {num:"3x",  label:"Increase in conversions"},
+      ]
+    },
+    section1:{
+      headline:"Instant access.\nNo download.",
+      steps:["Ad, link, QR, or NFC","Clip opens instantly","Retarget and convert"],
+      cta:"Try a Clip", ctaUrl:"#"
+    },
+    platform:{
+      headline:"One platform.\nEvery use case.",
+      sub:"The same foundation powers Clips, native teams, and more.",
+      cards:[
+        {h:"Increase ad conversion",p:"Turn ad traffic into native app experiences.",link:"See how it works"},
+        {h:"Reduce download friction",p:"On-path recovery and optimal onboarding.",link:"See how it works"},
+        {h:"Innovate at retail",p:"In-store experiences with native capability.",link:"See how it works"},
+        {h:"Venues and events",p:"Ticketing, ordering, and menus — nothing to download.",link:"See how it works"},
+        {h:"Grow app installs",p:"High-intent try-before-install conversion.",link:"See how it works"},
+        {h:"Launch an enterprise mobile app",p:"Full app on a platform built for scale.",link:"See how it works"},
+      ]
+    },
+    keeps:{
+      headline:"Launch the app and\nClips together.",
+      sub:"Reactiv builds the app and the Clips on the same foundation — so you launch fast, cover every entry point, and scale without starting over.",
+      bullets:["App and Clips deployed together","Integrate with your existing stack","Drive push retargeting from day one","Analytics and deep reporting","Seamless path to App Store distribution"],
+      link:"Explore the platform"
+    },
+    brands:{
+      headline:"Real brands. Real results.",
+      cards:[
+        {logo:"Brand 1", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 2", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 3", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 4", stat:"[Customer quote or result placeholder]"},
+      ]
+    },
+    numbers:{
+      headline:"Numbers that speak\nfor themselves.",
+      sub:"Proof from live customers.",
+      stats:[
+        {num:"3-5x", label:"Increase in conversion rate"},
+        {num:"2 to 4 weeks", label:"Standard launch timeline"},
+        {num:"100%", label:"Native retention"},
+      ]
+    },
+    cta_band:{
+      headline:"Stop losing 95%\nof your ad clicks.",
+      sub:"Map a Clip and let the platform take care of the rest.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC — without requiring a full app download."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then transition to full app infrastructure over time."},
+      {q:"What integrations do you support?",a:"Reactiv connects with major ecommerce and OMS platforms, analytics, and CRM tools."},
+    ]
+  },
+
+  // ── PLATFORM ──
+  platform: {
+    eyebrow: "Platform",
+    headline: "Enterprise mobile apps,\nwithout the enterprise build.",
+    sub: "Reactiv is the foundation behind App Clips and full mobile apps — built for speed, flexibility, native capability, and the ability to grow.",
+    cta1: "Book a demo", cta1Url: "#",
+    qr: true,
+    twoDoors:{
+      headline:"Two doors. One platform.",
+      sub:"Whether the entry point is a Clip or a full app, the same platform supports launch, iteration, and growth.",
+    },
+    tradeoffs:{
+      headline:"Skip the bad tradeoffs.",
+      sub:"Building native mobile no longer means choosing between speed and quality. Reactiv gets you to launch fast and lets you evolve over time.",
+      bullets:["Faster to launch than custom builds","More flexible than template tools","Easier to evolve over time"],
+      cta:"Book a demo", ctaUrl:"#"
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Build the core app","Extend with developer tooling","Operate and improve continuously"],
+      note:"A platform that stays flexible as requirements grow."
+    },
+    whereWins:{
+      headline:"Where the platform wins.",
+      sub:"Used at scale in stores, events, and online to power customer journeys end to end.",
+      cards:[
+        {h:"Replace a custom app",p:"Launch mobile in a fraction of typical dev time.",proof:""},
+        {h:"Shopify migrations",p:"Move to native without heavy engineering resourcing.",proof:""},
+        {h:"Agency builds",p:"A white-label foundation that ships fast.",proof:""},
+        {h:"Retail and omnichannel",p:"Connect the in-store and digital experience.",proof:""},
+        {h:"Brand launches",p:"Go from zero to live in weeks, not months.",proof:""},
+        {h:"Re-engagement",p:"Add push notifications in less than a day.",proof:""},
+      ]
+    },
+    scale:{
+      headline:"Built to ship at scale.",
+      sub:"Start with Clips. Expand when ready.",
+      bullets:["Update app design without code changes","Integrate with your existing stack","Full native app experience available","Analytics and reporting built in","Ready for App Store distribution"],
+      link:"Explore the platform"
+    },
+    brands:{
+      headline:"Real brands. Real results.",
+      cards:[
+        {logo:"Brand 1", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 2", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 3", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 4", stat:"[Customer quote or result placeholder]"},
+      ]
+    },
+    integrations:"Works with your stack.",
+    intSub:"Plug into your existing ecommerce and OMS tools.",
+    intChips:["Shopify","Klaviyo","Braze","Attentive","Yotpo","+ Custom integrations via SDK"],
+    cta_band:{
+      headline:"See App Clips in action.",
+      sub:"Try it now. Then we'll map it to your funnel and stack.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC — without requiring a full app download."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then add the full app experience over time."},
+      {q:"What integrations do you support?",a:"Reactiv connects with major ecommerce and OMS platforms, analytics, and CRM tools."},
+    ]
+  },
+
+  // ── APP CLIPS ──
+  appclips: {
+    eyebrow: "App Clips / Enterprise Apps",
+    headline: "Native experiences.\nNo download.",
+    sub: "Open a native app experience instantly from ads, QR codes, or in-store NFC — and bring customers back with push notifications without requiring an install.",
+    cta1: "Book a demo", cta1Url: "#",
+    qr: true,
+    what:{
+      headline:"What is an App Clip?",
+      sub:"An App Clip is a lightweight version of an app that users can access without installing the full app. It runs on the native iOS stack, opens in seconds, and can be triggered from any link, QR code, or NFC tap.",
+    },
+    skip:{
+      headline:"Skip the download step.",
+      sub:"Whatever the channel, App Clips deliver a full native experience without the install barrier.",
+      bullets:["Faster than mobile web","Less friction than requiring an install","Better handoff to conversion and retention"],
+      cta:"Try a Clip", ctaUrl:"#"
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Ad, link, QR, or NFC","Clip opens instantly","Retarget and convert"],
+      note:"Built to turn any high-intent moment into a native experience."
+    },
+    whereWins:{
+      headline:"Where Clips win.",
+      sub:"Used in ads, in store, and at events to give customers a frictionless path to the moment that matters.",
+      cards:[
+        {h:"Ad conversion",p:"Give ad traffic a native destination instead of a landing page.",proof:""},
+        {h:"Retail experiences",p:"Scan for product info, inventory, or appointments in store.",proof:""},
+        {h:"Venues and events",p:"Tickets, orders, and navigation — nothing to install.",proof:""},
+        {h:"Try before install",p:"Let users experience the app first, then install when ready.",proof:""},
+        {h:"Brand launches",p:"Go from zero to live in weeks, not months.",proof:""},
+        {h:"Re-engagement",p:"Add push notifications and bring users back into the funnel.",proof:""},
+      ]
+    },
+    scale:{
+      headline:"Built to ship at scale.",
+      sub:"Start with Clips. Expand when ready.",
+      bullets:["Update app design without code changes","Integrate with your existing stack","Full native app experience available","Analytics and reporting built in","Ready for App Store distribution"],
+      link:"Explore the platform"
+    },
+    brands:{
+      headline:"Real brands. Real results.",
+      cards:[
+        {logo:"Brand 1", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 2", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 3", stat:"[Customer quote or result placeholder]"},
+        {logo:"Brand 4", stat:"[Customer quote or result placeholder]"},
+      ]
+    },
+    integrations:"Works with your stack.",
+    intSub:"Plug into your existing ecommerce and OMS tools.",
+    intChips:["Shopify","Klaviyo","Braze","Attentive","Yotpo","+ Custom integrations via SDK"],
+    cta_band:{
+      headline:"See App Clips in action.",
+      sub:"Try it now. Then we'll map it to your funnel and stack.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC — without requiring a full app download."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then add the full app experience over time."},
+      {q:"What integrations do you support?",a:"Reactiv connects with major ecommerce and OMS platforms, analytics, and CRM tools."},
+    ]
+  },
+
+  // ── SOLUTION: DOWNLOAD WALL ──
+  solDownload: {
+    eyebrow: "Solution",
+    headline: "Remove the\ndownload wall.",
+    sub: "Open a native experience instantly from a link, QR code, or NFC. Let users complete the moment first, then install only if they want more.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    problem:{
+      headline:"Installs kill momentum.",
+      sub:"People will tap a link. They won't download an app for a one-time task. App Clips keep the experience native without forcing a commitment up front.",
+      bullets:["One-time tasks don't justify installs","Downloads add drop-off",'"I\'ll install later" rarely happens'],
+    },
+    native:{
+      headline:"A native experience that\nstarts instantly.",
+      sub:"We build an App Clip flow that opens in seconds and completes a task fast: order, check in, book, join, or get info.",
+      bullets:["Open instantly from a link, QR code, or NFC","Native UX without an install","Complete the task in one flow","Clear path to the full app when it makes sense"],
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Link, QR, or NFC","Clip opens instantly","Complete the task, then choose what's next"],
+      note:"Try first. Install later."
+    },
+    friction:{
+      headline:"Common friction killers",
+      cards:[
+        {h:"Office and shared devices",p:"Order or access services without downloading an app.",proof:"Proof: Used by workplace teams (NDA)."},
+        {h:"Retail QR moments",p:"Scan for product info, inventory, or appointments.",proof:"Proof: Used by a luxury fashion brand (NDA)."},
+        {h:"Events and venues",p:"Tickets, ordering, and menus without installs.",proof:"Proof: Used at NFC-enabled venues (NDA)."},
+        {h:"Onboarding before install",p:"Experience the value first, then install when ready.",proof:"Proof: Used by an app-first brand (NDA)."},
+        {h:"Check-in and access",p:"Tap to check in, access accounts, and look up member details.",proof:"Proof: Used for high-intent repeat visits (NDA)."},
+        {h:"Support shortcuts",p:"Start a support flow instantly from email or SMS.",proof:"Proof: Used to reduce time to resolution (NDA)."},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["Higher task completion on mobile","Less drop-off at the install step","Faster time to value","Better quality moments when it matters","A repeatable way to remove friction"],
+    },
+    cta_band:{
+      headline:"See it open on your phone.",
+      sub:"Try a Clip now. Then we'll map it to your highest-friction flow.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"Do users need to install anything?",a:"No. The Clip opens instantly without an install."},
+      {q:"Where can Clips launch from?",a:"Links, QR codes, and NFC taps."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"What happens after the Clip?",a:"Users can keep using Clips for quick tasks, or install the full app when it makes sense."},
+    ]
+  },
+
+  // ── CUSTOMERS ──
+  customers: {
+    eyebrow: "Customers",
+    headline: "Real brands. Real results.",
+    sub: "Proof points from teams using Reactiv. Client names withheld where required.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    trustLabel: "Trusted by teams across",
+    trustPills: ["Enterprise retail","Luxury fashion","NBA teams","DTC ecommerce","Global beverage"],
+    filters: ["All","App Clips","Platform","Ads","Retail","Venues","Install Growth","NDA"],
+    cards: [
+      {client:"DTC ecommerce brand",outcome:"Ads open into a native flow, then follow-up drives repeat sessions.",tags:["App Clips","Ads"],proof:"Retargeting post-click (NDA)"},
+      {client:"Global luxury fashion brand",outcome:"In-store Clips for discovery, appointments, and store-specific experiences.",tags:["App Clips","Retail"],proof:"Location-aware flows per store (NDA)"},
+      {client:"NBA team",outcome:"Game-day Clips for ordering and merch without another download.",tags:["App Clips","Venues"],proof:"Built for venue moments (NDA)"},
+      {client:"Enterprise retailer",outcome:"Launched a native app without building and maintaining it in-house.",tags:["Platform","Retail"],proof:"Omnichannel app connected to online and in-store (NDA)"},
+      {client:"Global beverage brand",outcome:"Campaign storytelling in a Clip, then find-near-me to retail.",tags:["App Clips","Ads"],proof:"Geo-based retail finder (NDA)"},
+      {client:"App-first consumer brand",outcome:"Try-before-install onboarding that lifts install quality.",tags:["App Clips","Install Growth"],proof:"Higher intent installs (NDA)"},
+      {client:"Omnichannel retail brand",outcome:"QR moments connect in-store to online conversion.",tags:["App Clips","Retail"],proof:"QR to action flows (NDA)"},
+      {client:"UK retailer",outcome:"Shipped custom app requirements without a million-dollar rebuild.",tags:["Platform"],proof:"Enterprise scope supported (NDA)"},
+      {client:"Venue operator",outcome:"Fast entry, wayfinding, and ordering without installs.",tags:["App Clips","Venues"],proof:"Designed for occasional use (NDA)"},
+      {client:"Retail group",outcome:"Combined Clips for acquisition with the full app for retention.",tags:["App Clips","Platform"],proof:"Same foundation across both (NDA)"},
+      {client:"Enterprise migration team",outcome:"Brought mobile along during a platform migration.",tags:["Platform"],proof:"Migration-friendly architecture (NDA)"},
+      {client:"Agency partner",outcome:"Built custom mobile experiences on top of Reactiv.",tags:["Platform"],proof:"Agency-delivered bespoke features (NDA)"},
+    ],
+    transition:{
+      headline:"Start with Clips. Expand into the platform.",
+      sub:"Clips prove value fast. The platform scales the experience long term.",
+      link:"Explore the platform"
+    },
+    ctaband:{
+      headline:"Want the version that\nfits your business?",
+      sub:"We'll show a live Clip, then map it to your highest-intent flow.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"Can you share client logos?",a:"Client names are withheld where required. We're happy to share more detail on a call."},
+      {q:"What can Clips do?",a:"Ads, retail, venues, and install growth onboarding — any high-intent moment where a download would kill the conversion."},
+      {q:"How fast can we pilot?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+    ]
+  },
+
+  // ── SOLUTION: RETAIL ──
+  solRetail: {
+    eyebrow: "Solution",
+    headline: "Bring native into\nthe store.",
+    sub: "Give shoppers a native experience the moment they scan, tap, or click — without asking them to download anything. Product info, appointments, loyalty, and checkout all from a QR code or NFC tag.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    problem:{
+      headline:"Mobile web fails at the shelf.",
+      sub:"Shoppers scan and land on a slow, generic page. The moment breaks. App Clips give you a full native experience that opens in seconds from any in-store touchpoint.",
+      bullets:["Slow mobile web kills in-store intent","Generic landing pages don't match the moment","Asking shoppers to download an app adds too much friction"],
+    },
+    native:{
+      headline:"A native experience built\nfor the shelf.",
+      sub:"We build an App Clip that opens from any QR code or NFC tag in store and delivers exactly what the shopper needs in that moment.",
+      bullets:["Opens instantly from a QR code or NFC tap","Native UX matched to the in-store context","Complete the task — no app required","Clear path to the full app when it makes sense"],
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Place a QR code or NFC tag in store","Clip opens instantly on the shopper's phone","Complete the task — shop, book, join, or get info"],
+      note:"One scan. The full native experience."
+    },
+    usecases:{
+      headline:"Built for every retail moment.",
+      cards:[
+        {h:"Product detail pages",p:"Full specs, reviews, and inventory without a page load.",proof:"Proof: Used by a luxury fashion brand (NDA)."},
+        {h:"Appointments and services",p:"Book in-store appointments from the shelf or fitting room.",proof:"Proof: Used by a specialty retailer (NDA)."},
+        {h:"Loyalty and rewards",p:"Join a program and earn points at checkout without an install.",proof:"Proof: Used by an omnichannel brand (NDA)."},
+        {h:"Endless aisle",p:"Browse extended inventory and ship to home from in store.",proof:"Proof: Used to recover lost in-store sales (NDA)."},
+        {h:"Staff-facing tools",p:"Inventory lookup and clienteling without a company device.",proof:"Proof: Used at scale by retail teams (NDA)."},
+        {h:"Promotions and offers",p:"Redeem a coupon or enter a drop instantly from a tag.",proof:"Proof: Used by a global consumer brand (NDA)."},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["Higher task completion at the point of intent","Faster time to value for in-store shoppers","Loyalty and retention from day one","A consistent experience across every location","A reusable platform for every in-store moment"],
+    },
+    cta_band:{
+      headline:"See it open in your store.",
+      sub:"Try a Clip now. Then we'll map it to your highest-value in-store moment.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"Do shoppers need to download anything?",a:"No. The Clip opens instantly from a QR code or NFC tap."},
+      {q:"Can we use our existing QR codes?",a:"Yes. Any QR code or NFC tag can be mapped to a Clip."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"Can we run Clips across multiple store locations?",a:"Yes. One Clip can be deployed across every location instantly."},
+    ]
+  },
+
+  // ── SOLUTION: VENUES ──
+  solVenues: {
+    eyebrow: "Solution",
+    headline: "Run your venue without\nthe app download.",
+    sub: "Tickets, food and beverage ordering, wayfinding, and menus — all from a scan or tap. Give guests a native experience the moment they arrive, with nothing to install.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    problem:{
+      headline:"Venues lose guests at the gate.",
+      sub:"Asking guests to download an app at a concert, stadium, or event is a conversion killer. App Clips give you a full native experience that opens in seconds — right when it matters.",
+      bullets:["Guests won't download apps for a one-time visit","Long queues and friction hurt the experience","You lose the moment before the guest even gets started"],
+    },
+    native:{
+      headline:"A native experience from\nthe first scan.",
+      sub:"We build an App Clip experience that opens from any QR code or NFC tag at your venue and gets guests to the moment that matters — ordering, wayfinding, ticketing, or access.",
+      bullets:["Opens instantly from a QR or NFC at any entry point","Native UX built for high-volume, fast-moving guests","Complete the task with no install required","Path to push notifications and the full app"],
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Guest scans a QR or taps NFC at the venue","Clip opens instantly — no download, no wait","Order, access, navigate, or check in"],
+      note:"One tap. Every venue moment."
+    },
+    usecases:{
+      headline:"Built for every venue moment.",
+      cards:[
+        {h:"Food and beverage ordering",p:"Order from seat or section without waiting in line.",proof:"Proof: Used at NFC-enabled venues (NDA)."},
+        {h:"Ticketing and entry",p:"Scan to validate and enter without a separate app.",proof:"Proof: Used at live event venues (NDA)."},
+        {h:"Wayfinding",p:"Navigate to seats, bathrooms, or vendor locations instantly.",proof:"Proof: Used at large-format events (NDA)."},
+        {h:"Menus and offers",p:"Digital menus and in-venue promotions from a table QR.",proof:"Proof: Used by hospitality brands (NDA)."},
+        {h:"Artist and event content",p:"Setlists, schedules, and exclusive content accessible from any signage.",proof:"Proof: Used at music and festival events (NDA)."},
+        {h:"Loyalty and membership",p:"Earn points and access perks without installing.",proof:"Proof: Used to drive retention at recurring venues (NDA)."},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["Faster guest throughput at every touchpoint","Higher F&B and upsell revenue per visit","Loyalty enrollment without the install barrier","A consistent experience across all entry points","A reusable platform for every event or season"],
+    },
+    cta_band:{
+      headline:"See it open at your venue.",
+      sub:"Try a Clip now. Then we'll map it to your highest-friction guest moment.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"Do guests need to install anything?",a:"No. The Clip opens instantly from a QR code or NFC tap."},
+      {q:"Can it handle high volumes at peak times?",a:"Yes. Clips are built to handle venue-scale traffic at entry and ordering moments."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"What happens after the event?",a:"Guests can install the full app and receive push notifications for future events."},
+    ]
+  },
+
+  // ── SOLUTION: INSTALLS ──
+  solInstalls: {
+    eyebrow: "Solution",
+    headline: "Let them try it\nbefore they install.",
+    sub: "Most people won't install an app they've never used. App Clips let high-intent users experience the real thing first — then convert to a full install when they're ready.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    problem:{
+      headline:"The install wall stops your best users.",
+      sub:"Asking someone to install before they've experienced the value is the biggest drop-off point in mobile. App Clips let you flip the funnel — experience first, install second.",
+      bullets:["Most users bounce before completing an install","You're losing high-intent users at the top of the funnel","Trial builds trust — forced installs don't"],
+    },
+    native:{
+      headline:"A try-before-install funnel.",
+      sub:"We build an App Clip that delivers a real, high-value slice of your app experience — enough to show the value and make the install feel like a natural next step.",
+      bullets:["Opens instantly from an ad, link, QR, or NFC","Real native experience — not a demo or a tour","Prompt to install at the highest-intent moment","Retarget non-installers while intent is still warm"],
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["User hits a Clip from an ad, link, or QR","They experience real value inside the Clip","Install prompt appears at the right moment"],
+      note:"Experience first. Install when it makes sense."
+    },
+    usecases:{
+      headline:"Built for every install growth moment.",
+      cards:[
+        {h:"Paid acquisition",p:"Send ad traffic to a Clip and prompt install after value is shown.",proof:"Proof: Lift in quality install rate vs. direct to App Store (NDA)."},
+        {h:"Organic and social",p:"Link-in-bio or story link opens a Clip that converts to install.",proof:"Proof: Used by an app-first DTC brand (NDA)."},
+        {h:"Referral and sharing",p:"Share a Clip link that gives a friend a real experience before the ask.",proof:"Proof: Used to improve referral conversion (NDA)."},
+        {h:"Re-engagement",p:"Win back lapsed users with a Clip before asking them to re-download.",proof:"Proof: Used to recover churned app users (NDA)."},
+        {h:"Influencer and affiliate",p:"Give partners a trackable Clip link that converts to installs.",proof:"Proof: Used for influencer-driven install campaigns (NDA)."},
+        {h:"Email and SMS",p:"Send a Clip link that opens the real app experience, not a landing page.",proof:"Proof: Used to improve install conversion from retention campaigns (NDA)."},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["Higher conversion from click to install","Better install quality — users already know the value","A repeatable channel-agnostic install funnel","Retargeting audiences built from Clip engagement","A faster path to Day 1 retention"],
+    },
+    cta_band:{
+      headline:"Turn your best traffic\ninto installs.",
+      sub:"Try a Clip now. Then we'll map it to your highest-intent channel.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"Is this just an onboarding flow?",a:"No. It's a real slice of the app experience — not a tour or a walkthrough."},
+      {q:"When does the install prompt appear?",a:"At the highest-intent moment inside the Clip, based on what the user just did."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"Does this work for Android?",a:"App Clips are iOS native. Android support via instant apps is available on request."},
+    ]
+  },
+
+  // ── SOLUTION: ADS ──
+  solAds: {
+    eyebrow: "Solution",
+    headline: "Turn ad clicks into\nnative app experiences.",
+    sub: "Point ads to an App Clip instead of a landing page. Open instantly, convert faster, and follow up while intent is high — without an install.",
+    cta1: "Book a demo", cta1Url: "#",
+    cta2: "Try a Clip", cta2Url: "#",
+    problem:{
+      headline:"Landing pages leak intent.",
+      sub:"Mobile web is slow and distracting. App installs add friction. Most high-intent traffic drops off right when it matters most.",
+      bullets:["Paid clicks bounce on mobile web","Installs add friction","You lose the moment before conversion"],
+    },
+    native:{
+      headline:"A native ad destination.",
+      sub:"We build an App Clip experience that opens from your ads in seconds and gets users to a real moment: product, offer, checkout, signup, or booking.",
+      bullets:["Opens instantly from an ad click","Native UX built for conversion","Follow up while intent is high","Clear path to the full app when it makes sense"],
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Ad click","Clip opens instantly","Convert, then follow up"],
+      note:"Native conversion with web-like distribution."
+    },
+    usecases:{
+      headline:"Use cases with proof.",
+      cards:[
+        {h:"Product drops",p:"Ad opens to a product moment, not a page load.",proof:"Proof: Used by a DTC ecommerce brand (NDA)."},
+        {h:"Promotions",p:"Redeem or shop in one native flow.",proof:"Proof: Used by a global beverage brand (NDA)."},
+        {h:"Cart recovery",p:"Follow up while intent is still high.",proof:"Proof: Used to drive repeat post-click visits (NDA)."},
+        {h:"Signups",p:"Start onboarding in a native experience.",proof:"Proof: Used to improve completion vs. mobile web (NDA)."},
+        {h:"Store locator",p:"Send traffic to the nearest location instantly.",proof:"Proof: Used for retail moments from paid traffic (NDA)."},
+        {h:"Try before install",p:"Let users experience it, then install when ready.",proof:"Proof: Lift in quality installs (NDA)."},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["Higher completion after the click","Fewer steps to purchase","Follow up while intent is high","Better handoff to install","A repeatable campaign playbook"],
+    },
+    cta_band:{
+      headline:"See App Clips in action.",
+      sub:"Try it now. Then we'll map it to your funnel and stack.",
+      cta1:"Book a demo", cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"What does the ad open?",a:"A link that opens an App Clip instantly instead of a landing page."},
+      {q:"Do users need to install anything?",a:"No. The Clip opens without an install."},
+      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
+      {q:"What happens after the Clip?",a:"You can follow up while intent is high, and users can install the full app when it makes sense."},
+    ]
+  }
+};
+</script>
+
+<!-- NAV -->
+<nav id="nav"></nav>
+
+<!-- PAGES -->
+<div id="page-home" class="page"></div>
+<div id="page-platform" class="page"></div>
+<div id="page-appclips" class="page"></div>
+<div id="page-customers" class="page"></div>
+<div id="page-sol-retail" class="page"></div>
+<div id="page-sol-venues" class="page"></div>
+<div id="page-sol-installs" class="page"></div>
+<div id="page-sol-download" class="page"></div>
+<div id="page-sol-ads" class="page"></div>
+
+<script>
+const icon_img = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`;
+const icon_qr  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3m0 4h4M17 14h4m-4 4h-3v3"/></svg>`;
+
+function buildNav(){
+  const d = CONTENT.nav;
+  const n = document.getElementById('nav');
+  const logo = document.createElement('div');
+  logo.className='nav-logo'; logo.textContent=CONTENT.brand;
+  logo.onclick=()=>route('home');
+  const links = document.createElement('div');
+  links.className='nav-links';
+  // solutions dropdown first
+  const dd = document.createElement('div');
+  dd.className='nav-dropdown';
+  dd.innerHTML='<span>Solutions</span>';
+  const menu = document.createElement('div');
+  menu.className='dropdown-menu';
+  d.solutions.forEach(s=>{
+    const a=document.createElement('a');
+    a.textContent=s.label;
+    a.onclick=(e)=>{e.stopPropagation();route(s.page)};
+    menu.appendChild(a);
+  });
+  dd.appendChild(menu);
+  let closeTimer;
+  dd.addEventListener('mouseenter',()=>{ clearTimeout(closeTimer); dd.classList.add('open'); });
+  dd.addEventListener('mouseleave',()=>{ closeTimer=setTimeout(()=>dd.classList.remove('open'),120); });
+  links.appendChild(dd);
+  d.links.forEach(l=>{
+    const a=document.createElement('a');
+    a.textContent=l;
+    const pg=l.toLowerCase().replace(/ /g,'').replace('appclips','appclips').replace('platform','platform').replace('customers','customers');
+    a.onclick=()=>route(pg);
+    links.appendChild(a);
+  });
+  const cta=document.createElement('a');
+  cta.className='btn btn-primary'; cta.textContent=d.cta; cta.href=d.ctaUrl;
+  n.appendChild(logo); n.appendChild(links); n.appendChild(cta);
+}
+
+function qrBox(){
+  return `<div class="hero-qr"><div class="hero-qr-box">${icon_qr}</div><p>Try a Reactiv Clip<br>Scan to see it live<br>on your phone.</p></div>`;
+}
+function imgP(){ return `<div class="img-placeholder">${icon_img}</div>`; }
+
+function heroSection(d, hasQR=false){
+  return `
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">${d.eyebrow||''}</div>
+      <h1>${d.headline.replace(/\n/g,'<br>')}</h1>
+      <p class="hero-sub">${d.sub}</p>
+      <div class="hero-ctas">
+        <a href="${d.cta1Url}" class="btn btn-primary">${d.cta1}</a>
+        ${d.cta2?`<a href="${d.cta2Url}" class="btn btn-outline">${d.cta2}</a>`:''}
+      </div>
+    </div>
+    ${hasQR?`<div class="hero-right">${qrBox()}</div>`:''}
+  </div>`;
+}
+
+function customerLogoStrip(){
+  const logos = CONTENT.customerLogos;
+  return `
+  <div class="logo-strip-section">
+    <div class="wrap">
+      <div class="logo-strip-label">Trusted by teams shipping at scale</div>
+      <div class="logo-strip">${logos.map(l=>`<div class="logo-pill">${l}</div>`).join('')}</div>
+    </div>
+  </div>`;
+}
+
+function stepsSection(s){
+  return `
+  <section>
+    <div class="wrap">
+      <div class="steps-wrap">
+        <div><h2>${s.headline}</h2></div>
+        <div>
+          <div class="steps-label">${s.label}</div>
+          <ol class="steps-list">${s.steps.map(st=>`<li>${st}</li>`).join('')}</ol>
+          ${s.note?`<p class="steps-note">${s.note}</p>`:''}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function cardGrid(cards){
+  return `<div class="card-grid">${cards.map(c=>`
+    <div class="card">
+      <h3>${c.h}</h3>
+      <p>${c.p}</p>
+      ${c.proof?`<p class="proof">${c.proof}</p>`:''}
+      ${c.link?`<a href="#" class="card-link">${c.link}</a>`:''}
+    </div>`).join('')}</div>`;
+}
+
+function whatYouGet(d){
+  return `
+  <div class="what-you-get">
+    <div class="wrap">
+      <h2>${d.headline}</h2>
+      <ul class="feature-list">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    </div>
+  </div>`;
+}
+
+function ctaBand(d){
+  return `
+  <div class="cta-band">
+    <div class="wrap">
+      <h2>${d.headline.replace(/\n/g,'<br>')}</h2>
+      <p>${d.sub}</p>
+      <div class="ctas">
+        <a href="#" class="btn btn-primary">${d.cta1}</a>
+        ${d.cta2?`<a href="#" class="btn btn-outline-dark">${d.cta2}</a>`:''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function faqSection(items){
+  return `
+  <div class="faq-section">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        ${items.map(item=>`
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentNode.classList.toggle('open')">
+            <span>${item.q}</span><span class="ico">+</span>
+          </div>
+          <div class="faq-a">${item.a}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function footerHTML(){
+  return `
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a onclick="route('platform')">Platform</a>
+          <a onclick="route('appclips')">App Clips</a>
+          <a onclick="route('sol-download')">Solutions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="#">Email</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Customers</a>
+          <a href="#">Developers</a>
+          <a href="#">Resources</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Security</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">${CONTENT.brand}</div>
+        <p class="footer-copy">The only enterprise platform built on App Clips.</p>
+      </div>
+    </div>
+  </footer>`;
+}
+
+// ── PAGE BUILDERS ──
+
+function buildHome(){
+  const d = CONTENT.home;
+  const p = document.getElementById('page-home');
+  const st = d.stat;
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  ${customerLogoStrip()}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-img">${imgP()}</div>
+        <div class="col-text">
+          <div class="section-label">${st.label}</div>
+          <h2>${st.heading.replace(/\n/g,'<br>')}</h2>
+          <p class="section-sub-sm">${st.sub}</p>
+          <div class="stats-row" style="margin-top:32px;margin-bottom:0">
+            ${st.stats.map(s=>`<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.section1.headline.replace(/\n/g,'<br>')}</h2>
+          <ol class="steps-list" style="margin:20px 0 28px">${d.section1.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+          <a href="${d.section1.ctaUrl}" class="btn btn-outline-dark">${d.section1.cta}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <h2>${d.platform.headline.replace(/\n/g,'<br>')}</h2>
+      <p class="section-sub">${d.platform.sub}</p>
+      ${cardGrid(d.platform.cards)}
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.keeps.headline.replace(/\n/g,'<br>')}</h2>
+          <p class="section-sub">${d.keeps.sub}</p>
+          <ul class="feature-list">${d.keeps.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+          <a href="#" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.keeps.link}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <h2>${d.brands.headline}</h2>
+      <div class="card-grid" style="margin-top:32px">${d.brands.cards.map(c=>`<div class="card"><div class="section-label">${c.logo}</div><p>${c.stat}</p></div>`).join('')}</div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap" style="text-align:center">
+      <div class="section-label">${d.numbers.sub}</div>
+      <h2>${d.numbers.headline.replace(/\n/g,'<br>')}</h2>
+      <div class="stats-row">${d.numbers.stats.map(s=>`<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
+    </div>
+  </section>
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildPlatform(){
+  const d = CONTENT.platform;
+  const p = document.getElementById('page-platform');
+  p.innerHTML = `
+  ${heroSection(d, d.qr)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-img">${imgP()}</div>
+        <div class="col-text">
+          <h2>${d.twoDoors.headline}</h2>
+          <p class="section-sub">${d.twoDoors.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col reverse">
+        <div class="col-text">
+          <h2>${d.tradeoffs.headline}</h2>
+          <p class="section-sub">${d.tradeoffs.sub}</p>
+          <ul class="feature-list">${d.tradeoffs.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+          <a href="${d.tradeoffs.ctaUrl}" class="btn btn-outline-dark" style="margin-top:8px">${d.tradeoffs.cta}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.whereWins.headline}</h2>
+      <p class="section-sub">${d.whereWins.sub}</p>
+      ${cardGrid(d.whereWins.cards)}
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.scale.headline}</h2>
+          <p class="section-sub">${d.scale.sub}</p>
+          <ul class="feature-list">${d.scale.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+          <a href="#" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.scale.link}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.brands.headline}</h2>
+      <div class="card-grid" style="margin-top:32px">${d.brands.cards.map(c=>`<div class="card"><div class="section-label">${c.logo}</div><p>${c.stat}</p></div>`).join('')}</div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap" style="text-align:center">
+      <h2>${d.integrations}</h2>
+      <p class="section-sub" style="margin:0 auto 32px">${d.intSub}</p>
+      <div class="int-row" style="justify-content:center">${d.intChips.map(c=>`<div class="int-chip">${c}</div>`).join('')}</div>
+    </div>
+  </section>
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildAppClips(){
+  const d = CONTENT.appclips;
+  const p = document.getElementById('page-appclips');
+  p.innerHTML = `
+  ${heroSection(d, d.qr)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-img">${imgP()}</div>
+        <div class="col-text">
+          <h2>${d.what.headline}</h2>
+          <p class="section-sub">${d.what.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col reverse">
+        <div class="col-text">
+          <h2>${d.skip.headline}</h2>
+          <p class="section-sub">${d.skip.sub}</p>
+          <ul class="feature-list">${d.skip.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+          <a href="${d.skip.ctaUrl}" class="btn btn-outline-dark" style="margin-top:8px">${d.skip.cta}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.whereWins.headline}</h2>
+      <p class="section-sub">${d.whereWins.sub}</p>
+      ${cardGrid(d.whereWins.cards)}
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.scale.headline}</h2>
+          <p class="section-sub">${d.scale.sub}</p>
+          <ul class="feature-list">${d.scale.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+          <a href="#" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.scale.link}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.brands.headline}</h2>
+      <div class="card-grid" style="margin-top:32px">${d.brands.cards.map(c=>`<div class="card"><div class="section-label">${c.logo}</div><p>${c.stat}</p></div>`).join('')}</div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap" style="text-align:center">
+      <h2>${d.integrations}</h2>
+      <p class="section-sub" style="margin:0 auto 32px">${d.intSub}</p>
+      <div class="int-row" style="justify-content:center">${d.intChips.map(c=>`<div class="int-chip">${c}</div>`).join('')}</div>
+    </div>
+  </section>
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildCustomers(){
+  const d = CONTENT.customers;
+  const p = document.getElementById('page-customers');
+
+  const trustStrip = `
+  <div class="logo-strip-section">
+    <div class="wrap">
+      <div class="logo-strip-label">${d.trustLabel}</div>
+      <div class="logo-strip">${d.trustPills.map(t=>`<div class="logo-pill">${t}</div>`).join('')}</div>
+    </div>
+  </div>`;
+
+  const filterBar = `
+  <div class="filter-bar" id="cust-filters">
+    ${d.filters.map((f,i)=>`<button class="filter-pill${i===0?' active':''}" data-filter="${f}">${f}</button>`).join('')}
+  </div>`;
+
+  const cards = `
+  <div class="card-grid" id="cust-cards">
+    ${d.cards.map(c=>`
+    <div class="card" data-tags="${c.tags.join(',')}">
+      <h3>${c.client}</h3>
+      <p>${c.outcome}</p>
+      <div>${c.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+      <p class="proof">${c.proof}</p>
+    </div>`).join('')}
+  </div>`;
+
+  const transition = `
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.transition.headline}</h2>
+          <p class="section-sub">${d.transition.sub}</p>
+          <a href="#" onclick="route('platform')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.transition.link}</a>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>`;
+
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  ${trustStrip}
+  <section>
+    <div class="wrap">
+      ${filterBar}
+      ${cards}
+    </div>
+  </section>
+  ${transition}
+  ${ctaBand(d.ctaband)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+
+  // filter logic — runs after innerHTML is set
+  p.querySelector('#cust-filters').addEventListener('click', e=>{
+    const btn = e.target.closest('.filter-pill');
+    if(!btn) return;
+    p.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    p.querySelectorAll('#cust-cards .card').forEach(card=>{
+      const tags = card.dataset.tags.split(',');
+      card.classList.toggle('card-hidden', f !== 'All' && !tags.includes(f));
+    });
+  });
+}
+
+function buildSolRetail(){
+  const d = CONTENT.solRetail;
+  const p = document.getElementById('page-sol-retail');
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.problem.headline}</h2>
+          <p class="section-sub">${d.problem.sub}</p>
+          <ul class="feature-list">${d.problem.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.native.headline.replace(/\n/g,'<br>')}</h2>
+          <ul class="feature-list" style="margin-top:16px">${d.native.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-text">
+          <p class="section-sub-sm">${d.native.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.usecases.headline}</h2>
+      ${cardGrid(d.usecases.cards)}
+    </div>
+  </section>
+  ${whatYouGet(d.get)}
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildSolVenues(){
+  const d = CONTENT.solVenues;
+  const p = document.getElementById('page-sol-venues');
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.problem.headline}</h2>
+          <p class="section-sub">${d.problem.sub}</p>
+          <ul class="feature-list">${d.problem.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.native.headline.replace(/\n/g,'<br>')}</h2>
+          <ul class="feature-list" style="margin-top:16px">${d.native.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-text">
+          <p class="section-sub-sm">${d.native.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.usecases.headline}</h2>
+      ${cardGrid(d.usecases.cards)}
+    </div>
+  </section>
+  ${whatYouGet(d.get)}
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildSolInstalls(){
+  const d = CONTENT.solInstalls;
+  const p = document.getElementById('page-sol-installs');
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.problem.headline}</h2>
+          <p class="section-sub">${d.problem.sub}</p>
+          <ul class="feature-list">${d.problem.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.native.headline}</h2>
+          <ul class="feature-list" style="margin-top:16px">${d.native.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-text">
+          <p class="section-sub-sm">${d.native.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.usecases.headline}</h2>
+      ${cardGrid(d.usecases.cards)}
+    </div>
+  </section>
+  ${whatYouGet(d.get)}
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildSolDownload(){
+  const d = CONTENT.solDownload;
+  const p = document.getElementById('page-sol-download');
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.problem.headline}</h2>
+          <p class="section-sub">${d.problem.sub}</p>
+          <ul class="feature-list">${d.problem.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.native.headline.replace(/\n/g,'<br>')}</h2>
+          <ul class="feature-list" style="margin-top:16px">${d.native.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-text">
+          <p class="section-sub-sm">${d.native.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.friction.headline}</h2>
+      ${cardGrid(d.friction.cards)}
+    </div>
+  </section>
+  ${whatYouGet(d.get)}
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+function buildSolAds(){
+  const d = CONTENT.solAds;
+  const p = document.getElementById('page-sol-ads');
+  p.innerHTML = `
+  ${heroSection(d, false)}
+  <section>
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.problem.headline}</h2>
+          <p class="section-sub">${d.problem.sub}</p>
+          <ul class="feature-list">${d.problem.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-img">${imgP()}</div>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-text">
+          <h2>${d.native.headline}</h2>
+          <ul class="feature-list" style="margin-top:16px">${d.native.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="col-text">
+          <p class="section-sub-sm">${d.native.sub}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  ${stepsSection(d.steps)}
+  <section class="alt">
+    <div class="wrap">
+      <h2>${d.usecases.headline}</h2>
+      ${cardGrid(d.usecases.cards)}
+    </div>
+  </section>
+  ${whatYouGet(d.get)}
+  ${ctaBand(d.cta_band)}
+  ${faqSection(d.faq)}
+  ${footerHTML()}`;
+}
+
+// ── ROUTER ──
+function route(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target = document.getElementById('page-'+page);
+  if(target){ target.classList.add('active'); window.scrollTo(0,0); }
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    const pg = a.textContent.toLowerCase().replace(/ /g,'');
+    a.classList.toggle('active', pg===page);
+  });
+  history.pushState(null,'','#'+page);
+}
+
+// ── INIT ──
+buildNav();
+buildCustomers();
+buildSolRetail();
+buildSolVenues();
+buildSolInstalls();
+buildHome();
+buildPlatform();
+buildAppClips();
+buildSolDownload();
+buildSolAds();
+const startPage = location.hash.replace('#','') || 'home';
+route(startPage);
+window.addEventListener('popstate',()=>route(location.hash.replace('#','')||'home'));
+</script>
+</body>
+</html>
