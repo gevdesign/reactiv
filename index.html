@@ -42,7 +42,7 @@ nav{
 .dropdown-menu{
   display:none;position:absolute;top:100%;left:0;
   background:#fff;border:1px solid var(--c-border);border-radius:var(--r);
-  padding:14px 6px 6px;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.12);
+  padding:14px 6px 6px;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.12);
 }
 .nav-dropdown.open .dropdown-menu{display:block}
 .dropdown-menu a{display:block;padding:8px 12px;font-size:13px;color:var(--c-text);border-radius:4px;cursor:pointer}
@@ -227,11 +227,11 @@ const CONTENT = {
   nav: {
     links: ["Platform","App Clips","Customers"],
     solutions: [
-      {label:"Increase Ad Conversion",        page:"sol-ads"},
-      {label:"Reduce Download Friction",       page:"sol-download"},
-      {label:"Innovate at Retail",             page:"sol-retail"},
-      {label:"Power Venues and Events",        page:"sol-venues"},
-      {label:"Grow App Installs",              page:"sol-installs"},
+      {label:"Increase Ad Conversion", sub:"Turn paid traffic into native app experiences", page:"sol-ads"},
+      {label:"Reduce Download Friction", sub:"Remove the install barrier from every channel", page:"sol-download"},
+      {label:"Innovate at Retail", sub:"Connect in-store moments to native mobile", page:"sol-retail"},
+      {label:"Power Venues and Events", sub:"Tickets, ordering, and wayfinding, nothing to install", page:"sol-venues"},
+      {label:"Grow App Installs", sub:"Let users try before they install", page:"sol-installs"},
     ],
     cta: "Book a demo",
     ctaUrl: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7"
@@ -247,7 +247,7 @@ const CONTENT = {
     qr: false,
     stat: {
       label: "The Install Problem",
-      heading: "Most shoppers never\ndownload a new app.",
+      heading: "Most ad clicks never\nreach your app.",
       sub: "Most traffic stays on slow, broken mobile web. Most installs fail at the top of the funnel. App Clips fix this gap.",
       stats: [
         {num:"Up to 65%", label:"Reduction in CAC"},
@@ -759,7 +759,7 @@ function qrBox(){return `<div class="hero-qr"><div class="hero-qr-box">${icon_qr
 function heroSection(d,hasQR=false){
   return `<div class="hero"><div class="hero-inner"><h1>${d.headline.replace(/\n/g,'<br>')}</h1><p class="hero-sub">${d.sub}</p><div class="hero-ctas"><a href="${d.cta1Url||'https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7'}" class="btn btn-primary">${d.cta1}</a>${d.cta2?`<a href="${d.cta2Url||'https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips'}" class="btn btn-outline">${d.cta2}</a>`:''}</div></div>${hasQR?`<div class="hero-right">${qrBox()}</div>`:''}</div>`;
 }
-function customerLogoStrip(){return `<div class="logo-strip-section"><div class="wrap"><div class="logo-strip-label">Trusted by teams shipping at scale</div><div class="logo-strip">${CONTENT.customerLogos.map(l=>`<div class="logo-pill">${l}</div>`).join('')}</div></div></div>`;}
+function customerLogoStrip(){return `<div class="logo-strip-section"><div class="wrap"><div class="logo-strip-label">Trusted by enterprise retail and commerce brands</div><div class="logo-strip">${CONTENT.customerLogos.map(l=>`<div class="logo-pill">${l}</div>`).join('')}</div></div></div>`;}
 function stepsSection(s){return `<section><div class="wrap"><div class="steps-wrap"><div><h2>${s.headline}</h2></div><div><div class="steps-label">${s.label}</div><ol class="steps-list">${s.steps.map(st=>`<li>${st}</li>`).join('')}</ol>${s.note?`<p class="steps-note">${s.note}</p>`:''}</div></div></div></section>`;}
 function cardGrid(cards){return `<div class="card-grid">${cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}${c.link?`<a href="#" class="card-link" onclick="event.preventDefault();route('${c.linkHref||''}')">${c.link}</a>`:''}</div>`).join('')}</div>`;}
 function whatYouGet(d){return `<div class="what-you-get"><div class="wrap"><h2>${d.headline}</h2><ul class="feature-list">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>`;}
