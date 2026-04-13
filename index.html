@@ -225,13 +225,19 @@ footer{background:var(--c-bg-alt);padding:60px 40px 32px;border-top:1px solid va
 const CONTENT = {
   brand: "Reactiv",
   nav: {
-    links: ["Platform","App Clips","Customers"],
+    links: ["Platform","App Clips"],
     solutions: [
-      {label:"Increase Ad Conversion", sub:"Turn paid traffic into native app experiences", page:"sol-ads"},
-      {label:"Reduce Download Friction", sub:"Remove the install barrier from every channel", page:"sol-download"},
-      {label:"Innovate at Retail", sub:"Connect in-store moments to native mobile", page:"sol-retail"},
-      {label:"Power Venues and Events", sub:"Tickets, ordering, and wayfinding, nothing to install", page:"sol-venues"},
-      {label:"Grow App Installs", sub:"Let users try before they install", page:"sol-installs"},
+      {label:"Increase Ad Conversion", sub:"For performance and growth teams", page:"sol-ads"},
+      {label:"Reduce Download Friction", sub:"For mobile and product teams", page:"sol-download"},
+      {label:"Innovate at Retail", sub:"For omnichannel and in-store teams", page:"sol-retail"},
+      {label:"Power Venues and Events", sub:"For digital experience teams", page:"sol-venues"},
+      {label:"Grow App Installs", sub:"For app growth and lifecycle teams", page:"sol-installs"},
+    ],
+    resources: [
+      {label:"Case Studies", href:"#"},
+      {label:"Articles & Guides", href:"#"},
+      {label:"Partners", href:"#"},
+      {label:"Developers", href:"#"},
     ],
     cta: "Book a demo",
     ctaUrl: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7"
@@ -241,7 +247,7 @@ const CONTENT = {
   // , HOME ,
   home: {
     headline: "Build mobile apps\npeople don't have\nto download.",
-    sub: "Reactiv uses Apple App Clips to turn high-intent moments from ads, QR codes, email, and SMS into instant native experiences.",
+    sub: "The enterprise mobile platform behind Indigo, Nespresso, and the Sacramento Kings. App Clips, full native apps, and the infrastructure to grow, on one foundation.",
     cta1: "Book a demo", cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     cta2: "Try a Clip", cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
     qr: false,
@@ -750,6 +756,17 @@ function buildNav(){
   dd.addEventListener('mouseenter',()=>{clearTimeout(ct);dd.classList.add('open');});
   dd.addEventListener('mouseleave',()=>{ct=setTimeout(()=>dd.classList.remove('open'),120);});
   links.appendChild(dd);
+  // Resources dropdown
+  if(d.resources){
+    const rd=document.createElement('div');rd.className='nav-dropdown';rd.innerHTML='<span>Resources</span>';
+    const rm=document.createElement('div');rm.className='dropdown-menu';
+    d.resources.forEach(r=>{const a=document.createElement('a');a.textContent=r.label;a.href=r.href||'#';rm.appendChild(a);});
+    rd.appendChild(rm);
+    let rct;
+    rd.addEventListener('mouseenter',()=>{clearTimeout(rct);rd.classList.add('open');});
+    rd.addEventListener('mouseleave',()=>{rct=setTimeout(()=>rd.classList.remove('open'),120);});
+    links.appendChild(rd);
+  }
   d.links.forEach(l=>{const a=document.createElement('a');a.textContent=l;const pg=l.toLowerCase().replace(/ /g,'');a.onclick=()=>route(pg);links.appendChild(a);});
   const cta=document.createElement('a');cta.className='btn btn-primary';cta.textContent=d.cta;cta.href=d.ctaUrl;
   n.appendChild(logo);n.appendChild(links);n.appendChild(cta);
