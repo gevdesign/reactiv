@@ -42,7 +42,7 @@ nav{
 .dropdown-menu{
   display:none;position:absolute;top:100%;left:0;
   background:#fff;border:1px solid var(--c-border);border-radius:var(--r);
-  padding:14px 6px 6px;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.12);
+  padding:8px 6px 6px;min-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.12);
 }
 .nav-dropdown.open .dropdown-menu{display:block}
 .dropdown-menu a{display:block;padding:8px 12px;font-size:13px;color:var(--c-text);border-radius:4px;cursor:pointer}
@@ -744,7 +744,7 @@ function buildNav(){
   const links=document.createElement('div');links.className='nav-links';
   const dd=document.createElement('div');dd.className='nav-dropdown';dd.innerHTML='<span>Solutions</span>';
   const menu=document.createElement('div');menu.className='dropdown-menu';
-  d.solutions.forEach(s=>{const a=document.createElement('a');a.textContent=s.label;a.onclick=(e)=>{e.stopPropagation();route(s.page)};menu.appendChild(a);});
+  d.solutions.forEach(s=>{const a=document.createElement('a');a.innerHTML='<span style="display:block;font-size:13px;font-weight:600;color:var(--c-text)">'+s.label+'</span>'+(s.sub?'<span style="display:block;font-size:11px;color:var(--c-sub);margin-top:2px;font-weight:400;line-height:1.4">'+s.sub+'</span>':'');a.onclick=(e)=>{e.stopPropagation();route(s.page)};menu.appendChild(a);});
   dd.appendChild(menu);
   let ct;
   dd.addEventListener('mouseenter',()=>{clearTimeout(ct);dd.classList.add('open');});
