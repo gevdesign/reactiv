@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reactiv.ai — Design Critique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --green: #0cec93;
+    --green-dim: rgba(12,236,147,0.12);
+    --green-glow: rgba(12,236,147,0.06);
+    --dark-bg: #0d0d0b;
+    --dark-surface: #141412;
+    --dark-card: #1a1a17;
+    --dark-border: rgba(255,255,255,0.07);
+    --text: #d8d6d2;
+    --text-muted: #807e7a;
+    --text-faint: #3f3e3b;
+    --red: #ff5757;
+    --amber: #f5a623;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition: 180ms var(--ease);
+    --content: 880px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-font-smoothing: antialiased; }
+  body {
+    background: var(--dark-bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  p { max-width: 68ch; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,13,11,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--dark-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1rem, 4vw, 2.5rem);
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    transition: color var(--transition);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 600px) { .nav-links { display: none; } }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: var(--content);
+    margin: 0 auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+  }
+  section { padding-block: clamp(4rem, 8vw, 7rem); }
+  section + section { border-top: 1px solid var(--dark-border); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-block: clamp(5rem, 10vw, 9rem);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 10% 80%, rgba(12,236,147,0.05), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 20px; height: 1px; background: var(--green);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 2rem + 4vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #f0efeb;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--text-muted); }
+  .hero-sub {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 54ch;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+  .hero-chips {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.375rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8125rem; font-weight: 500;
+    border: 1px solid;
+  }
+  .chip-green { background: var(--green-dim); border-color: rgba(12,236,147,0.3); color: var(--green); }
+  .chip-red { background: rgba(255,87,87,0.1); border-color: rgba(255,87,87,0.3); color: var(--red); }
+  .chip-amber { background: rgba(245,166,35,0.1); border-color: rgba(245,166,35,0.25); color: var(--amber); }
+
+  /* ── TLDR ── */
+  .tldr-band {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    margin-block: 3rem;
+  }
+  .tldr-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 1.25rem;
+  }
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .tldr-item {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    padding: 1rem; border-radius: var(--radius);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+  }
+  .tldr-icon {
+    width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.875rem; flex-shrink: 0; margin-top: 1px;
+  }
+  .tldr-icon-green { background: var(--green-dim); color: var(--green); }
+  .tldr-icon-red { background: rgba(255,87,87,0.12); color: var(--red); }
+  .tldr-icon-amber { background: rgba(245,166,35,0.1); color: var(--amber); }
+  .tldr-text { font-size: 0.9rem; line-height: 1.55; color: var(--text-muted); }
+  .tldr-text strong { color: var(--text); display: block; margin-bottom: 0.15rem; }
+
+  /* ── SECTION HEADER ── */
+  .section-eyebrow {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-faint); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.4rem + 2.5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #f0efeb;
+    margin-bottom: 1.25rem;
+  }
+  .section-title em { font-style: italic; color: var(--text-muted); }
+  .section-intro {
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+    color: var(--text-muted);
+    max-width: 60ch;
+    margin-bottom: 3rem;
+    line-height: 1.65;
+  }
+
+  /* ── TWO-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+  .verdict-card {
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid;
+  }
+  .verdict-green { background: rgba(12,236,147,0.04); border-color: rgba(12,236,147,0.2); }
+  .verdict-red { background: rgba(255,87,87,0.04); border-color: rgba(255,87,87,0.2); }
+  .verdict-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.875rem;
+  }
+  .verdict-green .verdict-label { color: var(--green); }
+  .verdict-red .verdict-label { color: var(--red); }
+  .verdict-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .verdict-card li {
+    font-size: 0.9rem; color: var(--text-muted); line-height: 1.45;
+    padding-left: 1.1rem; position: relative;
+  }
+  .verdict-card li::before {
+    content: '—'; position: absolute; left: 0; color: var(--text-faint);
+  }
+
+  /* ── BODY TEXT ── */
+  .body-prose { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
+  .body-prose p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+  .body-prose p strong { color: var(--text); }
+  .hl-red { color: var(--red); }
+  .hl-amber { color: var(--amber); }
+  .hl-green { color: var(--green); }
+
+  /* ── COLOR SWATCHES ── */
+  .swatch-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 2rem 0 1.5rem; }
+  .swatch {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    font-size: 0.75rem; color: var(--text-muted); font-weight: 500;
+  }
+  .swatch-block { width: 80px; height: 50px; border-radius: 8px; }
+
+  /* ── TYPE DEMO ── */
+  .type-demo {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden; margin: 2rem 0;
+  }
+  .type-demo-row {
+    display: flex; align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--dark-border);
+    gap: 1rem;
+  }
+  .type-demo-row:last-child { border-bottom: none; }
+  .type-sample { flex: 1; min-width: 0; }
+  .type-meta { font-size: 0.7rem; color: var(--text-faint); white-space: nowrap; text-align: right; letter-spacing: 0.04em; }
+
+  /* ── FIXES ── */
+  .fixes-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .fix-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem 1.5rem;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    transition: border-color var(--transition);
+  }
+  .fix-item:hover { border-color: rgba(12,236,147,0.25); }
+  .fix-num {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: var(--green-dim); color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+  .fix-content { flex: 1; }
+  .fix-content strong { display: block; color: var(--text); margin-bottom: 0.35rem; font-size: 0.9375rem; }
+  .fix-content p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; max-width: none; }
+
+  /* ── VERDICT BANNER ── */
+  .verdict-banner {
+    background: var(--dark-surface);
+    border: 1px solid rgba(12,236,147,0.2);
+    border-radius: var(--radius-lg);
+    padding: clamp(2rem, 5vw, 4rem);
+    text-align: center;
+    position: relative; overflow: hidden;
+    margin-top: 2rem;
+  }
+  .verdict-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(12,236,147,0.07), transparent 60%);
+    pointer-events: none;
+  }
+  .verdict-banner-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.2rem + 3vw, 3.2rem);
+    font-weight: 400; letter-spacing: -0.02em; line-height: 1.15;
+    color: #f0efeb; margin-bottom: 1.5rem; position: relative;
+  }
+  .verdict-banner-title em { font-style: italic; color: var(--text-muted); }
+  .verdict-body {
+    font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1.05rem);
+    color: var(--text-muted); max-width: 58ch; margin: 0 auto;
+    line-height: 1.7; position: relative;
+  }
+
+  /* ── SCORES ── */
+  .scores {
+    display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+    margin: 2.5rem 0; position: relative;
+  }
+  .score-item { text-align: center; }
+  .score-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 400; line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .score-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); margin-top: 0.25rem; }
+
+  /* ── QUESTIONS ── */
+  .q-section-intro {
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.1rem);
+    color: var(--text-muted); max-width: 58ch; margin-bottom: 2.5rem; line-height: 1.65;
+  }
+  .q-grid { display: flex; flex-direction: column; gap: 1px; }
+  .q-item {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    overflow: hidden; margin-bottom: 0.625rem;
+    transition: border-color var(--transition);
+  }
+  .q-item:hover { border-color: rgba(12,236,147,0.2); }
+  .q-header {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.375rem 1.5rem; cursor: pointer;
+    user-select: none;
+  }
+  .q-num {
+    font-family: var(--font-display);
+    font-size: 1.25rem; color: var(--text-faint);
+    flex-shrink: 0; margin-top: -2px; line-height: 1;
+    min-width: 1.5rem;
+  }
+  .q-title-wrap { flex: 1; }
+  .q-tag {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.3rem;
+  }
+  .q-text {
+    font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.05rem);
+    color: var(--text); font-weight: 500; line-height: 1.4;
+  }
+  .q-chevron {
+    width: 20px; height: 20px; color: var(--text-faint); flex-shrink: 0; margin-top: 4px;
+    transition: transform var(--transition);
+  }
+  .q-item.open .q-chevron { transform: rotate(180deg); }
+  .q-body {
+    display: none;
+    padding: 0 1.5rem 1.5rem 3.5rem;
+    border-top: 1px solid var(--dark-border);
+  }
+  .q-item.open .q-body { display: block; }
+  .q-body-inner { padding-top: 1.25rem; display: flex; flex-direction: column; gap: 0.875rem; }
+  .q-body-inner p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; max-width: none; }
+  .q-body-inner p strong { color: var(--text); }
+  .q-refs {
+    display: flex; flex-direction: column; gap: 0.375rem; margin-top: 0.5rem;
+    padding-top: 1rem; border-top: 1px solid var(--dark-border);
+  }
+  .q-ref-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-faint); margin-bottom: 0.25rem;
+  }
+  .ref-link {
+    display: inline-flex; align-items: center; gap: 0.375rem;
+    font-size: 0.8125rem; color: var(--text-muted);
+    transition: color var(--transition); padding: 0.125rem 0;
+  }
+  .ref-link:hover { color: var(--green); text-decoration: none; }
+  .ref-link svg { flex-shrink: 0; opacity: 0.5; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--dark-border);
+    padding: 2rem clamp(1.25rem, 5vw, 2.5rem);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-note { font-size: 0.8125rem; color: var(--text-faint); }
+  .footer-note a { color: var(--text-muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Reactiv.ai — Design Critique</span>
+  <ul class="nav-links" role="list">
+    <li><a href="#color">Color</a></li>
+    <li><a href="#fonts">Fonts</a></li>
+    <li><a href="#imagery">Images</a></li>
+    <li><a href="#system">Full Picture</a></li>
+    <li><a href="#questions">Team Questions</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Design Review — reactiv.ai</div>
+      <h1>The idea is there.<br><em>The design isn't keeping up.</em></h1>
+      <p class="hero-sub">
+        An honest look at what's working and what isn't — the colors, the fonts, the photos, and how it all fits together. Plus eight questions to help the team figure out where to go next.
+      </p>
+      <div class="hero-chips">
+        <span class="chip chip-green">✓ Logo is strong</span>
+        <span class="chip chip-green">✓ Dark look is right</span>
+        <span class="chip chip-red">✗ Green barely visible</span>
+        <span class="chip chip-red">✗ Hero image misfires</span>
+        <span class="chip chip-amber">◑ Fonts blend together</span>
+        <span class="chip chip-amber">◑ Needs section rhythm</span>
+      </div>
+
+      <!-- TLDR -->
+      <div class="tldr-band reveal">
+        <div class="tldr-label">TL;DR — Six things to know</div>
+        <div class="tldr-grid">
+          <div class="tldr-item">
+            <div class="tldr-icon tldr-icon-green">✓</div>
+            <div class="tldr-text"><strong>The logo is the best thing on the page</strong> Sharp, clean, memorable. Everything else needs to catch up to it.</div>
+          </div>
+          <div class="tldr-item">
+            <div class="tldr-icon tldr-icon-green">✓</div>
+            <div class="tldr-text"><strong>Dark, serious look is the right call</strong> It fits the audience and differentiates from every other SaaS brand going light.</div>
+          </div>
+          <div class="tldr-item">
+            <div class="tldr-icon tldr-icon-red">✗</div>
+            <div class="tldr-text"><strong>The green isn't working hard enough</strong> It only shows up on the main button. It should run through the whole page — numbers, section breaks, icons.</div>
+          </div>
+          <div class="tldr-item">
+            <div class="tldr-icon tldr-icon-red">✗</div>
+            <div class="tldr-text"><strong>The hero image sends the wrong message</strong> A clothing brand promo screenshot reads "template," not "serious platform." The copy says enterprise — the image doesn't back it up.</div>
+          </div>
+          <div class="tldr-item">
+            <div class="tldr-icon tldr-icon-amber">◑</div>
+            <div class="tldr-text"><strong>The fonts are fine but forgettable</strong> Both fonts are the same style. The big stats — "65% lower costs," "3x conversions" — should hit harder.</div>
+          </div>
+          <div class="tldr-item">
+            <div class="tldr-icon tldr-icon-amber">◑</div>
+            <div class="tldr-text"><strong>This doesn't need a full redesign</strong> Four targeted fixes close most of the gap. The bones are solid.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOR -->
+  <section id="color">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">01 — Color</div>
+        <h2 class="section-title">Good instinct, <em>half finished</em></h2>
+        <p class="section-intro">That bright green against the near-black background is the single best design decision on this site. It's just not being used enough.</p>
+      </div>
+
+      <div class="swatch-row reveal">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0cec93;"></div>
+          <span>#0cec93</span>
+          <span style="color:var(--green);font-size:0.7rem;">Brand green</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0d0d0b; border:1px solid rgba(255,255,255,0.08);"></div>
+          <span>#0d0d0b</span>
+          <span style="color:var(--text-faint);font-size:0.7rem;">Main bg</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#c1c8c5; border:1px solid rgba(255,255,255,0.08);"></div>
+          <span>#c1c8c5</span>
+          <span style="color:var(--amber);font-size:0.7rem;">Orphaned neutral</span>
+        </div>
+      </div>
+
+      <div class="body-prose reveal">
+        <p>Bright green on black is <strong>the most distinctive choice on this site.</strong> It stands out from the endless purple-gradient, cobalt-blue look of every other tech company. On a dark background it reads as confident and fast-moving — exactly the right vibe for a product built on Apple's technology.</p>
+        <p>The problem: <span class="hl-red">the color only shows up in two places</span> — the main button and a faint glow in the background. There's also a muted grey-green floating in the system that isn't connected to anything. It just creates visual noise without earning its presence.</p>
+        <p>The green should be <strong>threaded through the whole page</strong> — the big stat numbers, lines between sections, icons, anything that needs to catch the eye. Right now it's like having a great signature color and then hiding it. The page ends up feeling flat because the one thing that should make it feel alive is barely visible.</p>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="verdict-card verdict-green">
+          <div class="verdict-label">What's working</div>
+          <ul>
+            <li>Bright green on black is immediately distinctive</li>
+            <li>Stands out from the sea of blue and purple tech sites</li>
+            <li>Dark background feels premium and intentional</li>
+            <li>The instinct behind the color choice is exactly right</li>
+          </ul>
+        </div>
+        <div class="verdict-card verdict-red">
+          <div class="verdict-label">What's not</div>
+          <ul>
+            <li>The grey-green secondary color is doing nothing</li>
+            <li>Green only shows up on the button — barely visible elsewhere</li>
+            <li>No second color to add warmth or contrast</li>
+            <li>Every section looks the same dark shade — no rhythm</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FONTS -->
+  <section id="fonts">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">02 — Fonts</div>
+        <h2 class="section-title">Clean and safe, <em>nothing memorable</em></h2>
+        <p class="section-intro">Both fonts are the same general style — neutral, clean, modern. They look nice together but there's no contrast between them, and nothing that makes the brand stick.</p>
+      </div>
+
+      <div class="type-demo reveal">
+        <div class="type-demo-row">
+          <div class="type-sample" style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;letter-spacing:-0.02em;color:#f0efeb;line-height:1.1;">Build mobile apps people don't have to download</div>
+          <div class="type-meta"><strong>Headline font</strong><br>Big title text</div>
+        </div>
+        <div class="type-demo-row">
+          <div class="type-sample" style="font-size:1rem;color:var(--text-muted);line-height:1.65;">Reactiv helps brands activate instant, frictionless mobile experiences at the highest-intent moments.</div>
+          <div class="type-meta"><strong>Body font</strong><br>Paragraphs</div>
+        </div>
+        <div class="type-demo-row" style="background:rgba(12,236,147,0.04);">
+          <div class="type-sample" style="font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.04em;color:var(--green);line-height:1;">65%</div>
+          <div class="type-meta"><strong>What's missing</strong><br>A bold, punchy moment</div>
+        </div>
+      </div>
+
+      <div class="body-prose reveal">
+        <p>Clean, neutral fonts are the right call for a serious business product — <strong>you don't want fonts competing with your message.</strong> The text is properly sized and scales well from phone to desktop. That part works.</p>
+        <p>The problem: <span class="hl-red">both fonts look and feel identical.</span> Same weight, same width, same personality. There's no moment on the page where the text does something bold or surprising. The big headline is large, but in a soft, background way — not in a way that makes you stop scrolling.</p>
+        <p>The numbers on this page — "65% lower costs," "3x conversions" — are the strongest sales argument Reactiv has. Right now they're styled exactly the same as every other line of text. <span class="hl-amber">They should feel like a punch.</span> Making those stats visually heavier costs almost nothing and changes everything about how they land.</p>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="verdict-card verdict-green">
+          <div class="verdict-label">What's working</div>
+          <ul>
+            <li>Clean, neutral fonts feel right for an enterprise product</li>
+            <li>Text sizing works well across screen sizes</li>
+            <li>The headline spacing feels tight and polished</li>
+            <li>The two fonts sit together without fighting</li>
+          </ul>
+        </div>
+        <div class="verdict-card verdict-red">
+          <div class="verdict-label">What's not</div>
+          <ul>
+            <li>Both fonts are the same style — nothing to contrast them</li>
+            <li>The big stat numbers aren't styled to hit hard</li>
+            <li>The main headline is big but forgettable</li>
+            <li>Nothing in the text signals a strong brand personality</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGERY -->
+  <section id="imagery">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">03 — Images &amp; Photos</div>
+        <h2 class="section-title">Shows the demo, <em>loses the story</em></h2>
+        <p class="section-intro">The main image explains what an App Clip can look like. It doesn't explain why anyone should trust Reactiv to build theirs.</p>
+      </div>
+
+      <div class="body-prose reveal">
+        <p>The main hero image is a phone showing a clothing brand's sale — a model, a "limited run" banner, a discount overlay. As a demo screenshot, fine. As the <strong>first thing a retail director or CTO sees when they land on the homepage?</strong> It reads as "template for small brands" rather than "serious enterprise infrastructure." That's a hard first impression to recover from.</p>
+        <p>Scroll the whole site and <span class="hl-red">you won't see a single real person, real store, or any real-world context.</span> The testimonials mention companies like Indigo — a major retailer — but nothing in the visuals backs that up. The words are making enterprise-level promises the images simply aren't supporting.</p>
+        <p>The "phone floating on a dark background" look has been done by every tech company since 2019. It isn't bad — it's just invisible. The companies Reactiv wants to be compared to have moved on to showing real-world impact: actual environments, actual context, actual scale. That's what builds trust at the price point Reactiv is selling at.</p>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="verdict-card verdict-red">
+          <div class="verdict-label">What's not working</div>
+          <ul>
+            <li>Fashion promo screenshot as the main hero image</li>
+            <li>"Phone floating in the dark" — overused look</li>
+            <li>No real people, no real stores, no real-world context</li>
+            <li>Shows what an output looks like, not what the platform achieves</li>
+          </ul>
+        </div>
+        <div class="verdict-card verdict-green">
+          <div class="verdict-label">What to try instead</div>
+          <ul>
+            <li>Real stores, real scan moments, real world context</li>
+            <li>Show the actual brands you've helped — not a fake example</li>
+            <li>A visual that communicates the scale of what this handles</li>
+            <li>Lead with the result ("65% lower costs"), show product second</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM -->
+  <section id="system">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">04 — The Full Picture</div>
+        <h2 class="section-title">The words say big league,<br><em>the design says not yet</em></h2>
+        <p class="section-intro">There's a gap between what the copy is promising and what the visuals are delivering. Buyers feel that gap — even when they can't put it into words.</p>
+      </div>
+
+      <div class="body-prose reveal">
+        <p><strong>The copy on this site is doing heavy lifting.</strong> "65% lower cost to acquire a customer." "3x conversions." Indigo as a real client. That's compelling. But when the visuals around those claims look like they came off a startup template, the credibility gap is immediate — and enterprise buyers are skeptical by default. Every design decision either builds or erodes their confidence.</p>
+        <p>The green brand color feels like an afterthought because it only shows up on the button. <strong>Your brand color shouldn't be hiding.</strong> It should be the visual thread that runs through the whole page — the color of your key numbers, your section breaks, your icons. Right now it's doing button work when it should be doing brand work.</p>
+        <p>The logo is <span class="hl-green">genuinely the best thing on the page</span> — clean, sharp, and memorable. That's a great sign. It means a real brand identity exists at the core. The problem is that nothing else on the site is living up to it. Cover the logo and this could be any of a dozen companies. That's the gap to close.</p>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="verdict-card verdict-green">
+          <div class="verdict-label">Strengths to build on</div>
+          <ul>
+            <li>The logo is genuinely strong — clean and distinctive</li>
+            <li>The dark, serious look is right for this audience</li>
+            <li>The numbers (65%, 3x) are well-placed and impactful</li>
+            <li>Real client names in the testimonials carry real weight</li>
+          </ul>
+        </div>
+        <div class="verdict-card verdict-red">
+          <div class="verdict-label">Gaps to close</div>
+          <ul>
+            <li>The words promise more than the visuals deliver</li>
+            <li>Every section looks identical — no breaks, no rhythm</li>
+            <li>The brand color is barely visible across the page</li>
+            <li>Without the logo, this looks like every other startup site</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FIXES -->
+      <div class="reveal" style="margin-top:3rem;">
+        <h3 style="font-family:var(--font-display);font-size:clamp(1.5rem,1.2rem+1.5vw,2.2rem);font-weight:400;letter-spacing:-0.02em;color:#f0efeb;margin-bottom:0.5rem;">Four specific fixes, <em style="font-style:italic;">not a full redesign</em></h3>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;">These changes close 80% of the gap without touching the fundamental direction.</p>
+      </div>
+      <div class="fixes-list reveal">
+        <div class="fix-item">
+          <div class="fix-num">1</div>
+          <div class="fix-content">
+            <strong>Make the green color do real work across the whole page</strong>
+            <p>Right now it only shows up on the button. Pull it into the big stat numbers, the lines between sections, the icons, and anything that needs to stand out. The green should feel like it's woven through the whole site — not just sitting on one button at the bottom of each section.</p>
+          </div>
+        </div>
+        <div class="fix-item">
+          <div class="fix-num">2</div>
+          <div class="fix-content">
+            <strong>Make the big numbers actually feel big</strong>
+            <p>The stats — "65% lower CAC," "3x conversions" — are the most convincing thing on the site. But they're styled the same as everything else. Make them heavier, bolder, visually distinct from surrounding text. They should feel like a headline. Right now they read like a footnote.</p>
+          </div>
+        </div>
+        <div class="fix-item">
+          <div class="fix-num">3</div>
+          <div class="fix-content">
+            <strong>Replace the clothing brand screenshot with something that shows real scale</strong>
+            <p>The hero image should make you feel the impact of Reactiv, not just show what an App Clip looks like. A real retail environment, a QR code being scanned in a store, or even an abstract visualization of conversion data at scale would be far more convincing to a serious buyer.</p>
+          </div>
+        </div>
+        <div class="fix-item">
+          <div class="fix-num">4</div>
+          <div class="fix-content">
+            <strong>Break up the all-dark scroll with one or two lighter sections</strong>
+            <p>Right now every section looks identical — same dark background, same layout, same feel. Adding one or two lighter-coloured sections mid-page gives people's eyes a place to rest and signals a shift in content. It also makes the dark sections feel more intentional when you return to them.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERDICT -->
+      <div class="verdict-banner reveal">
+        <h2 class="verdict-banner-title">Most of the way there.<br><em>The brand just needs to catch up.</em></h2>
+        <div class="scores">
+          <div class="score-item"><div class="score-num" style="color:var(--green);">7</div><div class="score-label">Color</div></div>
+          <div class="score-item"><div class="score-num" style="color:var(--amber);">5</div><div class="score-label">Fonts</div></div>
+          <div class="score-item"><div class="score-num" style="color:var(--red);">4</div><div class="score-label">Imagery</div></div>
+          <div class="score-item"><div class="score-num" style="color:var(--amber);">6</div><div class="score-label">System</div></div>
+        </div>
+        <p class="verdict-body">The fundamentals are solid. The brand color is distinctive, the dark look is right for the audience, and the copy is doing real work. The gap is between what the site is saying and what it's showing. When a potential buyer reads "65% lower costs" and sees a fashion promo screenshot, something feels off — even if they can't say why. The fix isn't starting over — it's making the visual side of the site live up to the words already on it. The logo proves the brand identity is there. Everything else just needs to catch up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section id="questions">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">Team Discussion</div>
+        <h2 class="section-title">Eight questions for <em>the team</em></h2>
+        <p class="q-section-intro">Before anything changes, the team needs to agree on direction. These aren't trick questions — they're the ones where different answers lead to genuinely different sites. Each one includes real examples so you can point at something rather than just describe it.</p>
+      </div>
+
+      <div class="q-grid reveal">
+
+        <!-- Q1 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">1</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">Gut reaction</div>
+              <div class="q-text">Think of a brand — in any industry — that you genuinely love the look of. What is it, and what do you love about it?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>This isn't about tech companies or direct competitors. It's about what actually resonates with you emotionally — could be a clothing brand, a car company, a restaurant, a magazine. The point is to find the <strong>feeling</strong> you're chasing, not a specific look to copy.</p>
+              <p>Ask everyone to bring one example. The patterns in those answers will tell us more about the direction we want than any brief we could write.</p>
+              <div class="q-refs">
+                <div class="q-ref-label">To get you thinking</div>
+                <a href="https://www.apple.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> apple.com — restraint and desire</a>
+                <a href="https://www.patagonia.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> patagonia.com — purpose-led, no-frills confidence</a>
+                <a href="https://www.aesop.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> aesop.com — editorial, tactile, unhurried</a>
+                <a href="https://www.nike.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> nike.com — bold, human, kinetic</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">2</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The cringe test</div>
+              <div class="q-text">Think of a brand whose look makes you wince. What is it, and what specifically bothers you about it?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>What you hate is often more revealing than what you love. If the whole team says they hate a certain type of loud, aggressive design — that's a clear signal. If opinions split down the middle, that's equally useful to know.</p>
+              <p><strong>Specific is better than vague.</strong> Not "I don't like cluttered sites" but "the way X uses five different fonts and a gradient on every button makes me not trust them." The more specific the complaint, the more useful it is as a design constraint.</p>
+              <div class="q-refs">
+                <div class="q-ref-label">Common things people flag</div>
+                <a href="https://www.godaddy.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> godaddy.com — loud, cluttered, shouty discounts everywhere</a>
+                <a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> fiverr.com — busy, trying too hard, no clear hierarchy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">3</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The aspiration gap</div>
+              <div class="q-text">What's a company in a completely different industry that you wish Reactiv looked more like — even if it makes no logical sense?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>This is one of the most generative questions in any brand exercise. "I want us to feel like a luxury watch brand" or "I want the energy of a Berlin nightclub" or "I want the trust of a hospital" — these comparisons cut through all the noise and get to the <em>emotional register</em> faster than any brief.</p>
+              <p>There are no wrong answers. The point isn't to literally copy a hotel's website. It's to extract the feeling: the confidence, the texture, the pacing, the restraint or boldness. <strong>What feeling from another world do you want people to have when they land here?</strong></p>
+              <div class="q-refs">
+                <div class="q-ref-label">Non-tech brands with strong visual identities</div>
+                <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> net-a-porter.com — editorial luxury, black and white confidence</a>
+                <a href="https://www.mbusa.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> mercedes-benz.com — restrained prestige, dark, cinematic</a>
+                <a href="https://www.wsj.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> wsj.com — serious, authoritative, institutional trust</a>
+                <a href="https://www.dyson.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> dyson.com — technical precision made desirable</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">4</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The competitor gut-check</div>
+              <div class="q-text">Look at three or four sites in your space right now. Which one do you secretly think looks the best — and what does that tell us about where we want to go?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>The goal here isn't to copy anyone. It's to be honest about what's resonating in the market right now, and to figure out whether we want to look <em>adjacent</em> to the best players in the space (familiar, credible) or deliberately different from all of them (distinctive, memorable).</p>
+              <p>Both are valid strategies. Looking adjacent to strong players in the space can borrow their credibility. Looking completely different can create immediate recall. <strong>Which instinct feels right for where Reactiv is right now?</strong></p>
+              <div class="q-refs">
+                <div class="q-ref-label">Worth a look</div>
+                <a href="https://www.airship.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> airship.com — mobile engagement, enterprise, similar space</a>
+                <a href="https://www.braze.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> braze.com — customer engagement platform</a>
+                <a href="https://www.attentive.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> attentive.com — SMS and mobile marketing</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">5</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The customer test</div>
+              <div class="q-text">Picture your ideal customer landing on this site for the first time. What do you want them to think — and what do you definitely <em>not</em> want them to think?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>This question is as much about your fears as your ambitions. "I never want them to think we're a small startup" is a brand constraint. "I never want them to think this is a DIY tool" is a brand constraint. These fears shape what we emphasize, what we hide, and how serious the visual language needs to be.</p>
+              <p>The "don't want" list is often more useful than the "want" list. <strong>Write both down</strong> — and be honest about which of those fears currently describes how the site reads right now.</p>
+              <div class="q-refs">
+                <div class="q-ref-label">Enterprise-level first impressions to study</div>
+                <a href="https://segment.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> segment.com — "serious data infrastructure"</a>
+                <a href="https://www.salesforce.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> salesforce.com — "the biggest player in the room"</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">6</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The texture question</div>
+              <div class="q-text">Should this brand feel warm or cold? Loud or quiet? Urgent or unhurried? Pick a side for each one.</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>These aren't questions about specific visual choices — they're about the underlying feeling the brand should carry. Each pairing maps directly to design decisions: warm vs. cold affects color temperature and photography style; loud vs. quiet affects how much white space and how bold the type is; urgent vs. unhurried affects how much movement and how much breathing room there is.</p>
+              <p>Go around the room and force a choice for each one. <strong>No "it depends."</strong> If the team splits on one of these, that's the most important disagreement to resolve before any design work starts.</p>
+              <div class="q-refs">
+                <div class="q-ref-label">Examples of each end of the spectrum</div>
+                <a href="https://www.notion.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> notion.com — warm, quiet, unhurried</a>
+                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> vercel.com — cold, quiet, unhurried</a>
+                <a href="https://www.raycast.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> raycast.com — cold, loud, urgent</a>
+                <a href="https://www.aesop.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> aesop.com — warm, quiet, unhurried (but totally different industry)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">7</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The five-year question</div>
+              <div class="q-text">Where is Reactiv in five years — and does the brand we have right now look like a company at that scale?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>This is a design question in disguise. If Reactiv is aiming to be the infrastructure layer behind major retailers across North America, the brand needs to look like it belongs in that conversation today — not after you've landed those clients. <strong>Buyers make decisions based on how credible you look, not just what you've already done.</strong></p>
+              <p>On the flip side — if the plan is to stay nimble and fast-moving for the next few years, a slightly more approachable, startup-energy brand might actually be an asset. Be honest about which phase you're in and what the brand needs to communicate for that specific stage.</p>
+              <div class="q-refs">
+                <div class="q-ref-label">Brands that "look the part" ahead of their size</div>
+                <a href="https://linear.app" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> linear.app — looked like a top-tier product before it was</a>
+                <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> figma.com — early brand had enterprise credibility from day one</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">8</div>
+            <div class="q-title-wrap">
+              <div class="q-tag">The one-word test</div>
+              <div class="q-text">Everyone writes down one word — independently, before sharing. What word do you want someone to think of when they see the Reactiv brand?</div>
+            </div>
+            <svg class="q-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="q-body">
+            <div class="q-body-inner">
+              <p>This is the last question for a reason — it's the one that acts as a filter for every design decision that follows. "Trusted" leads to one kind of site. "Fast" leads to another. "Premium" leads to another. "Human" leads to something completely different.</p>
+              <p>Have everyone write their word down before anyone says theirs out loud. If you all land on the same word (or words that are basically the same) — great, you're aligned and you can start designing. If you get five different words, <strong>that disagreement is the most important thing to resolve</strong> before touching anything visual. No designer can fix a brand the team itself doesn't agree on.</p>
+              <div class="q-refs">
+                <div class="q-ref-label">Brands with a clear single-word energy</div>
+                <a href="https://linear.app" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> linear.app — "precise"</a>
+                <a href="https://notion.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> notion.com — "calm"</a>
+                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> vercel.com — "decisive"</a>
+                <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" class="ref-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> stripe.com — "authoritative"</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-note">Prepared for Reactiv.ai — <a href="https://www.reactiv.ai" target="_blank" rel="noopener noreferrer">reactiv.ai ↗</a></div>
+  <div class="footer-note" style="text-align:right;">GeV Design — Internal review doc</div>
+</footer>
+
+<script>
+  // Accordion
+  function toggleQ(el) {
+    el.classList.toggle('open');
+  }
+
+  // Scroll reveals
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
