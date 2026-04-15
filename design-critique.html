@@ -74,8 +74,31 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
 .fix-num{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:var(--space-3)}
 .fix-card h3{font-size:var(--text-base);margin-bottom:var(--space-2);color:#fff}
 .fix-card p{font-size:var(--text-sm);color:rgba(255,255,255,.72)}
+/* ── SWATCH ROW ── */
+.swatch-row{display:flex;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-8)}
+.swatch{display:flex;flex-direction:column;gap:6px}
+.swatch-block{width:72px;height:48px;border-radius:var(--radius-md)}
+.swatch-label{font-size:11px;font-weight:600;color:var(--color-text-muted)}
+.swatch-hex{font-size:11px;color:var(--color-text-faint);font-family:monospace}
+.swatch-usage{display:flex;gap:var(--space-3);margin-top:var(--space-6);padding:var(--space-5);background:var(--color-dark);border-radius:var(--radius-lg);align-items:center;flex-wrap:wrap}
+.swatch-usage-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.5)}
+.swatch-usage-item .pip{width:8px;height:8px;border-radius:999px;background:#0cec93}
+.swatch-usage-item.active{color:rgba(255,255,255,.9)}
+.swatch-usage-item.active .pip{box-shadow:0 0 0 3px rgba(12,236,147,.25)}
+.swatch-caption{font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-3)}
+/* ── TYPE DEMO ── */
+.type-demo{margin-bottom:var(--space-8);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;background:var(--color-surface)}
+.type-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--space-6);padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--color-divider)}
+.type-row:last-child{border-bottom:none}
+.type-row.suggested{background:rgba(98,226,79,.04)}
+.type-sample{min-width:0}
+.type-meta{font-size:11px;color:var(--color-text-faint);text-align:right;white-space:nowrap;letter-spacing:.03em}
+.type-meta strong{display:block;color:var(--color-text-muted);font-weight:600}
+.type-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:var(--radius-full);margin-bottom:6px}
+.type-tag.current{background:var(--color-divider);color:var(--color-text-muted)}
+.type-tag.fix{background:rgba(98,226,79,.12);color:#3a8a2e}
 .footer{padding:var(--space-10) 0;border-top:1px solid var(--color-divider);font-size:var(--text-xs);color:var(--color-text-faint)}
-@media (max-width:860px){.summary-grid,.two-col,.fix-grid,.section-head{grid-template-columns:1fr}.hero h1{max-width:11ch}}
+@media (max-width:860px){.summary-grid,.two-col,.fix-grid,.section-head{grid-template-columns:1fr}.hero h1{max-width:11ch}.swatch-usage{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -118,7 +141,40 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
         </div>
         <p class="section-intro">The bright green on black is the most distinctive choice on the site. It’s the right instinct — it just hasn’t been carried through strongly enough to shape the full brand experience.</p>
       </div>
-      <p class="highlight-line"><strong>The green is the signature.</strong> Right now it feels like a button color, not a brand system.</p>
+
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0cec93"></div>
+          <div class="swatch-label">Brand green</div>
+          <div class="swatch-hex">#0cec93</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0d0d0b;border:1px solid var(--color-border)"></div>
+          <div class="swatch-label">Main bg</div>
+          <div class="swatch-hex">#0d0d0b</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#c1c8c5;border:1px solid var(--color-border)"></div>
+          <div class="swatch-label">Orphaned neutral</div>
+          <div class="swatch-hex">#c1c8c5</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#ffffff;border:1px solid var(--color-border)"></div>
+          <div class="swatch-label">Text / UI</div>
+          <div class="swatch-hex">#ffffff</div>
+        </div>
+      </div>
+
+      <div class="swatch-usage">
+        <div class="swatch-usage-item active"><div class="pip"></div>CTA button</div>
+        <div class="swatch-usage-item"><div class="pip"></div>Stat numbers</div>
+        <div class="swatch-usage-item"><div class="pip"></div>Section dividers</div>
+        <div class="swatch-usage-item"><div class="pip"></div>Icons</div>
+        <div class="swatch-usage-item"><div class="pip"></div>Key emphasis</div>
+      </div>
+      <div class="swatch-caption">Filled = currently used &nbsp;·&nbsp; Unfilled = where it should also appear</div>
+
+      <p class="highlight-line" style="margin-top:var(--space-8)"><strong>The green is the signature.</strong> Right now it feels like a button color, not a brand system.</p>
       <div class="two-col">
         <article class="list-card">
           <h3>What works</h3>
@@ -148,6 +204,39 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
         </div>
         <p class="section-intro">The current typography is competent and readable, but both fonts live in the same tonal range. That makes the page feel polished but forgettable.</p>
       </div>
+
+      <div class="type-demo">
+        <div class="type-row">
+          <div class="type-sample">
+            <div class="type-tag current">Current</div>
+            <div style="font-size:clamp(1.1rem,1rem + .5vw,1.4rem);font-weight:400;color:var(--color-text-muted);line-height:1.2">65% lower costs</div>
+          </div>
+          <div class="type-meta"><strong>Stat number</strong>Same weight as body</div>
+        </div>
+        <div class="type-row suggested">
+          <div class="type-sample">
+            <div class="type-tag fix">Suggested</div>
+            <div style="font-family:’Instrument Serif’,Georgia,serif;font-size:clamp(2rem,1.6rem + 1.5vw,3rem);font-weight:400;letter-spacing:-.03em;color:#0cec93;line-height:1">65%</div>
+            <div style="font-size:13px;color:var(--color-text-muted);margin-top:4px">lower customer acquisition cost</div>
+          </div>
+          <div class="type-meta"><strong>Stat number</strong>Display font · green · large</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample">
+            <div class="type-tag current">Current</div>
+            <div style="font-size:clamp(1.4rem,1.2rem + .8vw,1.8rem);font-weight:600;line-height:1.15">Build mobile apps people don’t have to download</div>
+          </div>
+          <div class="type-meta"><strong>Headline</strong>Clean, but blends in</div>
+        </div>
+        <div class="type-row suggested">
+          <div class="type-sample">
+            <div class="type-tag fix">Suggested</div>
+            <div style="font-family:’Instrument Serif’,Georgia,serif;font-size:clamp(1.6rem,1.3rem + 1.2vw,2.4rem);font-weight:400;letter-spacing:-.02em;line-height:1.08">Build mobile apps people don’t have to download</div>
+          </div>
+          <div class="type-meta"><strong>Headline</strong>Serif display · contrast</div>
+        </div>
+      </div>
+
       <p class="highlight-line"><strong>The type is fine.</strong> It just doesn’t create enough contrast to leave a mark.</p>
       <div class="two-col">
         <article class="list-card">
