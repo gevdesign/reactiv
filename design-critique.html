@@ -97,6 +97,23 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
 .type-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:var(--radius-full);margin-bottom:6px}
 .type-tag.current{background:var(--color-divider);color:var(--color-text-muted)}
 .type-tag.fix{background:rgba(98,226,79,.12);color:#3a8a2e}
+/* ── SCORE ── */
+.score{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-5)}
+.score-bar{display:flex;gap:3px;flex:1;max-width:200px}
+.score-pip{height:6px;flex:1;border-radius:999px;background:var(--color-divider)}
+.score-pip.on{background:var(--color-accent)}
+.score-pip.on.amber{background:#d4a017}
+.score-pip.on.red{background:#c44}
+.score-num{font-family:var(--font-display);font-size:1.6rem;letter-spacing:-.03em;line-height:1;min-width:2.2rem}
+.score-num.green{color:var(--color-accent)}
+.score-num.amber{color:#d4a017}
+.score-num.red{color:#c44}
+.score-label{font-size:11px;color:var(--color-text-faint);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+/* ── VERDICT ── */
+.verdict-row{display:flex;gap:var(--space-8);justify-content:center;flex-wrap:wrap;padding:var(--space-10) 0;margin-top:var(--space-4)}
+.verdict-item{text-align:center}
+.verdict-item .score-num{font-size:2.4rem}
+.verdict-item .score-label{margin-top:4px}
 .footer{padding:var(--space-10) 0;border-top:1px solid var(--color-divider);font-size:var(--text-xs);color:var(--color-text-faint)}
 @media (max-width:860px){.summary-grid,.two-col,.fix-grid,.section-head{grid-template-columns:1fr}.hero h1{max-width:11ch}.swatch-usage{flex-direction:column;align-items:flex-start}}
 </style>
@@ -138,6 +155,10 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
         <div>
           <div class="section-kicker">01 · Color</div>
           <h2>Good instinct, half finished</h2>
+          <div class="score">
+            <div class="score-num green">7</div>
+            <div class="score-bar"><div class="score-pip on"></div><div class="score-pip on"></div><div class="score-pip on"></div><div class="score-pip on"></div><div class="score-pip on"></div><div class="score-pip on"></div><div class="score-pip on"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
+          </div>
         </div>
         <p class="section-intro">The bright green on black is the most distinctive choice on the site. It’s the right instinct — it just hasn’t been carried through strongly enough to shape the full brand experience.</p>
       </div>
@@ -201,6 +222,10 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
         <div>
           <div class="section-kicker">02 · Typography</div>
           <h2>Clean and safe, nothing memorable</h2>
+          <div class="score">
+            <div class="score-num amber">5</div>
+            <div class="score-bar"><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
+          </div>
         </div>
         <p class="section-intro">The current typography is competent and readable, but both fonts live in the same tonal range. That makes the page feel polished but forgettable.</p>
       </div>
@@ -264,6 +289,10 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
         <div>
           <div class="section-kicker">03 · Imagery</div>
           <h2>Shows the demo, loses the story</h2>
+          <div class="score">
+            <div class="score-num red">4</div>
+            <div class="score-bar"><div class="score-pip on red"></div><div class="score-pip on red"></div><div class="score-pip on red"></div><div class="score-pip on red"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
+          </div>
         </div>
         <p class="section-intro">The current imagery shows what an App Clip can look like, but it doesn’t build confidence that Reactiv operates at the scale the copy is promising.</p>
       </div>
@@ -293,6 +322,10 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
         <div>
           <div class="section-kicker">04 · Brand Fit</div>
           <h2>The words say big league, the design says not yet</h2>
+          <div class="score">
+            <div class="score-num amber">6</div>
+            <div class="score-bar"><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip on amber"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div></div>
+          </div>
         </div>
         <p class="section-intro">There’s a clear gap between what the copy promises and what the visuals communicate. The site doesn’t need a new direction — it needs the current direction executed more convincingly.</p>
       </div>
@@ -317,6 +350,13 @@ body{font-family:var(--font-body);font-size:var(--text-base);background:var(--co
       </div>
       <div class="callout">This is why the site feels close but not finished: the core instinct is right, but the details aren’t reinforcing the same level of confidence.</div>
     </section>
+
+    <div class="verdict-row">
+      <div class="verdict-item"><div class="score-num green">7</div><div class="score-label">Color</div></div>
+      <div class="verdict-item"><div class="score-num amber">5</div><div class="score-label">Typography</div></div>
+      <div class="verdict-item"><div class="score-num red">4</div><div class="score-label">Imagery</div></div>
+      <div class="verdict-item"><div class="score-num amber">6</div><div class="score-label">Brand Fit</div></div>
+    </div>
 
     <section class="fix-band">
       <div class="eyebrow">Recommended changes</div>
