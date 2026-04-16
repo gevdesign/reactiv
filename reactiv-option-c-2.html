@@ -298,18 +298,6 @@ const CONTENT = {
       steps:["Build the core app","Extend with developer tooling","Operate and improve continuously"],
       note:"A platform that stays flexible as requirements grow."
     },
-    whereWins:{
-      headline:"Where the platform wins.",
-      sub:"Used by Shopify brands, agencies, and retailers to launch and grow native mobile.",
-      cards:[
-        {h:"App Clips and full app on one codebase",p:"No rebuilding when you expand. Clips and full apps share the same foundation from day one.",proof:""},
-        {h:"Shopify-native integration layer",p:"Native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more. No custom middleware required.",proof:""},
-        {h:"SDK and API access",p:"Developer tooling for teams building custom screens, flows, and integrations on top of Reactiv.",proof:""},
-        {h:"Update without redeploying",p:"Change app content, layout, and experiences without an App Store release cycle.",proof:""},
-        {h:"Push retargeting from day one",p:"Push notifications wired in at launch, not bolted on later.",proof:""},
-        {h:"Analytics and deep reporting",p:"Session data, conversion events, and funnel visibility built into the platform.",proof:""},
-      ]
-    },
     scale:{
       headline:"Built to ship at scale.",
       sub:"Start with Clips. Expand when ready.",
@@ -1341,7 +1329,6 @@ function buildPlatform(){
   `<section class="alt"><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p></div></div></div></section>`+
   tradeoffsHTML+
   stepsSection(d.steps)+
-  `<section class="alt"><div class="wrap"><h2>${d.whereWins.headline}</h2><p class="section-sub">${d.whereWins.sub}</p>${cardGrid(d.whereWins.cards)}</div></section>`+
   `<section><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.scale.headline}</h2><p class="section-sub">${d.scale.sub}</p><ul class="feature-list">${d.scale.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
   `<section><div class="wrap" style="text-align:center"><h2>${d.integrations}</h2><p class="section-sub" style="margin:0 auto 32px">${d.intSub}</p><div class="int-row" style="justify-content:center">${d.intChips.map(c=>`<div class="int-chip">${c}</div>`).join('')}</div></div></section>`+
   ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
