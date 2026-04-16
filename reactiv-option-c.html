@@ -112,11 +112,11 @@ footer{background:var(--c-bg-alt);padding:60px 40px 32px;border-top:1px solid va
 .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center}
 .footer-brand{font-size:13px;font-weight:700}
 .footer-copy{font-size:12px;color:var(--c-sub)}
-.stats-row{display:flex;gap:0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border);margin:48px 0}
-.stat{flex:1;padding:32px 24px;border-right:1px solid var(--c-border);text-align:center}
+.stats-row{display:flex;gap:0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border);margin:48px 0;padding-top:32px}
+.stat{flex:1;padding:32px 24px;border-right:1px solid var(--c-border);text-align:center;display:flex;flex-direction:column;align-items:center}
 .stat:last-child{border-right:none}
-.stat .num{font-size:36px;font-weight:800;margin-bottom:4px}
-.stat .label{font-size:13px;color:var(--c-sub)}
+.stat .num{font-size:clamp(48px,7vw,80px);font-weight:800;letter-spacing:-0.02em;line-height:1;color:var(--c-text)}
+.stat .label{font-size:14px;color:var(--c-sub);margin-top:6px;max-width:140px}
 .int-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 .int-chip{background:#111;color:#fff;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:600;letter-spacing:.04em}
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
@@ -155,6 +155,7 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 <div id="page-sol-migrate" class="page"></div>
 <div id="page-customers" class="page"></div>
 <div id="page-developers" class="page"></div>
+<div id="page-resources" class="page"></div>
 
 <script>
 const CONTENT = {
@@ -172,8 +173,14 @@ const CONTENT = {
       {label:"Automate App Management", sub:"For ecommerce teams", page:"sol-ai"},
       {label:"Migrate from Tapcart", sub:"For teams on Tapcart or template apps", page:"sol-migrate"},
     ],
+    // TODO: link resources to real pages when content is ready
+    // TODO: populate case studies page (5 studies, one per solution — see spec)
     resources: [
-      {label:"Partners & Agencies", href:"developers"},
+      {label:"Case Studies", sub:"Real results from real brands", href:"#"},
+      {label:"Migration Checklist", sub:"Moving off Tapcart or a template app?", href:"#"},
+      {label:"Sales Deck", sub:"A deck to help sell Reactiv internally", href:"#"},
+      {label:"Help Me Sell This", sub:"Objection handling and talk tracks", href:"#"},
+      {label:"Partners & Agencies", sub:"Build on Reactiv for your clients", href:"developers"},
     ],
     cta: "Book a demo",
     ctaUrl: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7"
@@ -200,6 +207,7 @@ const CONTENT = {
       ]
     },
     section1:{
+      label:"App Clips",
       headline:"Instant access.\nNo download.",
       steps:["Ad, link, QR, or NFC","Clip opens instantly","Retarget and convert"],
       cta:"Try a Clip",
@@ -227,7 +235,7 @@ const CONTENT = {
     keeps:{
       headline:"Launch the app and\nClips together.",
       sub:"Reactiv builds the app and the Clips on the same foundation , so you launch fast, cover every entry point, and scale without starting over.",
-      bullets:["App and Clips deployed together","Integrate with your existing stack","Drive push retargeting from day one","Analytics and deep reporting","Seamless path to App Store distribution"],
+      bullets:["App and Clips deployed together","Integrate with your existing stack","Drive push retargeting from day one","Analytics and deep reporting","Seamless path to App Store distribution","Already have a custom app? Embed App Clips without switching platforms."],
       link:"Explore the platform"
     },
     numbers:{
@@ -254,11 +262,21 @@ const CONTENT = {
   },
 
   platform: {
-    headline: "One foundation.\nClips and full apps, together.",
-    sub: "Reactiv is the shared foundation behind App Clips and full native apps. One codebase, one integration layer, one team to work with — whether you start with Clips or go straight to a full app.",
+    headline: "How Reactiv works.",
+    sub: "Reactiv is one platform with four capabilities — a mobile app builder, developer tools for custom extensions, a Clip Kit for instant native experiences, and a full custom app launch path. Everything runs on the same foundation.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     qr: true,
+    layers:{
+      headline:"One platform. Four capabilities.",
+      sub:"Every Reactiv customer uses the same foundation. What you activate depends on where you're starting.",
+      cards:[
+        {h:"Mobile App Builder",p:"Build and launch a full-featured native iOS app using Reactiv's visual builder and AI-assisted tooling — no dev team required.",link:"Learn more",linkHref:"sol-native"},
+        {h:"Dev Tools",p:"SDKs, APIs, and modular components for teams that need custom screens, deep integrations, or bespoke UI beyond the builder.",link:"Learn more",linkHref:"developers"},
+        {h:"Clip Kit",p:"App Clips for any entry point — ads, QR, NFC, or link. Deploy instantly. No download required. Retarget from day one.",link:"Learn more",linkHref:"appclips"},
+        {h:"Custom App Launch",p:"Full end-to-end app build and deployment on the Reactiv foundation. Custom outcomes, managed platform, weeks not months.",link:"Learn more",linkHref:"sol-native"},
+      ]
+    },
     twoDoors:{
       headline:"Two doors. One platform.",
       sub:"Whether the entry point is a Clip or a full app, the same platform supports launch, iteration, and growth.",
@@ -292,7 +310,7 @@ const CONTENT = {
     intSub:"Plug into your existing ecommerce and OMS tools.",
     intChips:["Shopify","Klaviyo","Braze","Attentive","Yotpo","+ Custom integrations via SDK"],
     cta_band:{
-      headline:"See App Clips in action.",
+      headline:"See the full platform in action.",
       sub:"Try it now. Then we'll map it to your funnel and stack.",
       cta1:"Book a demo",
       cta2:"Try a Clip"
@@ -318,7 +336,7 @@ const CONTENT = {
     skip:{
       headline:"Why Clips outperform\nmobile web.",
       sub:"Mobile web is slow, generic, and leaks intent at every step. App Clips deliver the native experience your customers expect — without the install barrier standing in the way.",
-      bullets:["2x higher conversion than mobile web","Lower CAC through native re-engagement","Better handoff to retention and full app install"],
+      bullets:["2x higher conversion than mobile web","Lower CAC through native re-engagement","Better handoff to retention and full app install","Already have a native app? Embed Clips directly — no platform switch required."],
       cta:"Try a Clip",
       ctaUrl:"https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips"
     },
@@ -936,8 +954,12 @@ function buildNav(){
     rm.className='dropdown-menu';
     d.resources.forEach(r=>{
       const a=document.createElement('a');
-      a.textContent=r.label;
-      a.href=r.href||'#';
+      a.innerHTML='<span style="display:block;font-size:13px;font-weight:600;color:var(--c-text)">'+r.label+'</span>'+(r.sub?'<span style="display:block;font-size:11px;color:var(--c-sub);margin-top:2px;font-weight:400;line-height:1.4">'+r.sub+'</span>':'');
+      if(r.href && r.href!=='#' && !r.href.startsWith('http')){
+        a.onclick=(e)=>{e.stopPropagation();route(r.href);};
+      } else {
+        a.href=r.href||'#';
+      }
       rm.appendChild(a);
     });
     rd.appendChild(rm);
@@ -1007,7 +1029,7 @@ function buildHome(){
   const d=CONTENT.home,p=document.getElementById('page-home'),st=d.stat;
   p.innerHTML=heroSection(d,false)+customerLogoStrip()+
   `<section><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><div class="section-label">${st.label}</div><h2>${st.heading.replace(/\n/g,'<br>')}</h2><p class="section-sub-sm">${st.sub}</p><div class="stats-row" style="margin-top:32px;margin-bottom:0">${st.stats.map(s=>`<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div></div></div></div></section>`+
-  `<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.section1.headline.replace(/\n/g,'<br>')}</h2><ol class="steps-list" style="margin:20px 0 28px">${d.section1.steps.map(s=>`<li>${s}</li>`).join('')}</ol><a href="${d.section1.ctaUrl}" class="btn btn-outline-dark">${d.section1.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`+
+  `<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text">${d.section1.label?`<div class="section-label">${d.section1.label}</div>`:''}<h2>${d.section1.headline.replace(/\n/g,'<br>')}</h2><ol class="steps-list" style="margin:20px 0 28px">${d.section1.steps.map(s=>`<li>${s}</li>`).join('')}</ol><a href="${d.section1.ctaUrl}" class="btn btn-outline-dark">${d.section1.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`+
   `<section><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.migration.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.migration.sub}</p><ul class="feature-list">${d.migration.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
   `<section class="alt"><div class="wrap"><h2>${d.platform.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.platform.sub}</p>${cardGrid(d.platform.cards)}</div></section>`+
   `<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.keeps.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.keeps.sub}</p><ul class="feature-list">${d.keeps.bullets.map(b=>`<li>${b}</li>`).join('')}</ul><a href="#" onclick="event.preventDefault();route('platform')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.keeps.link}</a></div><div class="col-img">${imgP()}</div></div></div></section>`+
@@ -1019,7 +1041,8 @@ function buildPlatform(){
   const d=CONTENT.platform,p=document.getElementById('page-platform');
   const tradeoffsHTML=d.tradeoffs?`<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.tradeoffs.headline}</h2><p class="section-sub">${d.tradeoffs.sub}</p><ul class="feature-list">${d.tradeoffs.bullets.map(b=>`<li>${b}</li>`).join('')}</ul><a href="https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7" class="btn btn-outline-dark" style="margin-top:8px">${d.tradeoffs.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`:'';
   p.innerHTML=heroSection(d,d.qr)+
-  `<section><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p></div></div></div></section>`+
+  `<section><div class="wrap"><h2>${d.layers.headline}</h2><p class="section-sub">${d.layers.sub}</p>${cardGrid(d.layers.cards)}</div></section>`+
+  `<section class="alt"><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p></div></div></div></section>`+
   tradeoffsHTML+
   stepsSection(d.steps)+
   `<section class="alt"><div class="wrap"><h2>${d.whereWins.headline}</h2><p class="section-sub">${d.whereWins.sub}</p>${cardGrid(d.whereWins.cards)}</div></section>`+
