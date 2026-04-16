@@ -146,7 +146,6 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 <div id="page-platform" class="page"></div>
 <div id="page-appclips" class="page"></div>
 <div id="page-sol-ads" class="page"></div>
-<div id="page-sol-download" class="page"></div>
 <div id="page-sol-retail" class="page"></div>
 <div id="page-sol-venues" class="page"></div>
 <div id="page-sol-installs" class="page"></div>
@@ -231,7 +230,6 @@ const CONTENT = {
       sub:"The same foundation powers Clips, native apps, and more.",
       cards:[
         {h:"Increase ad conversion",p:"Turn ad traffic into native app experiences. Brands see up to 3x return on ad spend.",link:"See it in action",linkHref:"sol-ads"},
-        {h:"Reduce download friction",p:"On-path recovery and optimal onboarding.",link:"See it in action",linkHref:"sol-download"},
         {h:"Migrate from Tapcart",p:"Move to a native platform in weeks without rebuilding. 50%+ of customers start here.",link:"See it in action",linkHref:"platform"},
         {h:"Innovate at retail",p:"In-store experiences with native capability.",link:"See it in action",linkHref:"sol-retail"},
         {h:"Grow app installs",p:"High-intent try-before-install conversion.",link:"See it in action",linkHref:"sol-installs"},
@@ -384,58 +382,6 @@ const CONTENT = {
       {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
       {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then add the full app experience over time."},
       {q:"What integrations do you support?",a:"Reactiv connects with major ecommerce and OMS platforms, analytics, and CRM tools."},
-    ]
-  },
-
-  solDownload: {
-    headline: "Remove the\ndownload wall.",
-    sub: "Your Shopify mobile web is leaking conversions. Open a native experience instantly from a link, QR code, or NFC — let users complete the moment first, then install only if they want more.",
-    cta1: "Book a demo",
-    cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
-    cta2: "Try a Clip",
-    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
-    problem:{
-      headline:"Installs kill momentum.",
-      sub:"People will tap a link. They won't download an app for a one-time task. App Clips keep the experience native without forcing a commitment up front.",
-      bullets:["One-time tasks don't justify installs","Downloads add drop-off","\"I'll install later\" rarely happens"],
-    },
-    native:{
-      headline:"A native experience that\nstarts instantly.",
-      sub:"We build an App Clip flow that opens in seconds and completes a task fast: order, check in, book, join, or get info.",
-      bullets:["Open instantly from a link, QR code, or NFC","Native UX without an install","Complete the task in one flow","Clear path to the full app when it makes sense"],
-    },
-    steps:{
-      headline:"How it works",
-      label:"3 Steps",
-      steps:["Link, QR, or NFC","Clip opens instantly","Complete the task, then choose what's next"],
-      note:"Try first. Install later."
-    },
-    friction:{
-      headline:"Common friction killers",
-      cards:[
-        {h:"Office and shared devices",p:"Order or access services without downloading an app.",proof:"Proof: Used by workplace teams (NDA)."},
-        {h:"Retail QR moments",p:"Scan for product info, inventory, or appointments.",proof:"Proof: Used by a luxury fashion brand (NDA)."},
-        {h:"Events and venues",p:"Tickets, ordering, and menus without installs.",proof:"Proof: Used at NFC-enabled venues (NDA)."},
-        {h:"Onboarding before install",p:"Experience the value first, then install when ready.",proof:"Proof: Used by an app-first brand (NDA)."},
-        {h:"Check-in and access",p:"Tap to check in, access accounts, and look up member details.",proof:"Proof: Used for high-intent repeat visits (NDA)."},
-        {h:"Support shortcuts",p:"Start a support flow instantly from email or SMS.",proof:"Proof: Used to reduce time to resolution (NDA)."},
-      ]
-    },
-    get:{
-      headline:"What you get",
-      bullets:["Higher task completion on mobile","Less drop-off at the install step","Faster time to value","Better quality moments when it matters","A repeatable way to remove friction"],
-    },
-    cta_band:{
-      headline:"See it open on your phone.",
-      sub:"Try a Clip now. Then we'll map it to your highest-friction flow.",
-      cta1:"Book a demo",
-      cta2:"Try a Clip"
-    },
-    faq:[
-      {q:"Do users need to install anything?",a:"No. The Clip opens instantly without an install."},
-      {q:"Where can Clips launch from?",a:"Links, QR codes, and NFC taps."},
-      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
-      {q:"What happens after the Clip?",a:"Users can keep using Clips for quick tasks, or install the full app when it makes sense."},
     ]
   },
 
@@ -1219,10 +1165,6 @@ function solPage(d,key){
   whatYouGet(d.get)+ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
 }
 
-function buildSolDownload(){
-  document.getElementById('page-sol-download').innerHTML=solPage(CONTENT.solDownload,'friction');
-}
-
 function buildSolAds(){
   document.getElementById('page-sol-ads').innerHTML=solPage(CONTENT.solAds,'usecases');
 }
@@ -1318,7 +1260,7 @@ buildSolNative();buildSolAi();buildSolMigrate();buildSolShopify();
 buildEnterprise();
 buildPartnersAgencies();buildPartnersTech();buildPartnersApply();
 buildHome();buildPlatform();buildAppClips();
-buildSolDownload();buildSolAds();
+buildSolAds();
 
 const startPage=location.hash.replace('#','')||'home';
 route(startPage);
