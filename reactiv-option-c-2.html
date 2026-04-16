@@ -1297,7 +1297,7 @@ function stepsSection(s){
 }
 
 function cardGrid(cards){
-  return `<div class="card-grid">${cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}${c.link?`<a class="card-link" data-route="${c.linkHref||''}" style="cursor:pointer">${c.link}</a>`:''}</div>`).join('')}</div>`;
+  return `<div class="card-grid">${cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}${c.link?`<a href="#" class="card-link" onclick="event.preventDefault(); route('${c.linkHref}')">${c.link}</a>`:''}</div>`).join('')}</div>`;
 }
 
 function whatYouGet(d){
@@ -1518,7 +1518,7 @@ function buildPartnersApply(){
 function buildDevelopers(){
   const d=CONTENT.developers,p=document.getElementById('page-developers');
   p.innerHTML=heroSection(d,false)+
-  `<section><div class="wrap"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p><div class="card-grid" style="grid-template-columns:1fr 1fr">${d.twoDoors.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.link?`<a class="card-link" data-route="${c.linkHref||''}" style="cursor:pointer">${c.link}</a>`:''}</div>`).join('')}</div></div></section>`+
+  `<section><div class="wrap"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p><div class="card-grid" style="grid-template-columns:1fr 1fr">${d.twoDoors.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.link?`<a href="#" class="card-link" onclick="event.preventDefault(); route('${c.linkHref}')">${c.link}</a>`:''}</div>`).join('')}</div></div></section>`+
   `<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.tradeoffs.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.tradeoffs.sub}</p><ul class="feature-list">${d.tradeoffs.bullets.map(b=>`<li>${b}</li>`).join('')}</ul><a href="https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips" class="btn btn-outline-dark" style="margin-top:8px">${d.tradeoffs.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`+
   stepsSection(d.steps)+
   `<section class="alt"><div class="wrap"><h2>${d.whereWins.headline}</h2><p class="section-sub">${d.whereWins.sub}</p>${cardGrid(d.whereWins.cards)}</div></section>`+
@@ -1555,11 +1555,6 @@ buildSolAds();
 const startPage=location.hash.replace('#','')||'home';
 route(startPage);
 window.addEventListener('popstate',()=>route(location.hash.replace('#','')||'home'));
-
-document.addEventListener('click',e=>{
-  const el=e.target.closest('[data-route]');
-  if(el){e.preventDefault();route(el.dataset.route);}
-});
 </script>
 
 </body>
