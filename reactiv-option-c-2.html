@@ -283,7 +283,8 @@ const CONTENT = {
         {h:"Mobile App Builder",p:"Build and launch a full-featured native iOS app using Reactiv's visual builder and AI-assisted tooling — no dev team required.",link:"Learn more",linkHref:"platform-nativeapp"},
         {h:"Dev Tools",p:"SDKs, APIs, and modular components for teams that need custom screens, deep integrations, or bespoke UI beyond the builder.",link:"Learn more",linkHref:"developers"},
         {h:"Clip Kit",p:"App Clips for any entry point — ads, QR, NFC, or link. Deploy instantly. No download required. Retarget from day one.",link:"Learn more",linkHref:"platform-appclips"},
-        {h:"Custom App Launch",p:"Full end-to-end app build and deployment on the Reactiv foundation. Custom outcomes, managed platform, weeks not months.",link:"Learn more",linkHref:"platform-nativeapp"},
+        {h:"Integrations",p:"Native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more — plus custom APIs via SDK.",link:"See integrations",linkHref:"platform-integrations"},
+        {h:"Security & Compliance",p:"Enterprise-grade infrastructure, SLA, and compliance documentation for procurement teams.",link:"Learn more",linkHref:"platform-security"},
       ]
     },
     twoDoors:{
@@ -814,7 +815,8 @@ const CONTENT = {
       headline:"Migrating to Shopify?\nLaunch mobile with it.",
       sub:"Book a demo and we'll scope your app alongside your Shopify stack.",
       cta1:"Book a demo",
-      cta2:"Try a Clip"
+      cta2:"Try a Clip",
+      extraLink:{label:"See the migration plan →",route:"lp-shopify"}
     },
     faq:[
       {q:"Do you integrate with Shopify directly?",a:"Yes — native Shopify connector, no middleware required."},
@@ -972,6 +974,7 @@ const CONTENT = {
       headline:"Ready to move\noff Tapcart?",
       sub:"We'll audit your current setup and map the migration in one call.",
       cta1:"Book a demo",
+      cta1Route:"lp-tapcart",
       cta2:"Try a Clip"
     },
     faq:[
@@ -1144,8 +1147,8 @@ const CONTENT = {
       headline:"Two ways to partner.",
       sub:"Whether you're building the full app for a client or adding Clips to their existing stack, the same platform supports both.",
       cards:[
-        {h:"Build client apps on Reactiv",p:"Use Reactiv as the foundation — deliver custom mobile apps for Shopify brands without building from scratch."},
-        {h:"Add Clips to client apps",p:"Extend existing client apps with App Clips for instant conversion moments."}
+        {h:"Build client apps on Reactiv",p:"Use Reactiv as the foundation — deliver custom mobile apps for Shopify brands without building from scratch.",link:"For agencies",linkHref:"partners-agencies"},
+        {h:"Add Clips to client apps",p:"Extend existing client apps with App Clips for instant conversion moments.",link:"For technology partners",linkHref:"partners-technology"}
       ]
     },
     tradeoffs:{
@@ -1256,6 +1259,11 @@ function buildNav(){
     buildDropdown('Resources',d.resources,(a,r)=>{
       if(r.href && r.href!=='#' && !r.href.startsWith('http')){
         a.onclick=(e)=>{e.stopPropagation();route(r.href);};
+      } else if(r.href==='#'){
+        a.setAttribute('title','Coming soon');
+        a.style.cursor='not-allowed';
+        a.querySelectorAll('span').forEach(s=>{s.style.color='#d1341f';});
+        a.onclick=(e)=>e.preventDefault();
       } else {
         a.href=r.href||'#';
       }
@@ -1299,7 +1307,10 @@ function whatYouGet(d){
 function ctaBand(d){
   const dUrl='https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7';
   const cUrl='https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips';
-  return `<div class="cta-band"><div class="wrap"><h2>${d.headline.replace(/\n/g,'<br>')}</h2><p>${d.sub}</p><div class="ctas"><a href="${d.cta1Url||dUrl}" class="btn btn-primary">${d.cta1}</a>${d.cta2?`<a href="${d.cta2Url||cUrl}" class="btn btn-outline-dark">${d.cta2}</a>`:''}</div></div></div>`;
+  const cta1Attrs=d.cta1Route?`href="#" onclick="event.preventDefault();route('${d.cta1Route}')"`:`href="${d.cta1Url||dUrl}"`;
+  const cta2Attrs=d.cta2Route?`href="#" onclick="event.preventDefault();route('${d.cta2Route}')"`:`href="${d.cta2Url||cUrl}"`;
+  const extra=d.extraLink?`<div style="margin-top:20px"><a href="#" onclick="event.preventDefault();route('${d.extraLink.route}')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.extraLink.label}</a></div>`:'';
+  return `<div class="cta-band"><div class="wrap"><h2>${d.headline.replace(/\n/g,'<br>')}</h2><p>${d.sub}</p><div class="ctas"><a ${cta1Attrs} class="btn btn-primary">${d.cta1}</a>${d.cta2?`<a ${cta2Attrs} class="btn btn-outline-dark">${d.cta2}</a>`:''}</div>${extra}</div></div>`;
 }
 
 function faqSection(items){
@@ -1484,9 +1495,10 @@ function buildAbout(){
 }
 
 function partnerSubPage(d){
+  const applyBand=`<div class="cta-band"><div class="wrap"><h2>${d.cta_band.headline.replace(/\n/g,'<br>')}</h2><p>${d.cta_band.sub}</p><div class="ctas"><a href="#" onclick="event.preventDefault();route('partners-apply')" class="btn btn-primary">${d.cta_band.cta1}</a></div></div></div>`;
   return heroSection(d,false)+
   `<section><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.sub.split('.')[0]}.</h2><ul class="feature-list" style="margin-top:16px">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
-  ctaBand(d.cta_band)+footerHTML();
+  applyBand+footerHTML();
 }
 
 function buildPartnersAgencies(){
@@ -1506,7 +1518,7 @@ function buildPartnersApply(){
 function buildDevelopers(){
   const d=CONTENT.developers,p=document.getElementById('page-developers');
   p.innerHTML=heroSection(d,false)+
-  `<section><div class="wrap"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p><div class="card-grid" style="grid-template-columns:1fr 1fr">${d.twoDoors.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p></div>`).join('')}</div></div></section>`+
+  `<section><div class="wrap"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p><div class="card-grid" style="grid-template-columns:1fr 1fr">${d.twoDoors.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.link?`<a href="#" class="card-link" onclick="event.preventDefault();route('${c.linkHref||''}')">${c.link}</a>`:''}</div>`).join('')}</div></div></section>`+
   `<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.tradeoffs.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.tradeoffs.sub}</p><ul class="feature-list">${d.tradeoffs.bullets.map(b=>`<li>${b}</li>`).join('')}</ul><a href="https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips" class="btn btn-outline-dark" style="margin-top:8px">${d.tradeoffs.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`+
   stepsSection(d.steps)+
   `<section class="alt"><div class="wrap"><h2>${d.whereWins.headline}</h2><p class="section-sub">${d.whereWins.sub}</p>${cardGrid(d.whereWins.cards)}</div></section>`+
