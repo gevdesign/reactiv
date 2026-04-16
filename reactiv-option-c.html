@@ -150,24 +150,30 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 <div id="page-sol-retail" class="page"></div>
 <div id="page-sol-venues" class="page"></div>
 <div id="page-sol-installs" class="page"></div>
+<div id="page-sol-shopify" class="page"></div>
 <div id="page-sol-native" class="page"></div>
 <div id="page-sol-ai" class="page"></div>
 <div id="page-sol-migrate" class="page"></div>
+<div id="page-enterprise" class="page"></div>
 <div id="page-customers" class="page"></div>
 <div id="page-developers" class="page"></div>
+<div id="page-partners-agencies" class="page"></div>
+<div id="page-partners-technology" class="page"></div>
+<div id="page-partners-apply" class="page"></div>
 <div id="page-resources" class="page"></div>
 
 <script>
 const CONTENT = {
   brand: "Reactiv",
   nav: {
-    links: ["Platform","App Clips"],
+    links: ["Platform"],
     solutions: [
-      {label:"Increase Ad Conversion", sub:"For performance and growth teams", page:"sol-ads"},
-      {label:"Reduce Download Friction", sub:"For mobile and product teams", page:"sol-download"},
-      {label:"Innovate at Retail", sub:"For omnichannel and in-store teams", page:"sol-retail"},
-      {label:"Power Venues and Events", sub:"For digital experience teams", page:"sol-venues"},
-      {label:"Grow App Installs", sub:"For app growth and lifecycle teams", page:"sol-installs"},
+      {label:"Increase Ad Conversion", sub:"Turn ad clicks into native app experiences", page:"sol-ads"},
+      {label:"Turn Mobile Visitors Into App Users", sub:"Drive installs from high-intent traffic", page:"sol-installs"},
+      {label:"Build Your App on Shopify", sub:"Native app built for your Shopify stack", page:"sol-shopify"},
+      {label:"Switch to Reactiv", sub:"Migrate from Tapcart in 2–4 weeks", page:"sol-migrate"},
+      {label:"Innovate at Retail", sub:"Native in-store experiences via QR and NFC", page:"sol-retail"},
+      {label:"Power Venues and Events", sub:"Frictionless guest experiences, no download", page:"sol-venues"},
       {divider:"Go Further"},
       {label:"Launch a Full Native App", sub:"For ecommerce and digital teams", page:"sol-native"},
       {label:"Automate App Management", sub:"For ecommerce teams", page:"sol-ai"},
@@ -684,6 +690,58 @@ const CONTENT = {
     ]
   },
 
+  solShopify: {
+    headline: "Build your mobile app\non Shopify.",
+    sub: "Migrating to Shopify? Don't leave mobile as an afterthought. Reactiv is built for the Shopify stack — native integrations, App Clips and full native app deployed together, live in 2 to 4 weeks.",
+    cta1: "Book a demo",
+    cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    cta2: "Try a Clip",
+    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
+    problem:{
+      headline:"Shopify migration moment.\nMobile is the afterthought.",
+      sub:"Website gets rebuilt from scratch. The mobile app either lags behind, doesn't integrate with the new stack, or doesn't exist yet. Launching mobile alongside your Shopify migration is the fastest path to a stack that works end to end.",
+      bullets:["Existing mobile app doesn't talk to the new Shopify stack","Template apps limit what you can build post-migration","Going back to rebuild mobile later means starting over"],
+    },
+    native:{
+      headline:"Built for the Shopify\nmoment.",
+      sub:"Reactiv has native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more — so the app launches with your new stack, not after it.",
+      bullets:["Native Shopify integration — no middleware","App Clips and full native app launch together","Deploy in 2–4 weeks alongside your Shopify go-live","Keep your stack. Lose the template limits","No engineering team required on your side"],
+    },
+    steps:{
+      headline:"How it works",
+      label:"3 Steps",
+      steps:["Map your Shopify stack and mobile requirements","Reactiv builds the app and Clips on the managed foundation","Launch mobile together with your Shopify migration"],
+      note:"Launch once. Don't rebuild later."
+    },
+    usecases:{
+      headline:"Built for the Shopify moment.",
+      cards:[
+        {h:"Shopify replatform",p:"Bring mobile along for the ride — launch a native app with the new storefront.",proof:"Proof: Standard launch alongside Shopify migrations (NDA)."},
+        {h:"New Shopify brand",p:"Launch day one with mobile already in the plan — App Clips for ads, full app for loyal customers.",proof:""},
+        {h:"Template app replacement",p:"Move off Tapcart or similar the same time you migrate to Shopify.",proof:"50%+ of Reactiv customers start here."},
+        {h:"Shopify + OMS stack",p:"Deep integration with Shopify plus the OMS, CRM, and loyalty tools you already run.",proof:""},
+        {h:"Headless Shopify",p:"Reactiv plugs into Hydrogen and headless storefronts without a custom bridge.",proof:""},
+        {h:"Omnichannel Shopify",p:"App, Clips, and retail experiences on one foundation.",proof:""},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["A native iOS app that launches with your Shopify stack","App Clips included on the same foundation","Native Shopify, Klaviyo, Braze, Attentive, and Yotpo integrations","2–4 week launch — no engineering team needed","A path forward that doesn't require rebuilding again"],
+    },
+    cta_band:{
+      headline:"Migrating to Shopify?\nLaunch mobile with it.",
+      sub:"Book a demo and we'll scope your app alongside your Shopify stack.",
+      cta1:"Book a demo",
+      cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"Do you integrate with Shopify directly?",a:"Yes — native Shopify connector, no middleware required."},
+      {q:"Can we launch mobile at the same time as our Shopify migration?",a:"Yes. Launching together is the most common Reactiv path. Typical timeline is 2–4 weeks."},
+      {q:"What about Hydrogen or headless Shopify?",a:"Supported. Reactiv plugs into Hydrogen and headless storefronts."},
+      {q:"Do we need an engineering team on our side?",a:"No. Reactiv handles the build. Your team reviews and approves."},
+    ]
+  },
+
   solNative: {
     headline: "Launch a full native app.\nNo dev team required.",
     sub: "Reactiv builds and deploys your full native iOS app on the same foundation as your App Clips. Custom screens, deep integrations, your brand — live in weeks, not months.",
@@ -842,6 +900,80 @@ const CONTENT = {
     ]
   },
 
+  enterprise: {
+    headline: "Enterprise mobile.\nWithout the enterprise build.",
+    sub: "Custom mobile outcomes — deep integrations, full native capability, your brand — delivered in weeks on a managed platform. No dev team required.",
+    cta1: "Talk to our team",
+    cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    qr: false,
+    argument:{
+      headline:"The custom build argument doesn't hold.",
+      sub:"Enterprise brands evaluate custom mobile development and run into the same three problems: 9–12 month timelines, 7-figure budgets, and a dedicated mobile team to maintain it forever. Reactiv delivers the same outcomes — custom screens, deep integrations, full native capability — on a managed platform that ships in weeks.",
+      bullets:["Custom screens and branded UI — no templates","Deep integrations: Shopify, Klaviyo, Braze, Attentive, Yotpo, custom APIs","Full native iOS app + App Clips on one foundation","White-glove implementation — Reactiv manages the build","Enterprise SLA, security, and compliance documentation available","AWS infrastructure — built for scale"],
+    },
+    process:{
+      headline:"How enterprise delivery works.",
+      label:"4 Steps",
+      steps:["Discovery — scope your app experience, integrations, and requirements","Build — Reactiv builds on the managed foundation, your team reviews","Launch — App and Clips live in 2–4 weeks","Operate — ongoing updates, releases, and support without rebuilding"],
+      note:"Enterprise outcomes. Weeks, not quarters."
+    },
+    proof:{
+      headline:"Enterprise brands using Reactiv.",
+      cards:[
+        {h:"Enterprise retailer",p:"Launched a native app without building and maintaining it in-house. 17% AOV lift.",proof:"17% AOV lift (NDA)"},
+        {h:"Global luxury brand",p:"In-store Clips for discovery, appointments, and store-specific experiences.",proof:"2x in-store engagement (NDA)"},
+        {h:"UK retailer",p:"Shipped custom app requirements without a million-dollar rebuild.",proof:"Enterprise scope supported (NDA)"},
+      ]
+    },
+    cta_band:{
+      headline:"Let's scope your build.",
+      sub:"Tell us what you need. We'll show you what Reactiv delivers — and how fast.",
+      cta1:"Talk to our team",
+      cta2:"Try a Clip"
+    },
+    faq:[
+      {q:"How is this different from building a custom app?",a:"Reactiv delivers custom outcomes — bespoke screens, deep integrations, your brand — on a managed foundation. You get the results without the dev team, timeline, or maintenance burden."},
+      {q:"What does 'enterprise-grade' mean for Reactiv?",a:"SLA, compliance documentation, AWS infrastructure, role-based access, and a dedicated implementation team. Ask us for specifics."},
+      {q:"How long does implementation take?",a:"2–4 weeks for most enterprise builds, depending on integration complexity and custom scope."},
+      {q:"Do we need a technical team on our side?",a:"No. Reactiv manages the full build. Your team defines the experience and reviews progress."},
+    ]
+  },
+
+  partnersAgencies: {
+    headline: "Refer Reactiv.\nGet your clients a better mobile app.",
+    sub: "When your client is migrating to Shopify, Reactiv is the mobile call. 70% of our pipeline comes through agency partners — because when you refer Reactiv, your clients win and you look good.",
+    cta1: "Apply to partner",
+    cta1Url: "#",
+    bullets:["Refer Reactiv when clients need a native mobile app","We handle the build — you stay the trusted advisor","Migration signal: ideal referral moment is a Shopify migration","Co-branded assets and migration leave-behinds available","Referral structure available — talk to us"],
+    cta_band:{
+      headline:"Your clients are migrating to Shopify.\nMake the mobile call.",
+      sub:"Apply to become a Reactiv agency partner.",
+      cta1:"Apply to partner"
+    }
+  },
+
+  partnersTech: {
+    headline: "Build with Reactiv.\nGo deeper for your customers.",
+    sub: "Reactiv integrates natively with the Shopify ecosystem — Klaviyo, Braze, Attentive, Yotpo, and more. If your product serves Shopify brands, Reactiv extends your mobile reach.",
+    cta1: "Apply to partner",
+    cta1Url: "#",
+    bullets:["Native integration with major ecomm and CRM platforms","Co-marketing and joint GTM opportunities","AWS partnership — infrastructure-level alignment","API and SDK access for deep product integration","Technology partner program details on request"],
+    cta_band:{
+      headline:"Let's build something\ntogether.",
+      sub:"Apply to become a Reactiv technology partner.",
+      cta1:"Apply to partner"
+    }
+  },
+
+  // TODO: wire partners-apply form to Typeform/HubSpot when ready
+  partnersApply: {
+    headline: "Apply to partner\nwith Reactiv.",
+    sub: "Whether you're a dev agency, Shopify partner, or technology platform — tell us about your business and we'll be in touch.",
+    cta1: "Submit application",
+    cta1Url: "#",
+    formFields:["Name","Company","Website","Partner type (Agency / Technology / Other)","How do you see us working together?"]
+  },
+
   developers: {
     headline: "Partner with Reactiv.",
     sub: "Are you a development agency or Shopify partner building for ecommerce brands? Reactiv is the foundation — you deliver the custom experience. 70% of our pipeline comes through partners like you.",
@@ -919,63 +1051,58 @@ function buildNav(){
   
   const links=document.createElement('div');
   links.className='nav-links';
-  
-  const dd=document.createElement('div');
-  dd.className='nav-dropdown';
-  dd.innerHTML='<span>Solutions</span>';
-  const menu=document.createElement('div');
-  menu.className='dropdown-menu';
-  d.solutions.forEach(s=>{
-    if(s.divider){
-      const div=document.createElement('div');
-      div.style.cssText='font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-sub);padding:14px 12px 6px;margin-top:6px;border-top:1px solid var(--c-border)';
-      div.textContent=s.divider;
-      menu.appendChild(div);
-      return;
-    }
+
+  function directLink(label,page){
     const a=document.createElement('a');
-    a.innerHTML='<span style="display:block;font-size:13px;font-weight:600;color:var(--c-text)">'+s.label+'</span>'+(s.sub?'<span style="display:block;font-size:11px;color:var(--c-sub);margin-top:2px;font-weight:400;line-height:1.4">'+s.sub+'</span>':'');
-    a.onclick=(e)=>{e.stopPropagation();route(s.page)};
-    menu.appendChild(a);
-  });
-  dd.appendChild(menu);
-  
-  let ct;
-  dd.addEventListener('mouseenter',()=>{clearTimeout(ct);dd.classList.add('open');});
-  dd.addEventListener('mouseleave',()=>{ct=setTimeout(()=>dd.classList.remove('open'),120);});
-  
-  links.appendChild(dd);
-  
-  if(d.resources){
-    const rd=document.createElement('div');
-    rd.className='nav-dropdown';
-    rd.innerHTML='<span>Resources</span>';
-    const rm=document.createElement('div');
-    rm.className='dropdown-menu';
-    d.resources.forEach(r=>{
+    a.textContent=label;
+    a.onclick=()=>route(page);
+    links.appendChild(a);
+  }
+
+  function buildDropdown(label,items,itemRouter){
+    const dd=document.createElement('div');
+    dd.className='nav-dropdown';
+    dd.innerHTML='<span>'+label+'</span>';
+    const menu=document.createElement('div');
+    menu.className='dropdown-menu';
+    items.forEach(s=>{
+      if(s.divider){
+        const div=document.createElement('div');
+        div.style.cssText='font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-sub);padding:14px 12px 6px;margin-top:6px;border-top:1px solid var(--c-border)';
+        div.textContent=s.divider;
+        menu.appendChild(div);
+        return;
+      }
       const a=document.createElement('a');
-      a.innerHTML='<span style="display:block;font-size:13px;font-weight:600;color:var(--c-text)">'+r.label+'</span>'+(r.sub?'<span style="display:block;font-size:11px;color:var(--c-sub);margin-top:2px;font-weight:400;line-height:1.4">'+r.sub+'</span>':'');
+      a.innerHTML='<span style="display:block;font-size:13px;font-weight:600;color:var(--c-text)">'+s.label+'</span>'+(s.sub?'<span style="display:block;font-size:11px;color:var(--c-sub);margin-top:2px;font-weight:400;line-height:1.4">'+s.sub+'</span>':'');
+      itemRouter(a,s);
+      menu.appendChild(a);
+    });
+    dd.appendChild(menu);
+    let ct;
+    dd.addEventListener('mouseenter',()=>{clearTimeout(ct);dd.classList.add('open');});
+    dd.addEventListener('mouseleave',()=>{ct=setTimeout(()=>dd.classList.remove('open'),120);});
+    links.appendChild(dd);
+  }
+
+  directLink('Platform','platform');
+
+  buildDropdown('I want to...',d.solutions,(a,s)=>{
+    a.onclick=(e)=>{e.stopPropagation();route(s.page);};
+  });
+
+  directLink('Enterprise','enterprise');
+  directLink('Partners','developers');
+
+  if(d.resources){
+    buildDropdown('Resources',d.resources,(a,r)=>{
       if(r.href && r.href!=='#' && !r.href.startsWith('http')){
         a.onclick=(e)=>{e.stopPropagation();route(r.href);};
       } else {
         a.href=r.href||'#';
       }
-      rm.appendChild(a);
     });
-    rd.appendChild(rm);
-    let rct;
-    rd.addEventListener('mouseenter',()=>{clearTimeout(rct);rd.classList.add('open');});
-    rd.addEventListener('mouseleave',()=>{rct=setTimeout(()=>rd.classList.remove('open'),120);});
-    links.appendChild(rd);
   }
-  
-  d.links.forEach(l=>{
-    const a=document.createElement('a');
-    a.textContent=l;
-    const pg=l.toLowerCase().replace(/ /g,'');
-    a.onclick=()=>route(pg);
-    links.appendChild(a);
-  });
   
   const cta=document.createElement('a');
   cta.className='btn btn-primary';
@@ -1022,7 +1149,7 @@ function faqSection(items){
 }
 
 function footerHTML(){
-  return `<footer><div class="footer-inner"><div class="footer-top"><div class="footer-col"><h4>Product</h4><a onclick="route('platform')">Platform</a><a onclick="route('appclips')">App Clips</a><a onclick="route('developers')">Developers</a></div><div class="footer-col"><h4>Solutions</h4><a onclick="route('sol-ads')">Increase Ad Conversion</a><a onclick="route('sol-download')">Reduce Download Friction</a><a onclick="route('sol-retail')">Innovate at Retail</a><a onclick="route('sol-venues')">Power Venues and Events</a><a onclick="route('sol-installs')">Grow App Installs</a><a onclick="route('sol-native')">Launch a Full Native App</a><a onclick="route('sol-ai')">Automate App Management</a><a onclick="route('sol-migrate')">Migrate from Tapcart</a></div><div class="footer-col"><h4>Contact</h4><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">Careers</a></div><div class="footer-col"><h4>Resources</h4><a onclick="route('customers')">Customers</a><a onclick="route('developers')">Developers</a><a href="#">Resources</a></div><div class="footer-col"><h4>Legal</h4><a href="#">Security</a><a href="#">Privacy</a><a href="#">Terms</a></div></div><div class="footer-bottom"><div class="footer-brand">${CONTENT.brand}</div><p class="footer-copy">The only enterprise platform built on App Clips.</p></div></div></footer>`;
+  return `<footer><div class="footer-inner"><div class="footer-top"><div class="footer-col"><h4>Product</h4><a onclick="route('platform')">Platform</a><a onclick="route('appclips')">App Clips</a><a onclick="route('developers')">Developers</a></div><div class="footer-col"><h4>Solutions</h4><a onclick="route('sol-ads')">Increase Ad Conversion</a><a onclick="route('sol-installs')">Turn Mobile Visitors Into App Users</a><a onclick="route('sol-shopify')">Build Your App on Shopify</a><a onclick="route('sol-migrate')">Switch to Reactiv</a><a onclick="route('sol-retail')">Innovate at Retail</a><a onclick="route('sol-venues')">Power Venues and Events</a><a onclick="route('sol-native')">Launch a Full Native App</a><a onclick="route('sol-ai')">Automate App Management</a></div><div class="footer-col"><h4>Contact</h4><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">Careers</a></div><div class="footer-col"><h4>Resources</h4><a onclick="route('customers')">Customers</a><a onclick="route('developers')">Developers</a><a href="#">Resources</a></div><div class="footer-col"><h4>Legal</h4><a href="#">Security</a><a href="#">Privacy</a><a href="#">Terms</a></div></div><div class="footer-bottom"><div class="footer-brand">${CONTENT.brand}</div><p class="footer-copy">The only enterprise platform built on App Clips.</p></div></div></footer>`;
 }
 
 function buildHome(){
@@ -1124,6 +1251,40 @@ function buildSolMigrate(){
   document.getElementById('page-sol-migrate').innerHTML=solPage(CONTENT.solMigrate,'usecases');
 }
 
+function buildSolShopify(){
+  document.getElementById('page-sol-shopify').innerHTML=solPage(CONTENT.solShopify,'usecases');
+}
+
+function buildEnterprise(){
+  const d=CONTENT.enterprise,p=document.getElementById('page-enterprise');
+  p.innerHTML=heroSection(d,d.qr)+
+  customerLogoStrip()+
+  `<section><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.argument.headline}</h2><p class="section-sub">${d.argument.sub}</p><ul class="feature-list">${d.argument.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
+  stepsSection(d.process)+
+  `<section class="alt"><div class="wrap"><h2>${d.proof.headline}</h2><div class="card-grid">${d.proof.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}</div>`).join('')}</div></div></section>`+
+  ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
+}
+
+function partnerSubPage(d){
+  return heroSection(d,false)+
+  `<section><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.sub.split('.')[0]}.</h2><ul class="feature-list" style="margin-top:16px">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
+  ctaBand(d.cta_band)+footerHTML();
+}
+
+function buildPartnersAgencies(){
+  document.getElementById('page-partners-agencies').innerHTML=partnerSubPage(CONTENT.partnersAgencies);
+}
+
+function buildPartnersTech(){
+  document.getElementById('page-partners-technology').innerHTML=partnerSubPage(CONTENT.partnersTech);
+}
+
+function buildPartnersApply(){
+  const d=CONTENT.partnersApply,p=document.getElementById('page-partners-apply');
+  const form=`<section><div class="wrap" style="max-width:640px"><form onsubmit="event.preventDefault();alert('Thanks — we will be in touch.');">${d.formFields.map(f=>`<div style="margin-bottom:20px"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">${f}</label>${f.toLowerCase().includes('how do you')?`<textarea rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"></textarea>`:`<input type="text" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px">`}</div>`).join('')}<button type="submit" class="btn btn-primary" style="margin-top:8px">${d.cta1}</button></form></div></section>`;
+  p.innerHTML=heroSection(d,false)+form+footerHTML();
+}
+
 function buildDevelopers(){
   const d=CONTENT.developers,p=document.getElementById('page-developers');
   p.innerHTML=heroSection(d,false)+
@@ -1153,7 +1314,9 @@ function route(page){
 buildNav();
 buildDevelopers();buildCustomers();
 buildSolRetail();buildSolVenues();buildSolInstalls();
-buildSolNative();buildSolAi();buildSolMigrate();
+buildSolNative();buildSolAi();buildSolMigrate();buildSolShopify();
+buildEnterprise();
+buildPartnersAgencies();buildPartnersTech();buildPartnersApply();
 buildHome();buildPlatform();buildAppClips();
 buildSolDownload();buildSolAds();
 
