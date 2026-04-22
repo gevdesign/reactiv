@@ -168,7 +168,13 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 <div id="page-partners-agencies" class="page"></div>
 <div id="page-partners-technology" class="page"></div>
 <div id="page-partners-apply" class="page"></div>
+<div id="page-solutions" class="page"></div>
 <div id="page-resources" class="page"></div>
+<div id="page-resources-blog" class="page"></div>
+<div id="page-resources-guides" class="page"></div>
+<div id="page-partners-engineering" class="page"></div>
+<div id="page-lp-shopify-migration" class="page"></div>
+<div id="page-lp-tapcart-migration" class="page"></div>
 
 <script>
 const CONTENT = {
@@ -193,11 +199,11 @@ const CONTENT = {
       {label:"Agencies", sub:"70% of our pipeline comes through partners.", page:"partners-agencies"},
       {label:"Technology Partners", sub:"Built for the Shopify stack.", page:"partners-technology"},
       {label:"Apply to Partner", sub:"Agency, tech, or referral.", page:"partners-apply"},
-      {label:"Engineering (for developers)", sub:"SDKs, APIs, and custom extensions.", page:"developers"},
+      {label:"Engineering", sub:"Technical docs, APIs, architecture.", page:"partners-engineering"},
     ],
     resources: [
-      {label:"Blog", sub:"Strategy and platform posts.", href:"#"},
-      {label:"Guides", sub:"Playbooks for mobile growth.", href:"#"},
+      {label:"Blog", sub:"Strategy and platform posts.", page:"resources-blog"},
+      {label:"Guides", sub:"Playbooks for mobile growth.", page:"resources-guides"},
       {label:"Developers", sub:"SDKs, APIs, and docs.", page:"developers"},
       {label:"Partner Materials", sub:"Co-branded assets and leave-behinds.", href:"#"},
     ],
@@ -1146,6 +1152,187 @@ const CONTENT = {
     formFields:["Name","Company","Website","Partner type (Agency / Technology / Other)","How do you see us working together?"]
   },
 
+  solutionsHub: {
+    headline: "What's your mobile\nchallenge?",
+    sub: "Choose the situation that fits your brand — we'll show you exactly how Reactiv solves it.",
+    cards: [
+      {h:"Increase Ad Conversion", p:"Your clicks are landing on mobile web. They shouldn't be.", route:"sol-ads"},
+      {h:"Turn Mobile Visitors Into App Users", p:"You have an app. Getting people to download it is the battle.", route:"sol-installs"},
+      {h:"Build Your Mobile App on Shopify", p:"You're on Shopify (or getting there). Your mobile stack should be too.", route:"sol-shopify"},
+      {h:"Switch to Reactiv", p:"Your current platform isn't delivering. Here's where to go next.", route:"sol-migrate"},
+      {h:"Innovate at Retail", p:"QR codes, NFC, in-store displays — all pointing to the wrong experience.", route:"sol-retail"},
+      {h:"Power Venues & Events", p:"Getting fans to download an app is a barrier. There's a better way.", route:"sol-venues"},
+    ],
+    cta_band:{
+      headline:"Not sure which fits?",
+      sub:"Book a Demo and we'll map it together.",
+      cta1:"Book a demo"
+    }
+  },
+
+  resourcesHub: {
+    headline: "Resources",
+    sub: "Everything you need to evaluate, build, and grow with Reactiv.",
+    cards: [
+      {h:"Blog", p:"Articles on mobile commerce, App Clips, and growth.", route:"resources-blog", comingSoon:false},
+      {h:"Guides", p:"In-depth guides and downloadable assets.", route:"resources-guides", comingSoon:false},
+      {h:"Developers", p:"Technical docs, APIs, and integration references.", route:"developers", comingSoon:true},
+      {h:"Partner Materials", p:"Assets for agency and technology partners.", route:null, comingSoon:true},
+    ]
+  },
+
+  resourcesBlog: {
+    headline: "Blog",
+    sub: "Mobile commerce insights for Shopify brands.",
+    pillars: ["All","Apps Growth","Custom Without the Build","True Partner"],
+    posts: [
+      {pillar:"Apps Growth", title:"Your Mobile App Is Your Highest-Converting Acquisition Channel", excerpt:"No competitor is making this argument. Here's the data.", href:"#", badge:"NEW"},
+      {pillar:"Apps Growth", title:"Death to the Mobile Browser? Why App Clips Will Change Mobile Shopping", excerpt:"A strong POV on why the post-click experience is broken — and what fixes it.", href:"#"},
+      {pillar:"Apps Growth", title:"What Is an App Clip? The Complete Guide to iOS Mini Apps", excerpt:"A clean explainer on the technology powering Reactiv's core product.", href:"#"},
+      {pillar:"Apps Growth", title:"5 Ways to Increase Your ROAS with App Clips", excerpt:"The App Clips angle is present — and it's the one that matters for performance marketers.", href:"#"},
+      {pillar:"Apps Growth", title:"What Push Notification Data Tells Us About CRO", excerpt:"Data-backed look at push as a conversion tool, not just a re-engagement channel.", href:"#"},
+      {pillar:"Custom Without the Build", title:"Why App Builders and Custom Dev Aren't What's Best for Your Business", excerpt:"The clearest argument on the site for why the build-vs-buy debate has a clear answer.", href:"#"},
+      {pillar:"Custom Without the Build", title:"How Reactiv Automates Scalable Mobile App Releases for Shopify Merchants", excerpt:"Technical depth on the managed platform model.", href:"#"},
+      {pillar:"Custom Without the Build", title:"Unleashing the Power of Mobile Commerce for Shopify Merchants", excerpt:"Migration-moment content for brands moving to Shopify.", href:"#"},
+      {pillar:"True Partner", title:"How Top of the Mornin Drove 2x More Conversions", excerpt:"2x conversion rate, 17% AOV increase. The flagship proof asset.", href:"#", badge:"CASE STUDY"},
+      {pillar:"True Partner", title:"How MSQC Stitched Its Way to Success with an Overnight Transformation", excerpt:"50K users in 2 weeks. 10% of revenue. The best switching story on the site.", href:"#", badge:"CASE STUDY"},
+      {pillar:"True Partner", title:"Why Personalized Push Notifications Belong in Every Ecommerce Strategy", excerpt:"Maps to the retention and loyalty side of the app story.", href:"#"},
+      {pillar:"Apps Growth", title:"Mobile Conversion Rate Optimization", excerpt:"Strong tactical content. Maps to the core ICP — performance-focused eComm leaders.", href:"#"},
+    ]
+  },
+
+  resourcesGuides: {
+    headline: "Guides",
+    sub: "In-depth resources for every stage of your mobile strategy.",
+    featured: {
+      title:"The Mobile App Checklist for Your Shopify Migration",
+      body:"Everything you need to audit your mobile strategy before, during, and after a Shopify migration. Built for eComm leaders and the agency partners who serve them.",
+      cta:"Download the Guide",
+      tag:"COMING SOON"
+    },
+    placeholders: [
+      {title:"How to Evaluate Mobile App Platforms: A Buyer's Guide"},
+      {title:"The Tapcart Migration Checklist"},
+    ],
+    subscribeNote:"New guides ship monthly. Subscribe for updates."
+  },
+
+  partnersEngineering: {
+    headline: "Built for engineers\nwho don't cut corners.",
+    sub: "Technical documentation, architecture depth, and API references for the teams building on Reactiv.",
+    capabilities: [
+      {h:"API & Integrations", p:"Deep integration docs for Klaviyo, Recharge, Gorgias, and 50+ others. Shopify-native architecture."},
+      {h:"AI-Powered Infrastructure", p:"How Reactiv's AI Studio and automated release pipeline work under the hood."},
+      {h:"Security & Compliance", p:"SOC 2 documentation, data flows, and PII handling for enterprise procurement teams."},
+    ],
+    articles: [
+      {title:"Meet AI Studio Agent — Build a Mobile App at the Speed of Thought", excerpt:"Product launch deep-dive. How Reactiv's AI agent reduces mobile build time from weeks to hours.", tag:"AI / Infrastructure", href:"#", badge:"NEW"},
+      {title:"How Reactiv Automates Scalable Mobile App Releases for Shopify Merchants", excerpt:"The managed release pipeline — how Reactiv handles App Store submissions, versioning, and rollbacks.", tag:"Infrastructure", href:"#"},
+      {title:"Reactiv's Ecommerce API Is Leading the Way to a New Future", excerpt:"API architecture and integration depth for technical evaluators.", tag:"API", href:"#"},
+      {title:"Revolutionizing Mobile Commerce with AI-Powered Onboarding", excerpt:"How Reactiv's AI onboarding reduces time-to-launch without sacrificing customization depth.", tag:"AI", href:"#"},
+      {title:"Scaling Mobile Commerce with Uncompromised Quality", excerpt:"Engineering infrastructure and performance standards at scale.", tag:"Infrastructure", href:"#"},
+    ],
+    cta_band:{
+      primaryLabel:"Evaluating Reactiv for a client?",
+      primaryCta:"Apply to Partner",
+      primaryRoute:"partners-apply",
+      secondaryLabel:"Have technical questions?",
+      secondaryCta:"Talk to our engineering team",
+    }
+  },
+
+  lpShopifyMigration: {
+    eyebrow: "For brands migrating to Shopify",
+    headline: "Your Shopify migration is\nthe perfect moment to\nget mobile right.",
+    sub: "Most brands rebuild their website and leave the mobile app for later. Later becomes a problem. Reactiv deploys your native app and App Clips alongside your migration — in 2–4 weeks.",
+    ctaLabel: "Book a demo",
+    ctaUrl: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    stats: [
+      {num:"2x", label:"Conversion vs. mobile web"},
+      {num:"3x", label:"Ad conversion with App Clips"},
+      {num:"2–4 weeks", label:"Migration timeline"},
+      {num:"13–15%", label:"Install rate from Clip traffic"},
+    ],
+    problem: {
+      headline:"The mobile afterthought",
+      bullets:[
+        "Most Shopify migrations happen without a mobile strategy. The app gets postponed.",
+        "Rebuilding your app 6 months after launch means rebuilding integrations you just configured.",
+        "App Clips — your highest-converting mobile entry point — can't be added retroactively without rework.",
+      ]
+    },
+    solution: [
+      {title:"Launch together, not later", body:"Reactiv deploys your native app and App Clips in the same window as your Shopify migration. One launch. Full coverage."},
+      {title:"Native Shopify integrations from day one", body:"Klaviyo, Gorgias, Recharge, Yotpo — all wired into your app on the same stack you just configured for the web."},
+      {title:"No rebuild risk", body:"Built on Reactiv's managed platform, your app stays in sync with Shopify automatically. No dev team needed to maintain it."},
+    ],
+    caseStudy: {
+      customer:"Missouri Star Quilt Co.",
+      stat:"50K users in 2 weeks. 10% of revenue.",
+      quote:"Reactiv delivered what we needed in the window we had.",
+      link:"/customers/msqc-case-study"
+    },
+    checklist: [
+      "Native iOS + Android app deployed in 2–4 weeks",
+      "App Clips live on day one — no download required for customers",
+      "Full Shopify integration (products, checkout, loyalty, reviews)",
+      "Push notifications from day one",
+      "Managed App Store submission and updates",
+      "Dedicated launch team",
+    ],
+    ctaBlock: {
+      headline:"Your migration window\nis now.",
+      sub:"Brands that get mobile right during migration don't have to fix it later.",
+      cta:"Book a demo"
+    }
+  },
+
+  lpTapcartMigration: {
+    eyebrow: "Switching from Tapcart?",
+    headline: "You've already decided\nTapcart isn't working.\nHere's where to go.",
+    sub: "Reactiv migrates Tapcart brands in 2–4 weeks. Deeper integrations, better service, and the app you were promised the first time.",
+    ctaLabel: "Book a demo",
+    ctaUrl: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    stats: [
+      {num:"2x", label:"Conversion vs. mobile web"},
+      {num:"3x", label:"Ad conversion with App Clips"},
+      {num:"2–4 weeks", label:"Migration timeline"},
+      {num:"13–15%", label:"Install rate from Clip traffic"},
+    ],
+    problem: {
+      headline:"The platform ceiling",
+      bullets:[
+        "Tapcart's integration depth doesn't match the complexity of a modern Shopify stack.",
+        "Service quality hasn't kept pace with what enterprise brands actually need.",
+        "You've hit the ceiling — and rebuilding on the same platform won't raise it.",
+      ]
+    },
+    solution: [
+      {title:"Migrate in 2–4 weeks", body:"Reactiv's migration team handles the full move. Your customers don't notice. Your team doesn't get distracted."},
+      {title:"Integration depth that matches your stack", body:"Klaviyo, Gorgias, Recharge, Attentive, Yotpo — Reactiv connects everything Tapcart couldn't."},
+      {title:"App Clips included", body:"Tapcart doesn't have App Clips. Reactiv does — and they convert at 3x the rate of mobile web."},
+    ],
+    caseStudy: {
+      customer:"Missouri Star Quilt Co.",
+      stat:"50K users in 2 weeks. 10% of revenue from the app.",
+      quote:"Reactiv delivered the app we were promised the first time.",
+      link:"/customers/msqc-case-study"
+    },
+    checklist: [
+      "Full migration from Tapcart in 2–4 weeks",
+      "App Clips — the feature Tapcart doesn't offer",
+      "Deeper integrations across your entire Shopify stack",
+      "3x ad conversion vs. mobile web with App Clips",
+      "White-glove delivery team",
+      "No renegotiation — Reactiv's pricing is transparent",
+    ],
+    ctaBlock: {
+      headline:"You've already made\nthe decision.",
+      sub:"The only question is when. The sooner you migrate, the sooner your app starts performing.",
+      cta:"Book a demo"
+    }
+  },
+
   // TODO: add Ross-approved Tapcart callout copy when confirmed
   lpTapcart: {
     headline: "Done with Tapcart?",
@@ -1307,10 +1494,16 @@ function buildNav(){
     links.appendChild(a);
   }
 
-  function buildDropdown(label,items,itemRouter){
+  function buildDropdown(label,items,itemRouter,hubPage){
     const dd=document.createElement('div');
     dd.className='nav-dropdown';
-    dd.innerHTML='<span>'+label+'</span>';
+    dd.innerHTML='<span'+(hubPage?' style="cursor:pointer"':'')+'>'+label+'</span>';
+    if(hubPage){
+      dd.querySelector('span').addEventListener('click',(e)=>{
+        e.stopPropagation();
+        route(hubPage);
+      });
+    }
     const menu=document.createElement('div');
     menu.className='dropdown-menu';
     items.forEach(s=>{
@@ -1343,7 +1536,7 @@ function buildNav(){
 
   buildDropdown('Platform',d.platform,pageRouter);
 
-  buildDropdown('Solutions',d.solutions,pageRouter);
+  buildDropdown('Solutions',d.solutions,pageRouter,'solutions');
 
   directLink('Enterprise','enterprise');
 
@@ -1363,7 +1556,7 @@ function buildNav(){
       } else {
         a.href=r.href;
       }
-    });
+    },'resources');
   }
   
   const cta=document.createElement('a');
@@ -1690,6 +1883,97 @@ function buildDevelopers(){
   ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
 }
 
+function buildSolutionsHub(){
+  const d=CONTENT.solutionsHub,p=document.getElementById('page-solutions');
+  const cards=`<section><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${d.cards.map(c=>`<div class="card" style="cursor:pointer" onclick="route('${c.route}')"><h3>${c.h}</h3><p>${c.p}</p><a href="#" class="card-link" onclick="event.preventDefault();event.stopPropagation();route('${c.route}')">See how it works →</a></div>`).join('')}</div></div></section>`;
+  p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
+  cards+
+  ctaBand(d.cta_band)+footerHTML();
+}
+
+function buildResourcesHub(){
+  const d=CONTENT.resourcesHub,p=document.getElementById('page-resources');
+  const cards=`<section><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(2,1fr)">${d.cards.map(c=>{
+    if(c.comingSoon){
+      return `<div class="card" style="opacity:.55"><h3>${c.h}</h3><p>${c.p}</p><span class="card-tag" style="margin-top:12px">Coming soon</span></div>`;
+    }
+    return `<div class="card" style="cursor:pointer" onclick="route('${c.route}')"><h3>${c.h}</h3><p>${c.p}</p><a href="#" class="card-link" onclick="event.preventDefault();event.stopPropagation();route('${c.route}')">Explore →</a></div>`;
+  }).join('')}</div></div></section>`;
+  p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
+  cards+footerHTML();
+}
+
+function buildResourcesBlog(){
+  const d=CONTENT.resourcesBlog,p=document.getElementById('page-resources-blog');
+  const pillarStyle={
+    "Apps Growth":"background:var(--c-text);color:#fff",
+    "Custom Without the Build":"background:var(--c-bg-alt);color:var(--c-text);border:1px solid var(--c-border)",
+    "True Partner":"background:transparent;color:var(--c-text);border:1px solid var(--c-text)"
+  };
+  const tabs=`<div class="filter-bar" id="blog-filters">${d.pillars.map((f,i)=>`<button class="filter-pill${i===0?' active':''}" data-pillar="${f}">${f}</button>`).join('')}</div>`;
+  const cards=`<div class="card-grid" id="blog-cards" style="grid-template-columns:repeat(3,1fr)">${d.posts.map(post=>{
+    const style=pillarStyle[post.pillar]||'background:var(--c-bg-alt);color:var(--c-text)';
+    const badge=post.badge?`<span class="card-tag" style="background:#facc15;color:#000;margin-left:6px">${post.badge}</span>`:'';
+    return `<div class="card" data-pillar="${post.pillar}" style="display:flex;flex-direction:column;gap:8px;transition:opacity .25s"><div><span class="card-tag" style="${style};margin:0">${post.pillar}</span>${badge}</div><h3 style="margin-top:6px">${post.title}</h3><p>${post.excerpt}</p><a href="${post.href}" class="card-link">Read →</a></div>`;
+  }).join('')}</div>`;
+  p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
+  `<section><div class="wrap">${tabs}${cards}</div></section>`+footerHTML();
+  p.querySelector('#blog-filters').addEventListener('click',e=>{
+    const btn=e.target.closest('.filter-pill');
+    if(!btn)return;
+    p.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const sel=btn.dataset.pillar;
+    p.querySelectorAll('#blog-cards .card').forEach(card=>{
+      const match=(sel==='All'||card.dataset.pillar===sel);
+      card.style.opacity=match?'1':'0';
+      card.style.display=match?'':'none';
+    });
+  });
+}
+
+function buildResourcesGuides(){
+  const d=CONTENT.resourcesGuides,p=document.getElementById('page-resources-guides');
+  const featured=`<section><div class="wrap"><div class="card" style="padding:40px;display:flex;flex-direction:column;gap:14px"><span class="card-tag" style="background:#facc15;color:#000;align-self:flex-start">${d.featured.tag}</span><h3 style="font-size:24px">${d.featured.title}</h3><p style="font-size:15px">${d.featured.body}</p><a href="#" onclick="event.preventDefault()" class="btn btn-outline-dark" style="align-self:flex-start;opacity:.55;cursor:not-allowed" title="Coming soon — check back at launch">${d.featured.cta}</a></div></div></section>`;
+  const placeholders=`<section class="alt"><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(2,1fr)">${d.placeholders.map(ph=>`<div class="card" style="opacity:.55"><h3>${ph.title}</h3><span class="card-tag" style="margin-top:10px">Coming soon</span></div>`).join('')}</div></div></section>`;
+  const subscribe=`<section><div class="wrap" style="max-width:560px;text-align:center"><p class="section-sub-sm" style="margin:0 auto 16px">${d.subscribeNote}</p><form onsubmit="event.preventDefault();alert('Thanks — we will be in touch.');" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><input type="email" placeholder="you@brand.com" style="flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"><button type="submit" class="btn btn-primary">Notify me</button></form></div></section>`;
+  p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
+  featured+placeholders+subscribe+footerHTML();
+}
+
+function buildPartnersEngineering(){
+  const d=CONTENT.partnersEngineering,p=document.getElementById('page-partners-engineering');
+  const caps=`<section><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${d.capabilities.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p></div>`).join('')}</div></div></section>`;
+  const articles=`<section class="alt"><div class="wrap"><h2>Technical articles</h2><div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:24px">${d.articles.map(a=>{
+    const badge=a.badge?`<span class="card-tag" style="background:#facc15;color:#000;margin-left:6px">${a.badge}</span>`:'';
+    return `<div class="card" style="display:flex;flex-direction:column;gap:8px"><div><span class="card-tag" style="margin:0">${a.tag}</span>${badge}</div><h3 style="margin-top:6px">${a.title}</h3><p>${a.excerpt}</p><a href="${a.href}" class="card-link">Read →</a></div>`;
+  }).join('')}</div></div></section>`;
+  const cb=d.cta_band;
+  const ctaBlock=`<div class="cta-band"><div class="wrap" style="text-align:center"><p class="section-sub" style="margin:0 auto 12px">${cb.primaryLabel}</p><a href="#" onclick="event.preventDefault();route('${cb.primaryRoute}')" class="btn btn-primary">${cb.primaryCta}</a><div style="margin-top:24px;font-size:14px"><span class="footer-copy">${cb.secondaryLabel}</span> <a href="${CONTENT.nav.ctaUrl}" style="font-weight:600;text-decoration:underline;text-underline-offset:3px">${cb.secondaryCta} →</a></div></div></div>`;
+  p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
+  caps+articles+ctaBlock+footerHTML();
+}
+
+function campaignLP(d){
+  const hero=`<div class="hero"><div class="hero-inner"><div class="section-label" style="color:rgba(255,255,255,.5);margin-bottom:14px">${d.eyebrow}</div><h1>${d.headline.replace(/\n/g,'<br>')}</h1><p class="hero-sub">${d.sub}</p><div class="hero-ctas"><a href="${d.ctaUrl}" class="btn btn-primary">${d.ctaLabel}</a></div></div></div>`;
+  const statStrip=`<section style="padding:48px 40px"><div class="wrap"><div class="stats-row" style="margin:0">${d.stats.map(s=>`<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div></div></section>`;
+  const problem=`<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.problem.headline}</h2></div><div class="col-text"><ul class="feature-list">${d.problem.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div></div></div></section>`;
+  const solution=`<section><div class="wrap"><h2>How Reactiv solves it</h2><div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:24px">${d.solution.map(s=>`<div class="card"><h3>${s.title}</h3><p>${s.body}</p></div>`).join('')}</div></div></section>`;
+  const cs=d.caseStudy;
+  const caseStudy=`<section class="alt"><div class="wrap"><div class="card" style="padding:40px"><div class="section-label">Customer proof</div><h2 style="margin-top:8px">${cs.customer}</h2><p style="font-size:18px;font-weight:700;margin-top:12px">${cs.stat}</p><p style="font-size:15px;margin-top:12px;font-style:italic">“${cs.quote}”</p><a href="${cs.link}" class="card-link" style="margin-top:14px">Read the full story →</a></div></div></section>`;
+  const checklist=`<section><div class="wrap"><h2>What you get</h2><ul class="feature-list" style="margin-top:16px;max-width:640px">${d.checklist.map(c=>`<li>${c}</li>`).join('')}</ul></div></section>`;
+  const cta=`<div class="cta-band"><div class="wrap"><h2>${d.ctaBlock.headline.replace(/\n/g,'<br>')}</h2><p>${d.ctaBlock.sub}</p><div class="ctas"><a href="${d.ctaUrl}" class="btn btn-primary">${d.ctaBlock.cta}</a></div></div></div>`;
+  return minimalNav()+hero+statStrip+problem+solution+caseStudy+checklist+cta+minimalFooter();
+}
+
+function buildLpShopifyMigration(){
+  document.getElementById('page-lp-shopify-migration').innerHTML=campaignLP(CONTENT.lpShopifyMigration);
+}
+
+function buildLpTapcartMigration(){
+  document.getElementById('page-lp-tapcart-migration').innerHTML=campaignLP(CONTENT.lpTapcartMigration);
+}
+
 function route(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const t=document.getElementById('page-'+page);
@@ -1714,6 +1998,9 @@ buildPlatformAppclips();buildPlatformNativeapp();buildPlatformIntegrations();bui
 buildLpTapcart();buildLpShopify();buildAbout();
 buildHome();buildPlatform();buildAppClips();
 buildSolAds();
+buildSolutionsHub();buildResourcesHub();buildResourcesBlog();buildResourcesGuides();
+buildPartnersEngineering();
+buildLpShopifyMigration();buildLpTapcartMigration();
 
 const startPage=location.hash.replace('#','')||'home';
 route(startPage);
