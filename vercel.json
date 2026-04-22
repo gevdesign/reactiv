@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/", "destination": "/reactiv-d-1.html" }
-  ]
-}
