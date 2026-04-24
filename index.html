@@ -126,6 +126,10 @@ footer{background:var(--c-bg-alt);padding:60px 40px 32px;border-top:1px solid va
 .filter-pill.active{background:var(--c-text);color:#fff;border-color:var(--c-text)}
 .card-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--c-bg-alt);color:var(--c-sub);margin-right:4px;margin-top:8px}
 .card-hidden{display:none}
+.card-snippet{font-size:14px;font-weight:700;color:var(--c-text);margin:6px 0 10px;line-height:1.3}
+.card-ghost{border-style:dashed;color:var(--c-sub);background:transparent;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;min-height:140px;font-size:14px;font-weight:500;transition:.15s}
+.card-ghost:hover{border-color:var(--c-text);color:var(--c-text)}
+.filter-count{font-size:13px;color:var(--c-sub);margin:-24px 0 24px}
 @media(max-width:700px){
 nav{padding:0 20px}
 .nav-links{display:none}
@@ -828,20 +832,20 @@ const CONTENT = {
     },
     filters: ["All","Sports","Retail","F&B","Hospitality","DTC"],
     cards: [
-      {client:"Domaine",outcome:"Agency partner delivering Shopify-to-Reactiv mobile alongside replatforms. Featured on the Agencies partner page.",tags:["Retail"],agencyPartner:true,proof:"Agency Partner: Shopify migrations"},
-      {client:"Lazer Technologies",outcome:"Agency partner shipping custom native builds for enterprise Shopify brands on Reactiv.",tags:["DTC"],agencyPartner:true,proof:"Agency Partner: Enterprise builds"},
-      {client:"DTC ecommerce brand",outcome:"Ads open into a native flow, then follow-up drives repeat sessions. 3x return on ad spend vs. mobile web.",tags:["DTC"],proof:"3x ROAS lift, Retargeting post-click"},
-      {client:"Global luxury fashion brand",outcome:"In-store Clips for discovery, appointments, and store-specific experiences.",tags:["Retail"],proof:"2x in-store engagement, Location-aware flows"},
-      {client:"NBA team",outcome:"Game-day Clips for ordering and merch without another download.",tags:["Sports"],proof:"Built for venue moments"},
-      {client:"Enterprise retailer",outcome:"Launched a native app without building and maintaining it in-house. 17% AOV lift.",tags:["Retail"],proof:"17% AOV lift, Omnichannel app"},
-      {client:"Global beverage brand",outcome:"Campaign storytelling in a Clip, then find-near-me to retail.",tags:["F&B"],proof:"3x ad conversion, Geo-based retail finder"},
-      {client:"App-first consumer brand",outcome:"Try-before-install onboarding that lifts install quality. Higher Day-30 retention.",tags:["DTC"],proof:"40% higher quality installs"},
-      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",tags:["DTC"],proof:"2x conversion, Tapcart migration"},
-      {client:"UK retailer",outcome:"Shipped custom app requirements without a million-dollar rebuild.",tags:["Retail"],proof:"Enterprise scope supported"},
-      {client:"Venue operator",outcome:"Fast entry, wayfinding, and ordering without installs.",tags:["Hospitality"],proof:"Designed for occasional use"},
-      {client:"Retail group",outcome:"Combined Clips for acquisition with the full app for retention.",tags:["Retail"],proof:"65% lower CAC, Same foundation"},
-      {client:"Shopify migration team",outcome:"Moved off a template app to full native in 2 weeks.",tags:["Retail"],proof:"2-week migration timeline"},
-      {client:"Agency partner",outcome:"Built custom mobile experiences for 4 Shopify brands on Reactiv.",tags:["DTC"],agencyPartner:true,proof:"Agency-delivered across multiple clients"},
+      {client:"Domaine",snippet:"Mobile live alongside every Shopify replatform.",outcome:"Agency partner delivering Shopify-to-Reactiv mobile alongside replatforms. Featured on the Agencies partner page.",tags:["Retail"],agencyPartner:true,proof:"Agency Partner: Shopify migrations"},
+      {client:"Lazer Technologies",snippet:"Custom native apps for enterprise Shopify brands.",outcome:"Agency partner shipping custom native builds for enterprise Shopify brands on Reactiv.",tags:["DTC"],agencyPartner:true,proof:"Agency Partner: Enterprise builds"},
+      {client:"DTC ecommerce brand",snippet:"3x return on ad spend vs. mobile web.",outcome:"Ads open into a native flow, then follow-up drives repeat sessions. 3x return on ad spend vs. mobile web.",tags:["DTC"],proof:"3x ROAS lift, Retargeting post-click"},
+      {client:"Global luxury fashion brand",snippet:"2x in-store engagement from location-aware Clips.",outcome:"In-store Clips for discovery, appointments, and store-specific experiences.",tags:["Retail"],proof:"2x in-store engagement, Location-aware flows"},
+      {client:"NBA team",snippet:"Game-day ordering, no download required.",outcome:"Game-day Clips for ordering and merch without another download.",tags:["Sports"],proof:"Built for venue moments"},
+      {client:"Enterprise retailer",snippet:"17% AOV lift from native app launch.",outcome:"Launched a native app without building and maintaining it in-house. 17% AOV lift.",tags:["Retail"],proof:"17% AOV lift, Omnichannel app"},
+      {client:"Global beverage brand",snippet:"3x ad conversion via geo-based retail finder.",outcome:"Campaign storytelling in a Clip, then find-near-me to retail.",tags:["F&B"],proof:"3x ad conversion, Geo-based retail finder"},
+      {client:"App-first consumer brand",snippet:"40% higher quality installs from try-before-install.",outcome:"Try-before-install onboarding that lifts install quality. Higher Day-30 retention.",tags:["DTC"],proof:"40% higher quality installs"},
+      {client:"Shopify DTC brand",snippet:"2x mobile conversion after 3-week Tapcart migration.",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",tags:["DTC"],proof:"2x conversion, Tapcart migration"},
+      {client:"UK retailer",snippet:"Custom app outcomes without the million-dollar rebuild.",outcome:"Shipped custom app requirements without a million-dollar rebuild.",tags:["Retail"],proof:"Enterprise scope supported"},
+      {client:"Venue operator",snippet:"Scan to enter, wayfind, and order. No downloads.",outcome:"Fast entry, wayfinding, and ordering without installs.",tags:["Hospitality"],proof:"Designed for occasional use"},
+      {client:"Retail group",snippet:"65% lower CAC combining Clips + full app.",outcome:"Combined Clips for acquisition with the full app for retention.",tags:["Retail"],proof:"65% lower CAC, Same foundation"},
+      {client:"Shopify migration team",snippet:"Template app to full native in 2 weeks.",outcome:"Moved off a template app to full native in 2 weeks.",tags:["Retail"],proof:"2-week migration timeline"},
+      {client:"Agency partner",snippet:"Custom mobile for 4 Shopify brands.",outcome:"Built custom mobile experiences for 4 Shopify brands on Reactiv.",tags:["DTC"],agencyPartner:true,proof:"Agency-delivered across multiple clients"},
     ],
     transition:{
       headline:"Explore the platform that powers all of this.",
@@ -1637,22 +1641,31 @@ function buildCustomers(){
   const featured=d.featured?`<section><div class="wrap"><h2>${d.featured.headline}</h2><p class="section-sub">${d.featured.sub}</p><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${d.featured.cards.map(c=>`<div class="card" style="border-left:3px solid #111"><h3>${c.client}</h3><p style="font-size:14px;font-weight:700;color:var(--c-text);margin:6px 0 10px">${c.stat}</p><p>${c.outcome}</p>${c.href?`<a href="${c.href}" class="card-link">Read case study →</a>`:''}</div>`).join('')}</div></div></section>`:'';
   const fb=`<div class="filter-bar" id="cust-filters">${d.filters.map((f,i)=>`<button class="filter-pill${i===0?' active':''}" data-filter="${f}">${f}</button>`).join('')}</div>`;
   const gridHeading=`<div class="section-label" style="margin-bottom:16px">More customer proof</div>`;
+  const countEl=`<div id="cust-count" class="filter-count">${d.cards.length} stories</div>`;
+  const ghostCard=`<div class="card card-ghost" onclick="route('contact-us')"><div>Your brand · [Your vertical] · Make the switch →</div></div>`;
   const cg=`<div class="card-grid" id="cust-cards">${d.cards.map(c=>{
     const agencyBadge=c.agencyPartner?`<span class="card-tag" style="background:#111;color:#fff">Agency Partner</span>`:'';
     const agencyStyle=c.agencyPartner?'style="border-left:3px solid #111"':'';
-    return `<div class="card" data-tags="${c.tags.join(',')}" ${agencyStyle}><h3>${c.client}</h3><p>${c.outcome}</p><div>${agencyBadge}${c.tags.filter(t=>t!=='Agency Partner').map(t=>`<span class="card-tag">${t}</span>`).join('')}</div><p class="proof">${c.proof}</p></div>`;
-  }).join('')}</div>`;
+    const snippetHTML=c.snippet?`<p class="card-snippet">${c.snippet}</p>`:'';
+    return `<div class="card" data-tags="${c.tags.join(',')}" ${agencyStyle}><h3>${c.client}</h3>${snippetHTML}<p>${c.outcome}</p><div>${agencyBadge}${c.tags.filter(t=>t!=='Agency Partner').map(t=>`<span class="card-tag">${t}</span>`).join('')}</div><p class="proof">${c.proof}</p></div>`;
+  }).join('')}${ghostCard}</div>`;
   const tr=`<section><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.transition.headline}</h2><p class="section-sub">${d.transition.sub}</p><a href="#" onclick="event.preventDefault();route('platform')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.transition.link}</a></div><div class="col-img">${imgP()}</div></div></div></section>`;
-  p.innerHTML=heroSection(d,false)+trust+statsHeader+featured+`<section class="alt"><div class="wrap">${gridHeading}${fb}${cg}</div></section>`+tr+ctaBand(d.ctaband)+faqSection(d.faq)+footerHTML();
+  p.innerHTML=heroSection(d,false)+trust+statsHeader+featured+`<section class="alt"><div class="wrap">${gridHeading}${fb}${countEl}${cg}</div></section>`+tr+ctaBand(d.ctaband)+faqSection(d.faq)+footerHTML();
+  const countNode=p.querySelector('#cust-count');
+  function updateCustCount(f){
+    const visible=p.querySelectorAll('#cust-cards .card:not(.card-ghost):not(.card-hidden)').length;
+    countNode.textContent=f==='All'?`${visible} stories`:`${visible} ${visible===1?'story':'stories'} in ${f}`;
+  }
   p.querySelector('#cust-filters').addEventListener('click',e=>{
     const btn=e.target.closest('.filter-pill');
     if(!btn)return;
     p.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const f=btn.dataset.filter;
-    p.querySelectorAll('#cust-cards .card').forEach(card=>{
+    p.querySelectorAll('#cust-cards .card:not(.card-ghost)').forEach(card=>{
       card.classList.toggle('card-hidden',f!=='All'&&!card.dataset.tags.split(',').includes(f));
     });
+    updateCustCount(f);
   });
 }
 
