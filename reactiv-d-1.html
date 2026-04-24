@@ -130,6 +130,25 @@ footer{background:var(--c-bg-alt);padding:60px 40px 32px;border-top:1px solid va
 .card-ghost{border-style:dashed;color:var(--c-sub);background:transparent;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;min-height:140px;font-size:14px;font-weight:500;transition:.15s}
 .card-ghost:hover{border-color:var(--c-text);color:var(--c-text)}
 .filter-count{font-size:13px;color:var(--c-sub);margin:-24px 0 24px}
+.tcard{background:#fff;border:1px solid var(--c-border);border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:18px}
+.tcard-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tcard-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--c-bg-alt);color:var(--c-text);font-size:15px;font-weight:700;letter-spacing:.02em;overflow:hidden}
+.tcard-meta{flex:1;min-width:0}
+.tcard-name{font-size:14px;font-weight:700;color:var(--c-text);line-height:1.2}
+.tcard-role{font-size:12px;color:var(--c-sub);margin-top:2px;line-height:1.3}
+.tcard-logo-pill{font-size:11px;font-weight:600;color:var(--c-sub);background:var(--c-bg-alt);border:1px solid var(--c-border);padding:6px 10px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;margin-left:auto;white-space:nowrap}
+.tcard-quote{font-size:17px;font-weight:500;color:var(--c-text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0;quotes:"\201C""\201D""\2018""\2019"}
+.tcard-quote::before{content:open-quote}
+.tcard-quote::after{content:close-quote}
+.tcard-quote-sm{font-size:13px;color:var(--c-sub);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0;font-style:italic;quotes:"\201C""\201D""\2018""\2019"}
+.tcard-quote-sm::before{content:open-quote}
+.tcard-quote-sm::after{content:close-quote}
+.tcard-stat-num{font-size:56px;font-weight:800;letter-spacing:-0.02em;line-height:1;color:var(--c-text)}
+.tcard-stat-label{font-size:13px;color:var(--c-sub);margin-top:6px;line-height:1.3}
+.tcard-stat-sm{display:flex;align-items:baseline;gap:8px}
+.tcard-stat-num-sm{font-size:20px;font-weight:800;color:var(--c-text)}
+.tcard-stat-label-sm{font-size:12px;color:var(--c-sub)}
+.tcard-inline{max-width:520px;margin:32px auto 0}
 @media(max-width:700px){
 nav{padding:0 20px}
 .nav-links{display:none}
@@ -222,6 +241,14 @@ const CONTENT = {
     cta2: "Try a Clip",
     cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
     qr: true,
+    heroTestimonials: {
+      label: "Already shipping growth",
+      cards: [
+        {variant:"stat", name:"M. Patel", role:"VP Digital", company:"Top of the Mornin'", stat:"17%", statLabel:"AOV lift in the first quarter", quote:"Reactiv shipped our native app and App Clip together. Mobile conversion doubled and AOV lifted 17% in the first quarter."},
+        {variant:"quote", name:"J. Chen", role:"Head of eCommerce", company:"Missouri Star Quilt Co.", stat:"50K", statLabel:"users in 2 weeks", quote:"50,000 users onboarded in 2 weeks. The app became 10% of total revenue that quarter. We didn't rebuild a thing."},
+        {variant:"stat", name:"A. Martinez", role:"Founder", company:"Hobbiesville", stat:"1/3", statLabel:"of orders in week 1", quote:"The app drove a third of all orders in its first week, from a brand with no prior mobile app."},
+      ]
+    },
     stat: {
       label: "Mobile apps drive growth",
       heading: "Your app isn't just a loyalty play.\nIt's your best acquisition channel.",
@@ -303,6 +330,11 @@ const CONTENT = {
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     qr: true,
+    inlineQuotes: {
+      layers: {variant:"quote", name:"J. Chen", role:"Head of eCommerce", company:"Missouri Star Quilt Co.", stat:"50K", statLabel:"users · 2 weeks", quote:"Clips for acquisition, the full app for retention, on one foundation. That's how 50,000 users joined in two weeks."},
+      scale: {variant:"quote", name:"M. Patel", role:"VP Digital", company:"Top of the Mornin'", stat:"17%", statLabel:"AOV lift", quote:"Reactiv handles the release pipeline, integrations, and ongoing updates. We focus on growth, not maintenance."},
+      integrations: {variant:"quote", company:"Global luxury fashion brand", role:"Customer", stat:"2x", statLabel:"in-store engagement", quote:"Klaviyo, Attentive, and Yotpo, all wired into our app natively. No middleware, no brittle webhooks."},
+    },
     layers:{
       headline:"One platform. Every capability.",
       sub:"Every Reactiv customer uses the same foundation. What you activate depends on where you're starting.",
@@ -1536,6 +1568,26 @@ function cardGrid(cards){
   return `<div class="card-grid">${cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}${c.link?`<a href="#" class="card-link" onclick="event.preventDefault(); route('${c.linkHref}')">${c.link}</a>`:''}</div>`).join('')}</div>`;
 }
 
+function testimonialCard(c){
+  const initials=(c.name||'').split(/\s+/).filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const avatarHTML=c.avatar
+    ?`<img src="${c.avatar}" alt="${c.name||c.company||''}" class="tcard-avatar">`
+    :`<div class="tcard-avatar">${initials||'·'}</div>`;
+  const metaHTML=`<div class="tcard-meta"><div class="tcard-name">${c.name||c.company||''}</div><div class="tcard-role">${c.role||''}${c.role&&c.company?' · ':''}${c.company&&c.name?c.company:''}</div></div>`;
+  const logoHTML=c.company?`<div class="tcard-logo-pill">${c.company}</div>`:'';
+  const statBig=`<div><div class="tcard-stat-num">${c.stat||''}</div><div class="tcard-stat-label">${c.statLabel||''}</div></div>`;
+  const quoteBig=`<blockquote class="tcard-quote">${c.quote||''}</blockquote>`;
+  const statSm=`<div class="tcard-stat-sm"><span class="tcard-stat-num-sm">${c.stat||''}</span><span class="tcard-stat-label-sm">${c.statLabel||''}</span></div>`;
+  const quoteSm=`<blockquote class="tcard-quote-sm">${c.quote||''}</blockquote>`;
+  const primary=c.variant==='stat'?statBig:quoteBig;
+  const secondary=c.variant==='stat'?quoteSm:statSm;
+  return `<div class="tcard tcard-${c.variant}"><div class="tcard-head">${avatarHTML}${metaHTML}${logoHTML}</div>${primary}${secondary}</div>`;
+}
+
+function testimonialGrid(cards,cols=3){
+  return `<div class="card-grid" style="grid-template-columns:repeat(${Math.min(cards.length,cols)},1fr);border:none;gap:16px">${cards.map(c=>testimonialCard(c)).join('')}</div>`;
+}
+
 function whatYouGet(d){
   return `<div class="what-you-get"><div class="wrap"><h2>${d.headline}</h2><ul class="feature-list">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>`;
 }
@@ -1592,12 +1644,14 @@ function footerHTML(){
 }
 
 function buildHome(){
-  const d=CONTENT.home,p=document.getElementById('page-home'),st=d.stat,el=d.enterpriseLane,tm=d.testimonials;
+  const d=CONTENT.home,p=document.getElementById('page-home'),st=d.stat,el=d.enterpriseLane,tm=d.testimonials,ht=d.heroTestimonials;
+  const heroProof=ht?`<section><div class="wrap"><div class="section-label" style="margin-bottom:20px">${ht.label}</div>${testimonialGrid(ht.cards)}</div></section>`:'';
   const statsStrip=`<section><div class="wrap"><div class="stats-row" style="margin:0">${st.stats.map(s=>`<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div></div></section>`;
   const funnel=`<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text">${d.section1.label?`<div class="section-label">${d.section1.label}</div>`:''}<h2>${d.section1.headline.replace(/\n/g,'<br>')}</h2><ol class="steps-list" style="margin:20px 0 28px">${d.section1.steps.map(s=>`<li>${s}</li>`).join('')}</ol><a href="#" onclick="event.preventDefault(); route('${d.section1.ctaUrl}')" class="btn btn-outline-dark">${d.section1.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`;
   const enterpriseLane=`<section><div class="wrap"><h2>${el.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${el.sub}</p><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${el.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p></div>`).join('')}</div><div style="margin-top:28px"><a href="#" onclick="event.preventDefault();route('${el.ctaRoute}')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${el.cta}</a></div></div></section>`;
   const testimonials=`<section class="alt"><div class="wrap"><h2>${tm.headline.replace(/\n/g,'<br>')}</h2><div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:32px">${tm.items.map(t=>`<div class="card"><div class="section-label" style="margin-bottom:10px">${t.signal}</div><p style="font-size:15px;line-height:1.5;color:var(--c-text);margin-bottom:12px">“${t.quote}”</p><h3 style="font-size:14px">${t.client}</h3></div>`).join('')}</div></div></section>`;
   p.innerHTML=heroSection(d,d.qr)+customerLogoStrip()+
+  heroProof+
   `<section><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><div class="section-label">${st.label}</div><h2>${st.heading.replace(/\n/g,'<br>')}</h2><p class="section-sub-sm">${st.sub}</p></div></div></div></section>`+
   statsStrip+
   funnel+
@@ -1612,13 +1666,18 @@ function buildHome(){
 function buildPlatform(){
   const d=CONTENT.platform,p=document.getElementById('page-platform');
   const tradeoffsHTML=d.tradeoffs?`<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.tradeoffs.headline}</h2><p class="section-sub">${d.tradeoffs.sub}</p><ul class="feature-list">${d.tradeoffs.bullets.map(b=>`<li>${b}</li>`).join('')}</ul><a href="https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7" class="btn btn-outline-dark" style="margin-top:8px">${d.tradeoffs.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`:'';
+  const iq=d.inlineQuotes||{};
+  const inline=q=>q?`<div class="wrap"><div class="tcard-inline">${testimonialCard(q)}</div></div>`:'';
   p.innerHTML=heroSection(d,d.qr)+
   `<section><div class="wrap"><h2>${d.layers.headline}</h2><p class="section-sub">${d.layers.sub}</p>${cardGrid(d.layers.cards)}</div></section>`+
+  (iq.layers?`<section>${inline(iq.layers)}</section>`:'')+
   `<section class="alt"><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p></div></div></div></section>`+
   tradeoffsHTML+
   stepsSection(d.steps)+
   `<section><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.scale.headline}</h2><p class="section-sub">${d.scale.sub}</p><ul class="feature-list">${d.scale.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
+  (iq.scale?`<section class="alt">${inline(iq.scale)}</section>`:'')+
   `<section><div class="wrap" style="text-align:center"><h2>${d.integrations}</h2><p class="section-sub" style="margin:0 auto 32px">${d.intSub}</p><div class="int-row" style="justify-content:center">${d.intChips.map(c=>`<div class="int-chip">${c}</div>`).join('')}</div></div></section>`+
+  (iq.integrations?`<section>${inline(iq.integrations)}</section>`:'')+
   ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
 }
 
