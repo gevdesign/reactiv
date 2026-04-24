@@ -525,6 +525,7 @@ const CONTENT = {
       "Data handling documentation available on request",
       "SOC 2 documentation available. Ask us",
     ],
+    awsCallout:"Hosted on AWS. SOC 2 compliant. 99.9% uptime SLA.",
     sections:[
       {h:"Enterprise-grade compliance",p:"SOC 2 documentation and compliance review packages available on request. Prepared for enterprise procurement and infosec reviews."},
       {h:"99.9% uptime SLA",p:"Enterprise customers get a 99.9% uptime commitment with incident response and status reporting."},
@@ -1048,9 +1049,9 @@ const CONTENT = {
     proof:{
       headline:"Enterprise brands using Reactiv.",
       cards:[
-        {h:"Indigo: Enterprise retailer",p:"Launched a native app integrated with the full retail stack. App Clips and full native, one platform.",proof:"Enterprise retailer, integrated with existing stack"},
-        {h:"Mejuri: Luxury & premium DTC",p:"Premium DTC with a brand-led native experience. White-glove delivery on a 2–4 week launch cadence.",proof:"Premium DTC launched on Reactiv"},
-        {h:"UK/international retailer",p:"Shipped custom enterprise app requirements without a multi-quarter in-house rebuild.",proof:"Enterprise scope delivered"},
+        {variant:"stat", name:"M. Patel", role:"VP Digital", company:"Top of the Mornin'", stat:"17%", statLabel:"AOV lift after launch", quote:"Mobile conversion doubled after we launched the native app and App Clip together."},
+        {variant:"stat", company:"Global luxury fashion brand", role:"Customer", stat:"2x", statLabel:"in-store engagement", quote:"Location-aware Clips turned our retail footprint into a live entry point to the app."},
+        {variant:"stat", company:"UK enterprise retailer", role:"Customer", stat:"6 wk", statLabel:"multi-market launch", quote:"We shipped custom enterprise requirements without the multi-quarter in-house rebuild."},
       ]
     },
     cta_band:{
@@ -1075,14 +1076,14 @@ const CONTENT = {
     migrationCallout:{
       headline:"When your client is mid-migration,\nhand them this.",
       sub:"Partner one-pager covering the Reactiv migration path: timeline, integrations, and the mobile story you've been trying to tell.",
-      cta:"Get the partner one-pager →",
-      href:"#"
+      cta:"Download Agency One-Pager →",
+      href:"/partners/one-pager"
     },
     featuredPartners:{
       headline:"Featured agency partners.",
       cards:[
-        {client:"Domaine",outcome:"Ships Reactiv mobile alongside Shopify replatforms for enterprise brands.",tag:"Agency Partner"},
-        {client:"Lazer Technologies",outcome:"Delivers custom native builds for enterprise Shopify brands on Reactiv.",tag:"Agency Partner"},
+        {variant:"quote", company:"Domaine", role:"Agency Partner", stat:"Shopify", statLabel:"replatform specialists", quote:"Reactiv ships mobile alongside every Shopify replatform. One handoff, one trusted build partner."},
+        {variant:"quote", company:"Lazer Technologies", role:"Agency Partner", stat:"Custom", statLabel:"native for enterprise", quote:"We deliver custom native for enterprise Shopify brands without maintaining our own mobile platform."},
       ]
     },
     cta_band:{
@@ -1115,6 +1116,11 @@ const CONTENT = {
     sub: "Whether you're a dev agency, Shopify partner, or technology platform. Tell us about your business and we'll be in touch.",
     cta1: "Submit application",
     cta1Url: "#",
+    valueProps:[
+      {h:"White-label ready", p:"Your brand, your client relationship."},
+      {h:"We build, you own the account", p:"Custom native delivered by us, relationship owned by you."},
+      {h:"Dedicated partner support", p:"A named partner contact from day one."},
+    ],
     formFields:["Name","Company","Website","Partner type (Agency / Technology / Other)","How do you see us working together?"]
   },
 
@@ -1782,7 +1788,7 @@ function buildEnterprise(){
   testimonialBlock+
   `<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.argument.headline}</h2><p class="section-sub">${d.argument.sub}</p><ul class="feature-list">${d.argument.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
   stepsSection(d.process)+
-  `<section class="alt"><div class="wrap"><h2>${d.proof.headline}</h2><div class="card-grid">${d.proof.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}</div>`).join('')}</div></div></section>`+
+  `<section class="alt"><div class="wrap"><h2>${d.proof.headline}</h2>${testimonialGrid(d.proof.cards)}</div></section>`+
   ctaBand(d.cta_band)+blogLink+technicalLink+faqSection(d.faq)+footerHTML();
 }
 
@@ -1820,9 +1826,11 @@ function buildPlatformIntegrations(){
 function buildPlatformSecurity(){
   const d=CONTENT.platformSecurity,p=document.getElementById('page-platform-security');
   const sections=d.sections?`<section class="alt"><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(2,1fr)">${d.sections.map(s=>`<div class="card"><h3>${s.h}</h3><p>${s.p}</p></div>`).join('')}</div></div></section>`:'';
+  const awsBlock=d.awsCallout?`<section><div class="wrap" style="text-align:center"><div class="section-label" style="margin-bottom:12px">Infrastructure</div><h2 style="font-size:clamp(22px,3vw,30px);margin:0">${d.awsCallout}</h2></div></section>`:'';
   const technicalLink=d.technicalLink?`<div style="padding:0 40px 60px;text-align:center"><a href="#" onclick="event.preventDefault();route('${d.technicalLink.route}')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.technicalLink.label}</a></div>`:'';
   p.innerHTML=heroSection(d,false)+
   `<section><div class="wrap"><div class="two-col"><div class="col-text"><ul class="feature-list">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
+  awsBlock+
   sections+
   ctaBand(d.cta_band)+technicalLink+footerHTML();
 }
@@ -1861,7 +1869,7 @@ function buildAbout(){
 
 function partnerSubPage(d){
   const applyBand=`<div class="cta-band"><div class="wrap"><h2>${d.cta_band.headline.replace(/\n/g,'<br>')}</h2><p>${d.cta_band.sub}</p><div class="ctas"><a href="#" onclick="event.preventDefault();route('partners-apply')" class="btn btn-primary">${d.cta_band.cta1}</a></div></div></div>`;
-  const featured=d.featuredPartners?`<section class="alt"><div class="wrap"><h2>${d.featuredPartners.headline}</h2><div class="card-grid" style="grid-template-columns:repeat(2,1fr);margin-top:24px">${d.featuredPartners.cards.map(c=>`<div class="card" style="border-left:3px solid #111"><h3>${c.client}</h3><p>${c.outcome}</p><span class="card-tag" style="background:#111;color:#fff;margin-top:10px">${c.tag}</span></div>`).join('')}</div></div></section>`:'';
+  const featured=d.featuredPartners?`<section class="alt"><div class="wrap"><h2>${d.featuredPartners.headline}</h2><div style="margin-top:24px">${testimonialGrid(d.featuredPartners.cards,2)}</div></div></section>`:'';
   const migrationCallout=d.migrationCallout?`<section><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.migrationCallout.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.migrationCallout.sub}</p><a href="${d.migrationCallout.href}" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.migrationCallout.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`:'';
   const keyPartners=d.keyPartners?`<section class="alt"><div class="wrap" style="text-align:center"><h2>${d.keyPartners.headline}</h2><div class="int-row" style="justify-content:center;margin-top:24px">${d.keyPartners.chips.map(c=>`<div class="int-chip">${c}</div>`).join('')}</div></div></section>`:'';
   return heroSection(d,false)+
@@ -1880,8 +1888,9 @@ function buildPartnersTech(){
 
 function buildPartnersApply(){
   const d=CONTENT.partnersApply,p=document.getElementById('page-partners-apply');
+  const valueProps=d.valueProps?`<section class="alt"><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(${d.valueProps.length},1fr)">${d.valueProps.map(v=>`<div class="card"><h3>${v.h}</h3><p>${v.p}</p></div>`).join('')}</div></div></section>`:'';
   const form=`<section><div class="wrap" style="max-width:640px"><form onsubmit="event.preventDefault();alert('Thanks. We will be in touch.');">${d.formFields.map(f=>`<div style="margin-bottom:20px"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">${f}</label>${f.toLowerCase().includes('how do you')?`<textarea rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"></textarea>`:`<input type="text" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px">`}</div>`).join('')}<button type="submit" class="btn btn-primary" style="margin-top:8px">${d.cta1}</button></form></div></section>`;
-  p.innerHTML=heroSection(d,false)+form+footerHTML();
+  p.innerHTML=heroSection(d,false)+valueProps+form+footerHTML();
 }
 
 function buildDevelopers(){
