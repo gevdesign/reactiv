@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Reactiv — D-1 Wireframe (Apr 2026)</title>
+<title>Reactiv D-1 Wireframe (Apr 2026)</title>
 <style>
 :root{
 --c-hero:#1c1c1e;
@@ -141,7 +141,7 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 </head>
 <body>
 
-<div style="background:#1e293b;color:#94a3b8;font-size:13px;padding:8px 16px;text-align:center;">⚠️ Design system pending brand refresh — visual direction review ~Apr 28. This is a structural wireframe only.</div>
+<div style="background:#1e293b;color:#94a3b8;font-size:13px;padding:8px 16px;text-align:center;">⚠️ Design system pending brand refresh. Visual direction review ~Apr 28. This is a structural wireframe only.</div>
 <nav id="nav"></nav>
 
 <div id="page-home" class="page active"></div>
@@ -159,8 +159,6 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 <div id="page-sol-venues" class="page"></div>
 <div id="page-sol-installs" class="page"></div>
 <div id="page-sol-shopify" class="page"></div>
-<div id="page-sol-native" class="page"></div>
-<div id="page-sol-ai" class="page"></div>
 <div id="page-sol-migrate" class="page"></div>
 <div id="page-enterprise" class="page"></div>
 <div id="page-customers" class="page"></div>
@@ -172,16 +170,16 @@ section,footer,.cta-band,.what-you-get,.faq-section,.logo-strip-section{padding-
 <div id="page-resources" class="page"></div>
 <div id="page-resources-blog" class="page"></div>
 <div id="page-resources-guides" class="page"></div>
-<div id="page-partners-engineering" class="page"></div>
 <div id="page-lp-shopify-migration" class="page"></div>
 <div id="page-lp-tapcart-migration" class="page"></div>
+<div id="page-contact-us" class="page"></div>
 
 <script>
 const CONTENT = {
   brand: "Reactiv",
   nav: {
     platform: [
-      {label:"Platform Overview", sub:"One platform. Four capabilities.", page:"platform"},
+      {label:"Platform Overview", sub:"One platform. Every capability.", page:"platform"},
       {label:"App Clips", sub:"Instant native experiences.", page:"platform-appclips"},
       {label:"Native App", sub:"Full iOS app, managed.", page:"platform-nativeapp"},
       {label:"Integrations", sub:"Connect your entire stack.", page:"platform-integrations"},
@@ -196,10 +194,9 @@ const CONTENT = {
       {label:"Power Venues & Events", sub:"No-download experiences for guests.", page:"sol-venues"},
     ],
     partners: [
-      {label:"Agencies", sub:"70% of our pipeline comes through partners.", page:"partners-agencies"},
-      {label:"Technology Partners", sub:"Built for the Shopify stack.", page:"partners-technology"},
+      {label:"Agencies", sub:"Built with and for agency partners.", page:"partners-agencies"},
+      {label:"Technology Partners", sub:"Integrate. Get listed. Be found.", page:"partners-technology"},
       {label:"Apply to Partner", sub:"Agency, tech, or referral.", page:"partners-apply"},
-      {label:"Engineering", sub:"Technical docs, APIs, architecture.", page:"partners-engineering"},
     ],
     resources: [
       {label:"Blog", sub:"Strategy and platform posts.", page:"resources-blog"},
@@ -214,11 +211,13 @@ const CONTENT = {
   customerLogos: ["Maev","Obvi","Cozy Earth","Mejuri","EVEREVE","Hobbiesville","MSQC","Vitae","Indigo","Suntory"],
   
   home: {
-    headline: "The mobile platform\nbuilt for commerce brands.",
-    sub: "App Clips and native apps that convert at 2x mobile web. Built and managed for you — live in 2 to 4 weeks.",
+    headline: "Your mobile app\nshould be driving growth.",
+    sub: "Drive growth with full native apps and native App Clips. Customers tap, shop, and check out in seconds, no download required. After checkout, they download the full app.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
-    qr: false,
+    cta2: "Try a Clip",
+    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
+    qr: true,
     stat: {
       label: "Mobile apps drive growth",
       heading: "Your app isn't just a loyalty play.\nIt's your best acquisition channel.",
@@ -226,7 +225,7 @@ const CONTENT = {
       stats: [
         {num:"2x", label:"Conversion vs. mobile web"},
         {num:"3x", label:"Ad conversion with App Clips"},
-        {num:"13–15%", label:"Install rate from Clip traffic"},
+        {num:"15%", label:"Install rate from Clip traffic"},
         {num:"65%", label:"CAC reduction"},
       ]
     },
@@ -239,7 +238,7 @@ const CONTENT = {
     },
     enterpriseLane:{
       headline:"Built for brands that can't afford\nto get mobile wrong.",
-      sub:"Reactiv serves two kinds of buyer — the growth-focused Shopify brand and the enterprise team weighing a custom build. Same platform. Two doors.",
+      sub:"Reactiv serves two kinds of buyer: the growth-focused Shopify brand and the enterprise team weighing a custom build. Same platform, tailored delivery.",
       cards:[
         {h:"Enterprise Retailers",p:"Integration depth that matches your stack. Klaviyo, Gorgias, Recharge, and 50+ more."},
         {h:"Luxury & DTC",p:"White-glove delivery. 2–4 week launch. Your team stays focused on the roadmap, not mobile infra."},
@@ -252,13 +251,13 @@ const CONTENT = {
       headline:"Trusted by brands where\nmobile has to work.",
       items:[
         {client:"Indigo",signal:"Enterprise",quote:"Reactiv gave us custom mobile capability without the overhead of a dedicated mobile team. App Clips and full native, launched together."},
-        {client:"Mejuri",signal:"Premium DTC",quote:"A native app experience that matches the brand — live in weeks, iterated on weekly. The platform handled the ops so we could focus on growth."},
+        {client:"Mejuri",signal:"Premium DTC",quote:"A native app experience that matches the brand, live in weeks, iterated on weekly. The platform handled the ops so we could focus on growth."},
         {client:"Evereve",signal:"Mid-market retail",quote:"We moved off Tapcart and doubled our mobile conversion. The migration took less time than the pilot."},
       ]
     },
     migration:{
       headline:"Coming from Tapcart\nor another platform?",
-      sub:"Most Reactiv customers are migrating from Tapcart, a Shopify template app, or an underperforming custom build. We handle the migration in 2–4 weeks — no rebuilding from scratch.",
+      sub:"Most Reactiv customers are migrating from Tapcart, a Shopify template app, or an underperforming custom build. We handle the migration in 2–4 weeks, no rebuilding from scratch.",
       bullets:["Migrate your existing app content and integrations","Keep your Shopify stack connected","Launch Clips and a full native app on day one","No engineering team required on your side"],
       cta:"See how migration works",
       ctaUrl:"sol-migrate"
@@ -272,7 +271,7 @@ const CONTENT = {
         {h:"Innovate at retail",p:"In-store experiences with native capability.",link:"See it in action",linkHref:"sol-retail"},
         {h:"Grow app installs",p:"High-intent try-before-install conversion.",link:"See it in action",linkHref:"sol-installs"},
         {h:"Build on Shopify",p:"Launch mobile alongside your Shopify migration in 2–4 weeks.",link:"See it in action",linkHref:"sol-shopify"},
-        {h:"Power venues & events",p:"Tap-to-open experiences for guests — no download required.",link:"See it in action",linkHref:"sol-venues"},
+        {h:"Power venues & events",p:"Tap-to-open experiences for guests, no download required.",link:"See it in action",linkHref:"sol-venues"},
       ]
     },
     keeps:{
@@ -287,7 +286,7 @@ const CONTENT = {
       cta1:"Book a demo"
     },
     faq:[
-      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC — without requiring a full app download."},
+      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC, without requiring a full app download."},
       {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
       {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then transition to full app infrastructure over time."},
       {q:"What integrations do you support?",a:"Reactiv connects natively with Klaviyo, Braze, Attentive, Gorgias, Recharge, Yotpo, and 50+ other platforms across the Shopify stack."},
@@ -295,24 +294,25 @@ const CONTENT = {
   },
 
   platform: {
-    headline: "Two doors.\nOne platform.",
-    sub: "Reactiv is one platform with four capabilities — App Clips, a full native app, integrations, and enterprise-grade security. Whether you enter through a Clip or a full app, you're on the same foundation.",
+    headline: "The mobile platform\nbuilt for commerce brands.",
+    sub: "We deliver on loyalty with a powerful app builder, and extend it so you can drive growth with App Clips.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     qr: true,
     layers:{
-      headline:"One platform. Four capabilities.",
+      headline:"One platform. Every capability.",
       sub:"Every Reactiv customer uses the same foundation. What you activate depends on where you're starting.",
       cards:[
-        {h:"Mobile App Builder",p:"Build and launch a full-featured native iOS app using Reactiv's visual builder and AI-assisted tooling — no dev team required.",link:"Learn more",linkHref:"platform-nativeapp"},
+        {h:"Mobile App Builder",p:"Build and launch a full-featured native iOS app using Reactiv's visual builder and AI-assisted tooling. No dev team required.",link:"Learn more",linkHref:"platform-nativeapp"},
+        {h:"Clip Kit",p:"App Clips for any entry point: ads, QR, NFC, or link. Deploy instantly. No download required. Retarget from day one.",link:"Learn more",linkHref:"platform-appclips"},
+        {h:"Automated Management",p:"Content updates, push campaigns, release workflows, and integration monitoring handled by the platform. Less ops overhead, more time on growth.",link:null,linkHref:null},
         {h:"Dev Tools",p:"SDKs, APIs, and modular components for teams that need custom screens, deep integrations, or bespoke UI beyond the builder.",link:"Learn more",linkHref:"developers"},
-        {h:"Clip Kit",p:"App Clips for any entry point — ads, QR, NFC, or link. Deploy instantly. No download required. Retarget from day one.",link:"Learn more",linkHref:"platform-appclips"},
-        {h:"Integrations",p:"Native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more — plus custom APIs via SDK.",link:"See integrations",linkHref:"platform-integrations"},
+        {h:"Integrations",p:"Native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more, plus custom APIs via SDK.",link:"See integrations",linkHref:"platform-integrations"},
         {h:"Security & Compliance",p:"Enterprise-grade infrastructure, SLA, and compliance documentation for procurement teams.",link:"Learn more",linkHref:"platform-security"},
       ]
     },
     twoDoors:{
-      headline:"Two doors. One platform.",
+      headline:"One platform, built for every entry point.",
       sub:"Whether the entry point is a Clip or a full app, the same platform supports launch, iteration, and growth.",
     },
     tradeoffs: null,
@@ -338,16 +338,15 @@ const CONTENT = {
       cta2:"Try a Clip"
     },
     faq:[
-      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC , without requiring a full app download."},
-      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
-      {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then add the full app experience over time."},
-      {q:"What integrations do you support?",a:"Reactiv connects with major ecommerce and OMS platforms, analytics, and CRM tools."},
+      {q:"Do Clips and the native app share a codebase?",a:"Yes. App Clips and the full native app are built on the same foundation: one codebase, one data model, one integration layer. Ship updates once, not twice."},
+      {q:"What does 'managed platform' mean?",a:"Reactiv handles the build, App Store submission, release pipeline, integration maintenance, and ongoing updates. You define the experience; we run the infrastructure."},
+      {q:"Can we start with Clips and add the app later?",a:"Yes. Many customers start with App Clips to prove value and cover high-intent entry points, then expand to the full native app on the same foundation, no rebuild required."},
     ]
   },
 
   platformAppclips: {
     headline: "Clip Kit.\nInstant native experiences.",
-    sub: "App Clips are lightweight native iOS experiences that open instantly from a link, QR code, or NFC tap — no download required. Clip Kit is Reactiv's tooling for building, deploying, and scaling Clips across every entry point.",
+    sub: "App Clips are lightweight native iOS experiences that open instantly from a link, QR code, or NFC tap. No download required. Clip Kit is Reactiv's tooling for building, deploying, and scaling Clips across every entry point.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     cta2: "Try a Clip",
@@ -356,8 +355,8 @@ const CONTENT = {
       headline:"How App Clips work.",
       bullets:[
         "A Clip is triggered from any link, QR code, or NFC tap",
-        "Opens in seconds on iOS — no App Store, no download prompt",
-        "Runs on the native iOS stack — full performance, full capability",
+        "Opens in seconds on iOS. No App Store, no download prompt",
+        "Runs on the native iOS stack. Full performance, full capability",
         "Users can install the full app at the highest-intent moment",
         "Retargeting audiences built from every Clip interaction",
       ]
@@ -367,7 +366,7 @@ const CONTENT = {
       proofStat:"3x conversion vs. mobile web landing page",
       cards:[
         {h:"Paid ads (Meta, Google)",p:"App Clip landing replaces the mobile web page. Fewer steps, native performance.",proof:""},
-        {h:"QR codes in-store or on packaging",p:"Any QR opens a native Clip — product info, loyalty, checkout.",proof:""},
+        {h:"QR codes in-store or on packaging",p:"Any QR opens a native Clip: product info, loyalty, checkout.",proof:""},
         {h:"NFC tags",p:"Tap-to-open experiences at physical touchpoints.",proof:""},
         {h:"Link in bio / social",p:"Social and creator links open the real app experience, not a landing page.",proof:""},
         {h:"Email & SMS links",p:"Every retention campaign delivers a native moment.",proof:""},
@@ -376,21 +375,21 @@ const CONTENT = {
     },
     cta_band:{
       headline:"See a Clip open on your phone.",
-      sub:"Try it now — then we'll map it to your highest-intent entry point.",
+      sub:"Try it now. Then we'll map it to your highest-intent entry point.",
       cta1:"Book a demo",
       cta2:"Try a Clip"
     },
     faq:[
       {q:"Is this iOS only?",a:"App Clips are native iOS. Android instant apps are available on request."},
       {q:"How fast does a Clip open?",a:"Typically under 2 seconds from tap to native experience."},
-      {q:"What can a Clip do?",a:"Anything a full app can do — product browsing, checkout, booking, loyalty, onboarding, and more."},
+      {q:"What can a Clip do?",a:"Anything a full app can do: product browsing, checkout, booking, loyalty, onboarding, and more."},
       {q:"How long does setup take?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
     ]
   },
 
   platformNativeapp: {
     headline: "Full native app.\nOn a managed platform.",
-    sub: "Reactiv's mobile app builder delivers a fully native iOS app — custom screens, deep integrations, your brand. No dev team required. Built and deployed on the same foundation as your App Clips.",
+    sub: "Reactiv delivers a fully native iOS app: custom screens, deep integrations, your brand, on a managed foundation. Custom build outcomes without the 9-month timeline, the seven-figure budget, or the dedicated mobile team.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     cta2: "Try a Clip",
@@ -398,10 +397,10 @@ const CONTENT = {
     capabilities:{
       headline:"What the app builder delivers.",
       cards:[
-        {h:"Custom screens and native UI",p:"Fully branded app experience — not a template. Every screen built to your spec.",proof:""},
+        {h:"Custom screens and native UI",p:"Fully branded app experience, not a template. Every screen built to your spec.",proof:""},
         {h:"AI merchandising (AI Studio)",p:"Surface the right product in the right moment, automatically. AI-assisted personalization on every screen.",proof:""},
         {h:"Push retargeting",p:"Push notifications wired in from day one. Re-engage from the moment you launch.",proof:""},
-        {h:"Deep Shopify integration",p:"Products, orders, customers, cart — all synced natively with your Shopify store.",proof:""},
+        {h:"Deep Shopify integration",p:"Products, orders, customers, cart, all synced natively with your Shopify store.",proof:""},
         {h:"App Store distribution managed by Reactiv",p:"Full App Store presence. Submission, updates, and versioning handled for you.",proof:""},
         {h:"AI-powered onboarding",p:"First-time users get a personalized onboarding flow driven by AI, not a static carousel.",proof:""},
       ]
@@ -409,8 +408,23 @@ const CONTENT = {
     process:{
       headline:"How it works.",
       label:"3 Steps",
-      steps:["Define your app experience, integrations, and brand requirements","Reactiv builds on the managed foundation — your team reviews","Launch: App and Clips live together in 2–4 weeks"],
+      steps:["Define your app experience, integrations, and brand requirements","Reactiv builds on the managed foundation. Your team reviews","Launch: App and Clips live together in 2–4 weeks"],
       note:"Custom outcomes. Managed platform. Weeks, not months."
+    },
+    usecases:{
+      headline:"Who it's for.",
+      cards:[
+        {h:"Shopify brand launching mobile",p:"Go from zero to a full native app in 2–4 weeks.",proof:"Standard launch timeline for Shopify brands."},
+        {h:"Migrating from Tapcart or a template",p:"Move to a fully native platform without rebuilding. Keep your stack.",proof:"50%+ of Reactiv customers start here."},
+        {h:"Replacing a custom app",p:"Get custom app outcomes on a managed foundation, without the maintenance burden.",proof:"Used by enterprise retailers."},
+        {h:"App + Clips together",p:"Launch a full app and App Clips on the same codebase. One team, one foundation.",proof:""},
+        {h:"Agency-delivered builds",p:"A white-label foundation that lets agencies ship native apps fast.",proof:"Used across multiple agency clients."},
+        {h:"Re-engagement from day one",p:"Push notifications and retargeting available at launch, not as an afterthought.",proof:""},
+      ]
+    },
+    get:{
+      headline:"What you get",
+      bullets:["A fully native iOS app built to your brand","Custom screens, flows, and integrations","App Clips included on the same foundation","Ongoing release management without a rebuild cycle","A team invested in your outcomes, not just delivery"],
     },
     cta_band:{
       headline:"See what your app\ncould look like.",
@@ -420,7 +434,7 @@ const CONTENT = {
     },
     faq:[
       {q:"Do we need our own dev team?",a:"No. Reactiv handles the build, releases, and ongoing updates."},
-      {q:"Is this a template or fully custom?",a:"Fully custom. Every screen is built to your spec — no templates."},
+      {q:"Is this a template or fully custom?",a:"Fully custom. Every screen is built to your spec. No templates."},
       {q:"What about Android?",a:"iOS is the primary platform. Android availability on request."},
       {q:"How long does it take to launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
     ]
@@ -428,7 +442,7 @@ const CONTENT = {
 
   platformIntegrations: {
     headline: "Works with your\nentire Shopify stack.",
-    sub: "Reactiv connects natively with the platforms your ecommerce brand already runs on. No custom middleware, no fragile workarounds — deep, maintained integrations built into the platform.",
+    sub: "Reactiv connects natively with the platforms your ecommerce brand already runs on. No custom middleware, no fragile workarounds. Deep, maintained integrations built into the platform.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     catalogHeading:"Works with your entire Shopify stack",
@@ -443,7 +457,7 @@ const CONTENT = {
     ],
     shopifyEcosystem:{
       headline:"Built for the Shopify ecosystem.",
-      sub:"Reactiv is a Shopify-native platform. Every integration is maintained, versioned, and ready for enterprise procurement review — no custom middleware, no brittle webhooks."
+      sub:"Reactiv is a Shopify-native platform. Every integration is maintained, versioned, and ready for enterprise procurement review. No custom middleware, no brittle webhooks."
     },
     custom:{
       headline:"Need something not on the list?",
@@ -458,7 +472,7 @@ const CONTENT = {
     },
     faq:[
       {q:"Do you support custom integrations?",a:"Yes. Reactiv's SDK and API layer supports any custom integration your team needs to build."},
-      {q:"How are integrations maintained?",a:"Reactiv maintains all native integrations. When an upstream platform changes, we update — not you."},
+      {q:"How are integrations maintained?",a:"Reactiv maintains all native integrations. When an upstream platform changes, we update, not you."},
       {q:"Can we connect our internal OMS?",a:"Yes. Custom OMS and data layer connections are available via API."},
     ]
   },
@@ -470,38 +484,42 @@ const CONTENT = {
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     bullets:[
-      "AWS infrastructure — built for scale and reliability",
+      "AWS infrastructure, built for scale and reliability",
       "Role-based access control and team permissions",
       "Data handling documentation available on request",
-      "SOC 2 documentation available — ask us",
+      "SOC 2 documentation available. Ask us",
     ],
     sections:[
       {h:"Enterprise-grade compliance",p:"SOC 2 documentation and compliance review packages available on request. Prepared for enterprise procurement and infosec reviews."},
       {h:"99.9% uptime SLA",p:"Enterprise customers get a 99.9% uptime commitment with incident response and status reporting."},
-      {h:"Data privacy & PII flow",p:"All PII flows are documented. Customer data stays within your Shopify, CRM, and analytics stack — Reactiv does not resell or mine PII."},
+      {h:"Data privacy & PII flow",p:"All PII flows are documented. Customer data stays within your Shopify, CRM, and analytics stack. Reactiv does not resell or mine PII."},
       {h:"Built for enterprise procurement conversations",p:"DPAs, security questionnaires, vendor-risk packets, and SSO/SAML support are all available. We're used to the process."},
     ],
     cta_band:{
       headline:"Security questions?",
       sub:"We'll provide documentation for your procurement or security review.",
       cta1:"Book a demo"
+    },
+    technicalLink:{
+      label:"For technical evaluators: data flows, API architecture, and infrastructure docs →",
+      route:"developers"
     }
   },
 
   appclips: {
-    headline: "2x conversions.\n3x ad returns.\nNo app download required.",
-    sub: "Brands using App Clips see dramatically higher conversion than mobile web — because customers get a native experience instantly, without installing anything.",
+    headline: "No download required.\nTap, shop, and check out\nin seconds.",
+    sub: "Powered by Apple App Clips: a lightweight app experience that launches directly from a QR code or tap. After checkout, customers are prompted to download the full app.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     qr: true,
     what:{
       headline:"What is an App Clip?",
-      sub:"An App Clip is a lightweight version of an app that users can access without installing the full app. It runs on the native iOS stack, opens in seconds, and can be triggered from any link, QR code, or NFC tap. It's not the product — it's how Reactiv delivers better conversion, lower CAC, and higher retention.",
+      sub:"An App Clip is a lightweight version of an app that users can access without downloading the full app. It runs on the native iOS stack, opens in seconds, and can be triggered from any link, QR code, or NFC tap. It's not the product. It's how Reactiv delivers better conversion, lower CAC, and higher retention.",
     },
     skip:{
       headline:"Why Clips outperform\nmobile web.",
-      sub:"Mobile web is slow, generic, and leaks intent at every step. App Clips deliver the native experience your customers expect — without the install barrier standing in the way.",
-      bullets:["2x higher conversion than mobile web","Lower CAC through native re-engagement","Better handoff to retention and full app install","Already have a native app? Embed Clips directly — no platform switch required."],
+      sub:"Mobile web is slow, generic, and leaks intent at every step. App Clips deliver the native experience your customers expect, without the download barrier standing in the way.",
+      bullets:["2x higher conversion than mobile web","Lower CAC through native re-engagement","Better handoff to retention and full app download","Already have a native app? Embed Clips directly. No platform switch required."],
       cta:"Try a Clip",
       ctaUrl:"https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips"
     },
@@ -517,8 +535,8 @@ const CONTENT = {
       cards:[
         {h:"Ad conversion",p:"Give ad traffic a native destination instead of a landing page.",proof:""},
         {h:"Retail experiences",p:"Scan for product info, inventory, or appointments in store.",proof:""},
-        {h:"Venues and events",p:"Tickets, orders, and navigation , nothing to install.",proof:""},
-        {h:"Try before install",p:"Let users experience the app first, then install when ready.",proof:""},
+        {h:"Venues and events",p:"Tickets, orders, and navigation. Nothing to download.",proof:""},
+        {h:"Try before download",p:"Let users experience the app first, then download the full app when ready.",proof:""},
         {h:"Brand launches",p:"Go from zero to live in weeks, not months.",proof:""},
         {h:"Re-engagement",p:"Add push notifications and bring users back into the funnel.",proof:""},
       ]
@@ -539,7 +557,7 @@ const CONTENT = {
       cta2:"Try a Clip"
     },
     faq:[
-      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC , without requiring a full app download."},
+      {q:"What is an App Clip?",a:"A lightweight version of an app that launches instantly from a link, QR code, or NFC, without requiring a full app download."},
       {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
       {q:"Do we need to rebuild our app?",a:"No. You can launch Clips first, then add the full app experience over time."},
       {q:"What integrations do you support?",a:"Reactiv connects with major ecommerce and OMS platforms, analytics, and CRM tools."},
@@ -548,9 +566,11 @@ const CONTENT = {
 
   solAds: {
     headline: "Turn ad clicks into\nnative app experiences.",
-    sub: "Your ad spend is leaking. Clicks land on slow, broken mobile web — not your app — and most of them bounce before they convert. Reactiv points ads at a native App Clip instead of a landing page.",
+    sub: "Your ad spend is leaking. Clicks land on slow, broken mobile web, not your app, and most of them bounce before they convert. Reactiv points ads at a native App Clip instead of a landing page.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    cta2: "Try a Clip",
+    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
     heroStats:[
       {num:"3x", label:"Ad conversion with App Clips"},
       {num:"65%", label:"CAC reduction"},
@@ -579,12 +599,12 @@ const CONTENT = {
     usecases:{
       headline:"Use cases with proof.",
       cards:[
-        {h:"Product drops",p:"Ad opens to a product moment, not a page load.",proof:"Proof: Used by a DTC ecommerce brand (NDA)."},
-        {h:"Promotions",p:"Redeem or shop in one native flow.",proof:"Proof: Used by a global beverage brand (NDA)."},
-        {h:"Cart recovery",p:"Follow up while intent is still high.",proof:"Proof: Used to drive repeat post-click visits (NDA)."},
-        {h:"Signups",p:"Start onboarding in a native experience.",proof:"Proof: Used to improve completion vs. mobile web (NDA)."},
-        {h:"Store locator",p:"Send traffic to the nearest location instantly.",proof:"Proof: Used for retail moments from paid traffic (NDA)."},
-        {h:"Try before install",p:"Let users experience it, then install when ready.",proof:"Proof: Lift in quality installs (NDA)."},
+        {h:"Product drops",p:"Ad opens to a product moment, not a page load.",proof:"Proof: Used by a DTC ecommerce brand."},
+        {h:"Promotions",p:"Redeem or shop in one native flow.",proof:"Proof: Used by a global beverage brand."},
+        {h:"Cart recovery",p:"Follow up while intent is still high.",proof:"Proof: Used to drive repeat post-click visits."},
+        {h:"Signups",p:"Start onboarding in a native experience.",proof:"Proof: Used to improve completion vs. mobile web."},
+        {h:"Store locator",p:"Send traffic to the nearest location instantly.",proof:"Proof: Used for retail moments from paid traffic."},
+        {h:"Try before install",p:"Let users experience it, then install when ready.",proof:"Proof: Lift in quality installs."},
       ]
     },
     get:{
@@ -607,7 +627,7 @@ const CONTENT = {
 
   solRetail: {
     headline: "Bring native into\nthe store.",
-    sub: "In-store mobile experiences are broken for most brands — QR codes go to slow mobile web, there's no way to surface the right product in the right moment. Reactiv turns any scan or tap into a native experience.",
+    sub: "In-store mobile experiences are broken for most brands: QR codes go to slow mobile web, there's no way to surface the right product in the right moment. Reactiv turns any scan or tap into a native experience.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     heroStats:[
@@ -627,23 +647,23 @@ const CONTENT = {
     native:{
       headline:"A native experience built\nfor the shelf.",
       sub:"We build an App Clip that opens from any QR code or NFC tag in store and delivers exactly what the shopper needs in that moment.",
-      bullets:["Opens instantly from a QR code or NFC tap","Native UX matched to the in-store context","Complete the task , no app required","Clear path to the full app when it makes sense"],
+      bullets:["Opens instantly from a QR code or NFC tap","Native UX matched to the in-store context","Complete the task. No app required","Clear path to the full app when it makes sense"],
     },
     steps:{
       headline:"How it works",
       label:"3 Steps",
-      steps:["Place a QR code or NFC tag in store","Clip opens instantly on the shopper's phone","Complete the task , shop, book, join, or get info"],
+      steps:["Place a QR code or NFC tag in store","Clip opens instantly on the shopper's phone","Complete the task: shop, book, join, or get info"],
       note:"One scan. The full native experience."
     },
     usecases:{
       headline:"Built for every retail moment.",
       cards:[
-        {h:"Product detail pages",p:"Full specs, reviews, and inventory without a page load.",proof:"Proof: Used by a luxury fashion brand (NDA)."},
-        {h:"Appointments and services",p:"Book in-store appointments from the shelf or fitting room.",proof:"Proof: Used by a specialty retailer (NDA)."},
-        {h:"Loyalty and rewards",p:"Join a program and earn points at checkout without an install.",proof:"Proof: Used by an omnichannel brand (NDA)."},
-        {h:"Endless aisle",p:"Browse extended inventory and ship to home from in store.",proof:"Proof: Used to recover lost in-store sales (NDA)."},
-        {h:"Staff-facing tools",p:"Inventory lookup and clienteling without a company device.",proof:"Proof: Used at scale by retail teams (NDA)."},
-        {h:"Promotions and offers",p:"Redeem a coupon or enter a drop instantly from a tag.",proof:"Proof: Used by a global consumer brand (NDA)."},
+        {h:"Product detail pages",p:"Full specs, reviews, and inventory without a page load.",proof:"Proof: Used by a luxury fashion brand."},
+        {h:"Appointments and services",p:"Book in-store appointments from the shelf or fitting room.",proof:"Proof: Used by a specialty retailer."},
+        {h:"Loyalty and rewards",p:"Join a program and earn points at checkout without an install.",proof:"Proof: Used by an omnichannel brand."},
+        {h:"Endless aisle",p:"Browse extended inventory and ship to home from in store.",proof:"Proof: Used to recover lost in-store sales."},
+        {h:"Staff-facing tools",p:"Inventory lookup and clienteling without a company device.",proof:"Proof: Used at scale by retail teams."},
+        {h:"Promotions and offers",p:"Redeem a coupon or enter a drop instantly from a tag.",proof:"Proof: Used by a global consumer brand."},
       ]
     },
     get:{
@@ -666,7 +686,7 @@ const CONTENT = {
 
   solVenues: {
     headline: "Run your venue without\nthe app download.",
-    sub: "Getting fans or guests to download a dedicated app is a consistent barrier — especially for first-time visitors or casual attendees. Reactiv turns a scan or tap into the full experience, instantly.",
+    sub: "Getting fans or guests to download a dedicated app is a consistent barrier, especially for first-time visitors or casual attendees. Reactiv turns a scan or tap into the full experience, instantly.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     heroStats:[
@@ -680,34 +700,34 @@ const CONTENT = {
     },
     problem:{
       headline:"Venues lose guests at the gate.",
-      sub:"Asking guests to download an app at a concert, stadium, or event is a conversion killer. App Clips give you a full native experience that opens in seconds , right when it matters.",
+      sub:"Asking guests to download an app at a concert, stadium, or event is a conversion killer. App Clips give you a full native experience that opens in seconds, right when it matters.",
       bullets:["Guests won't download apps for a one-time visit","Long queues and friction hurt the experience","You lose the moment before the guest even gets started"],
     },
     native:{
       headline:"A native experience from\nthe first scan.",
-      sub:"We build an App Clip experience that opens from any QR code or NFC tag at your venue and gets guests to the moment that matters , ordering, wayfinding, ticketing, or access.",
+      sub:"We build an App Clip experience that opens from any QR code or NFC tag at your venue and gets guests to the moment that matters: ordering, wayfinding, ticketing, or access.",
       bullets:["Opens instantly from a QR or NFC at any entry point","Native UX built for high-volume, fast-moving guests","Complete the task with no install required","Path to push notifications and the full app"],
     },
     steps:{
       headline:"How it works",
       label:"3 Steps",
-      steps:["Guest scans a QR or taps NFC at the venue","Clip opens instantly , no download, no wait","Order, access, navigate, or check in"],
+      steps:["Guest scans a QR or taps NFC at the venue","Clip opens instantly, no download, no wait","Order, access, navigate, or check in"],
       note:"One tap. Every venue moment."
     },
     usecases:{
       headline:"Built for every venue moment.",
       cards:[
-        {h:"Food and beverage ordering",p:"Order from seat or section without waiting in line.",proof:"Proof: Used at NFC-enabled venues (NDA)."},
-        {h:"Ticketing and entry",p:"Scan to validate and enter without a separate app.",proof:"Proof: Used at live event venues (NDA)."},
-        {h:"Wayfinding",p:"Navigate to seats, bathrooms, or vendor locations instantly.",proof:"Proof: Used at large-format events (NDA)."},
-        {h:"Menus and offers",p:"Digital menus and in-venue promotions from a table QR.",proof:"Proof: Used by hospitality brands (NDA)."},
-        {h:"Artist and event content",p:"Setlists, schedules, and exclusive content accessible from any signage.",proof:"Proof: Used at music and festival events (NDA)."},
-        {h:"Loyalty and membership",p:"Earn points and access perks without installing.",proof:"Proof: Used to drive retention at recurring venues (NDA)."},
+        {h:"Food and beverage ordering",p:"Order from seat or section without waiting in line.",proof:"Proof: Used at NFC-enabled venues."},
+        {h:"Ticketing and entry",p:"Scan to validate and enter without a separate app.",proof:"Proof: Used at live event venues."},
+        {h:"Wayfinding",p:"Navigate to seats, bathrooms, or vendor locations instantly.",proof:"Proof: Used at large-format events."},
+        {h:"Menus and offers",p:"Digital menus and in-venue promotions from a table QR.",proof:"Proof: Used by hospitality brands."},
+        {h:"Artist and event content",p:"Setlists, schedules, and exclusive content accessible from any signage.",proof:"Proof: Used at music and festival events."},
+        {h:"Loyalty and membership",p:"Earn points and access perks without installing.",proof:"Proof: Used to drive retention at recurring venues."},
       ]
     },
     get:{
       headline:"What you get",
-      bullets:["Faster guest throughput at every touchpoint","Higher F&B and upsell revenue per visit","Loyalty enrollment without the install barrier","A consistent experience across all entry points","A reusable platform for every event or season"],
+      bullets:["Faster guest throughput at every touchpoint","Higher F&B and upsell revenue per visit","Loyalty enrollment without the download barrier","A consistent experience across all entry points","A reusable platform for every event or season"],
     },
     cta_band:{
       headline:"See it open at your venue.",
@@ -728,8 +748,10 @@ const CONTENT = {
     sub: "You've built the app. Getting people to actually download it is the battle. The App Store is a barrier most visitors scroll past. App Clips let users experience the app first and install when it makes sense.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    cta2: "Try a Clip",
+    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
     heroStats:[
-      {num:"13–15%", label:"Install rate from Clip traffic"},
+      {num:"15%", label:"Install rate from Clip traffic"},
     ],
     customerCallout:{
       client:"Top of the Mornin",
@@ -738,13 +760,13 @@ const CONTENT = {
     },
     problem:{
       headline:"The install wall stops your best users.",
-      sub:"Asking someone to install before they've experienced the value is the biggest drop-off point in mobile. App Clips let you flip the funnel , experience first, install second.",
-      bullets:["Most users bounce before completing an install","You're losing high-intent users at the top of the funnel","Trial builds trust , forced installs don't"],
+      sub:"Asking someone to install before they've experienced the value is the biggest drop-off point in mobile. App Clips let you flip the funnel: experience first, install second.",
+      bullets:["Most users bounce before completing an install","You're losing high-intent users at the top of the funnel","Trial builds trust. Forced installs don't"],
     },
     native:{
       headline:"A try-before-install funnel.",
-      sub:"We build an App Clip that delivers a real, high-value slice of your app experience , enough to show the value and make the install feel like a natural next step.",
-      bullets:["Opens instantly from an ad, link, QR, or NFC","Real native experience , not a demo or a tour","Prompt to install at the highest-intent moment","Retarget non-installers while intent is still warm"],
+      sub:"We build an App Clip that delivers a real, high-value slice of your app experience, enough to show the value and make the install feel like a natural next step.",
+      bullets:["Opens instantly from an ad, link, QR, or NFC","Real native experience, not a demo or a tour","Prompt to install at the highest-intent moment","Retarget non-installers while intent is still warm"],
     },
     steps:{
       headline:"How it works",
@@ -755,17 +777,17 @@ const CONTENT = {
     usecases:{
       headline:"Built for every install growth moment.",
       cards:[
-        {h:"Paid acquisition",p:"Send ad traffic to a Clip and prompt install after value is shown.",proof:"Proof: Lift in quality install rate vs. direct to App Store (NDA)."},
-        {h:"Organic and social",p:"Link-in-bio or story link opens a Clip that converts to install.",proof:"Proof: Used by an app-first DTC brand (NDA)."},
-        {h:"Referral and sharing",p:"Share a Clip link that gives a friend a real experience before the ask.",proof:"Proof: Used to improve referral conversion (NDA)."},
-        {h:"Re-engagement",p:"Win back lapsed users with a Clip before asking them to re-download.",proof:"Proof: Used to recover churned app users (NDA)."},
-        {h:"Influencer and affiliate",p:"Give partners a trackable Clip link that converts to installs.",proof:"Proof: Used for influencer-driven install campaigns (NDA)."},
-        {h:"Email and SMS",p:"Send a Clip link that opens the real app experience, not a landing page.",proof:"Proof: Used to improve install conversion from retention campaigns (NDA)."},
+        {h:"Paid acquisition",p:"Send ad traffic to a Clip and prompt install after value is shown.",proof:"Proof: Lift in quality install rate vs. direct to App Store."},
+        {h:"Organic and social",p:"Link-in-bio or story link opens a Clip that converts to install.",proof:"Proof: Used by an app-first DTC brand."},
+        {h:"Referral and sharing",p:"Share a Clip link that gives a friend a real experience before the ask.",proof:"Proof: Used to improve referral conversion."},
+        {h:"Re-engagement",p:"Win back lapsed users with a Clip before asking them to re-download.",proof:"Proof: Used to recover churned app users."},
+        {h:"Influencer and affiliate",p:"Give partners a trackable Clip link that converts to installs.",proof:"Proof: Used for influencer-driven install campaigns."},
+        {h:"Email and SMS",p:"Send a Clip link that opens the real app experience, not a landing page.",proof:"Proof: Used to improve install conversion from retention campaigns."},
       ]
     },
     get:{
       headline:"What you get",
-      bullets:["Higher conversion from click to install","Better install quality , users already know the value","A repeatable channel-agnostic install funnel","Retargeting audiences built from Clip engagement","A faster path to Day 1 retention"],
+      bullets:["Higher conversion from click to install","Better install quality, users already know the value","A repeatable channel-agnostic install funnel","Retargeting audiences built from Clip engagement","A faster path to Day 1 retention"],
     },
     cta_band:{
       headline:"Turn your best traffic\ninto installs.",
@@ -774,7 +796,7 @@ const CONTENT = {
       cta2:"Try a Clip"
     },
     faq:[
-      {q:"Is this just an onboarding flow?",a:"No. It's a real slice of the app experience , not a tour or a walkthrough."},
+      {q:"Is this just an onboarding flow?",a:"No. It's a real slice of the app experience, not a tour or a walkthrough."},
       {q:"When does the install prompt appear?",a:"At the highest-intent moment inside the Clip, based on what the user just did."},
       {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
       {q:"Does this work for Android?",a:"App Clips are iOS native. Android support via instant apps is available on request."},
@@ -784,7 +806,7 @@ const CONTENT = {
   // TODO: replace NDA customer cards with named case studies when approved
   customers: {
     headline: "Real brands. Real results.",
-    sub: "Proof points from commerce brands and retailers using Reactiv. Client names withheld where required.",
+    sub: "Proof points from commerce brands and retailers using Reactiv. We're true partners. When our clients' privacy matters, we're happy to be quietly behind the scenes making it work.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     trustLabel: "Trusted by teams across",
@@ -793,27 +815,36 @@ const CONTENT = {
       {num:"2x", label:"Conversion vs. mobile web"},
       {num:"3x", label:"Ad conversion with App Clips"},
       {num:"17%", label:"Average AOV increase"},
-      {num:"13–15%", label:"Install rate from Clip traffic"},
+      {num:"15%", label:"Install rate from Clip traffic"},
     ],
-    filters: ["All","App Clips","Platform","Ads","Retail","Venues","Install Growth","Agency Partner"],
+    featured: {
+      headline: "Featured case studies.",
+      sub: "Named brands. Published results.",
+      cards: [
+        {client:"Top of the Mornin'", stat:"2x conversion · 17% AOV lift", outcome:"Doubled mobile conversion and lifted average order value after moving to Reactiv's native app + App Clip stack.", href:"/customers/top-of-the-mornin"},
+        {client:"Missouri Star Quilt Co.", stat:"50K users · 10% of revenue", outcome:"50,000 users onboarded in 2 weeks. App became 10% of total revenue within the first quarter.", href:"/customers/msqc-case-study"},
+        {client:"Hobbiesville", stat:"1/3 of orders · week 1", outcome:"App drove roughly one-third of all orders in its first week post-launch, from a brand with no prior mobile app.", href:"/customers/hobbiesville"},
+      ]
+    },
+    filters: ["All","Sports","Retail","F&B","Hospitality","DTC"],
     cards: [
-      {client:"Domaine",outcome:"Agency partner delivering Shopify-to-Reactiv mobile alongside replatforms. Featured on the Agencies partner page.",tags:["Agency Partner","Platform"],agencyPartner:true,proof:"Agency Partner — Shopify migrations"},
-      {client:"Lazer Technologies",outcome:"Agency partner shipping custom native builds for enterprise Shopify brands on Reactiv.",tags:["Agency Partner","Platform"],agencyPartner:true,proof:"Agency Partner — Enterprise builds"},
-      {client:"DTC ecommerce brand",outcome:"Ads open into a native flow, then follow-up drives repeat sessions. 3x return on ad spend vs. mobile web.",tags:["App Clips","Ads"],proof:"3x ROAS lift — Retargeting post-click (NDA)"},
-      {client:"Global luxury fashion brand",outcome:"In-store Clips for discovery, appointments, and store-specific experiences.",tags:["App Clips","Retail"],proof:"2x in-store engagement — Location-aware flows (NDA)"},
-      {client:"NBA team",outcome:"Game-day Clips for ordering and merch without another download.",tags:["App Clips","Venues"],proof:"Built for venue moments (NDA)"},
-      {client:"Enterprise retailer",outcome:"Launched a native app without building and maintaining it in-house. 17% AOV lift.",tags:["Platform","Retail"],proof:"17% AOV lift — Omnichannel app (NDA)"},
-      {client:"Global beverage brand",outcome:"Campaign storytelling in a Clip, then find-near-me to retail.",tags:["App Clips","Ads"],proof:"3x ad conversion — Geo-based retail finder (NDA)"},
-      {client:"App-first consumer brand",outcome:"Try-before-install onboarding that lifts install quality. Higher Day-30 retention.",tags:["App Clips","Install Growth"],proof:"40% higher quality installs (NDA)"},
-      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",tags:["App Clips","Platform"],proof:"2x conversion — Tapcart migration (NDA)"},
-      {client:"UK retailer",outcome:"Shipped custom app requirements without a million-dollar rebuild.",tags:["Platform"],proof:"Enterprise scope supported (NDA)"},
-      {client:"Venue operator",outcome:"Fast entry, wayfinding, and ordering without installs.",tags:["App Clips","Venues"],proof:"Designed for occasional use (NDA)"},
-      {client:"Retail group",outcome:"Combined Clips for acquisition with the full app for retention.",tags:["App Clips","Platform"],proof:"65% lower CAC — Same foundation (NDA)"},
-      {client:"Shopify migration team",outcome:"Moved off a template app to full native in 2 weeks.",tags:["Platform"],proof:"2-week migration timeline (NDA)"},
-      {client:"Agency partner",outcome:"Built custom mobile experiences for 4 Shopify brands on Reactiv.",tags:["Platform"],proof:"Agency-delivered across multiple clients (NDA)"},
+      {client:"Domaine",outcome:"Agency partner delivering Shopify-to-Reactiv mobile alongside replatforms. Featured on the Agencies partner page.",tags:["Retail"],agencyPartner:true,proof:"Agency Partner: Shopify migrations"},
+      {client:"Lazer Technologies",outcome:"Agency partner shipping custom native builds for enterprise Shopify brands on Reactiv.",tags:["DTC"],agencyPartner:true,proof:"Agency Partner: Enterprise builds"},
+      {client:"DTC ecommerce brand",outcome:"Ads open into a native flow, then follow-up drives repeat sessions. 3x return on ad spend vs. mobile web.",tags:["DTC"],proof:"3x ROAS lift, Retargeting post-click"},
+      {client:"Global luxury fashion brand",outcome:"In-store Clips for discovery, appointments, and store-specific experiences.",tags:["Retail"],proof:"2x in-store engagement, Location-aware flows"},
+      {client:"NBA team",outcome:"Game-day Clips for ordering and merch without another download.",tags:["Sports"],proof:"Built for venue moments"},
+      {client:"Enterprise retailer",outcome:"Launched a native app without building and maintaining it in-house. 17% AOV lift.",tags:["Retail"],proof:"17% AOV lift, Omnichannel app"},
+      {client:"Global beverage brand",outcome:"Campaign storytelling in a Clip, then find-near-me to retail.",tags:["F&B"],proof:"3x ad conversion, Geo-based retail finder"},
+      {client:"App-first consumer brand",outcome:"Try-before-install onboarding that lifts install quality. Higher Day-30 retention.",tags:["DTC"],proof:"40% higher quality installs"},
+      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",tags:["DTC"],proof:"2x conversion, Tapcart migration"},
+      {client:"UK retailer",outcome:"Shipped custom app requirements without a million-dollar rebuild.",tags:["Retail"],proof:"Enterprise scope supported"},
+      {client:"Venue operator",outcome:"Fast entry, wayfinding, and ordering without installs.",tags:["Hospitality"],proof:"Designed for occasional use"},
+      {client:"Retail group",outcome:"Combined Clips for acquisition with the full app for retention.",tags:["Retail"],proof:"65% lower CAC, Same foundation"},
+      {client:"Shopify migration team",outcome:"Moved off a template app to full native in 2 weeks.",tags:["Retail"],proof:"2-week migration timeline"},
+      {client:"Agency partner",outcome:"Built custom mobile experiences for 4 Shopify brands on Reactiv.",tags:["DTC"],agencyPartner:true,proof:"Agency-delivered across multiple clients"},
     ],
     transition:{
-      headline:"Start with Clips. Expand into the platform.",
+      headline:"Explore the platform that powers all of this.",
       sub:"Clips prove value fast. The platform scales the experience long term.",
       link:"Explore the platform"
     },
@@ -823,15 +854,15 @@ const CONTENT = {
       cta1:"Book a demo"
     },
     faq:[
-      {q:"Can you share client logos?",a:"Client names are withheld where required. We're happy to share more detail on a call."},
-      {q:"What can Clips do?",a:"Ads, retail, venues, and install growth onboarding , any high-intent moment where a download would kill the conversion."},
+      {q:"Can you share client logos?",a:"We're true partners. When our clients' privacy matters, we're happy to be quietly behind the scenes making it work. Happy to share more detail on a call."},
+      {q:"What can Clips do?",a:"Ads, retail, venues, and install growth onboarding, any high-intent moment where a download would kill the conversion."},
       {q:"How fast can we pilot?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
     ]
   },
 
   solShopify: {
     headline: "Build your mobile app\non Shopify.",
-    sub: "When a brand moves to Shopify, the website gets rebuilt from scratch — but the mobile app is often an afterthought until it's too late. Reactiv launches native alongside your Shopify go-live.",
+    sub: "When a brand moves to Shopify, the website gets rebuilt from scratch, but the mobile app is often an afterthought until it's too late. Reactiv launches native alongside your Shopify go-live.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     heroStats:[
@@ -849,8 +880,8 @@ const CONTENT = {
     },
     native:{
       headline:"Built for the Shopify\nmoment.",
-      sub:"Reactiv has native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more — so the app launches with your new stack, not after it.",
-      bullets:["Native Shopify integration — no middleware","App Clips and full native app launch together","Deploy in 2–4 weeks alongside your Shopify go-live","Keep your stack. Lose the template limits","No engineering team required on your side"],
+      sub:"Reactiv has native connectors for Shopify, Klaviyo, Braze, Attentive, Yotpo, and more, so the app launches with your new stack, not after it.",
+      bullets:["Native Shopify integration, no middleware","App Clips and full native app launch together","Deploy in 2–4 weeks alongside your Shopify go-live","Keep your stack. Lose the template limits","No engineering team required on your side"],
     },
     steps:{
       headline:"How it works",
@@ -861,8 +892,8 @@ const CONTENT = {
     usecases:{
       headline:"Built for the Shopify moment.",
       cards:[
-        {h:"Shopify replatform",p:"Bring mobile along for the ride — launch a native app with the new storefront.",proof:"Proof: Standard launch alongside Shopify migrations (NDA)."},
-        {h:"New Shopify brand",p:"Launch day one with mobile already in the plan — App Clips for ads, full app for loyal customers.",proof:""},
+        {h:"Shopify replatform",p:"Bring mobile along for the ride. Launch a native app with the new storefront.",proof:"Proof: Standard launch alongside Shopify migrations."},
+        {h:"New Shopify brand",p:"Launch day one with mobile already in the plan: App Clips for ads, full app for loyal customers.",proof:""},
         {h:"Template app replacement",p:"Move off Tapcart or similar the same time you migrate to Shopify.",proof:"50%+ of Reactiv customers start here."},
         {h:"Shopify + OMS stack",p:"Deep integration with Shopify plus the OMS, CRM, and loyalty tools you already run.",proof:""},
         {h:"Headless Shopify",p:"Reactiv plugs into Hydrogen and headless storefronts without a custom bridge.",proof:""},
@@ -871,7 +902,7 @@ const CONTENT = {
     },
     get:{
       headline:"What you get",
-      bullets:["A native iOS app that launches with your Shopify stack","App Clips included on the same foundation","Native Shopify, Klaviyo, Braze, Attentive, and Yotpo integrations","2–4 week launch — no engineering team needed","A path forward that doesn't require rebuilding again"],
+      bullets:["A native iOS app that launches with your Shopify stack","App Clips included on the same foundation","Native Shopify, Klaviyo, Braze, Attentive, and Yotpo integrations","2–4 week launch, no engineering team needed","A path forward that doesn't require rebuilding again"],
     },
     cta_band:{
       headline:"Migrating to Shopify?\nLaunch mobile with it.",
@@ -881,122 +912,17 @@ const CONTENT = {
       extraLink:{label:"See the migration plan →",route:"lp-shopify"}
     },
     faq:[
-      {q:"Do you integrate with Shopify directly?",a:"Yes — native Shopify connector, no middleware required."},
+      {q:"Do you integrate with Shopify directly?",a:"Yes. Native Shopify connector, no middleware required."},
       {q:"Can we launch mobile at the same time as our Shopify migration?",a:"Yes. Launching together is the most common Reactiv path. Typical timeline is 2–4 weeks."},
       {q:"What about Hydrogen or headless Shopify?",a:"Supported. Reactiv plugs into Hydrogen and headless storefronts."},
       {q:"Do we need an engineering team on our side?",a:"No. Reactiv handles the build. Your team reviews and approves."},
     ]
   },
 
-  solNative: {
-    headline: "Launch a full native app.\nNo dev team required.",
-    sub: "Reactiv builds and deploys your full native iOS app on the same foundation as your App Clips. Custom screens, deep integrations, your brand — live in weeks, not months.",
-    cta1: "Book a demo",
-    cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
-    cta2: "Try a Clip",
-    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
-    problem:{
-      headline:"Custom builds take too long\nand cost too much.",
-      sub:"A fully custom native app typically takes 6–12 months and hundreds of thousands in engineering. Reactiv delivers custom app outcomes on a managed foundation — in weeks.",
-      bullets:["Custom builds average 9+ months to launch","Dev teams get pulled onto other priorities","Apps go stale without a dedicated mobile team to maintain them"],
-    },
-    native:{
-      headline:"Custom outcomes.\nManaged foundation.",
-      sub:"Reactiv builds your app on a flexible, extensible foundation — so you get the native experience your customers expect without the overhead of building and maintaining it yourself.",
-      bullets:["Full custom screens and branded UI","Deep integrations with your Shopify stack and OMS","Push retargeting wired in from day one","App and Clips launch together on the same codebase","Ongoing updates without App Store redeployment"],
-    },
-    steps:{
-      headline:"How it works",
-      label:"3 Steps",
-      steps:["Define your app experience and integrations","Reactiv builds and deploys on the managed foundation","Launch, iterate, and grow — without a rebuild"],
-      note:"Custom app outcomes. Weeks, not months."
-    },
-    usecases:{
-      headline:"Built for every native app moment.",
-      cards:[
-        {h:"Shopify brand launching mobile",p:"Go from zero to a full native app in 2–4 weeks.",proof:"Proof: Standard launch timeline for Shopify brands (NDA)."},
-        {h:"Migrating from Tapcart or Fuego",p:"Move to a fully native platform without rebuilding. Keep your stack.",proof:"50%+ of Reactiv customers start here."},
-        {h:"Replacing a custom app",p:"Get custom app outcomes on a managed foundation — without the maintenance burden.",proof:"Proof: Used by enterprise retailers (NDA)."},
-        {h:"App + Clips together",p:"Launch a full app and App Clips on the same codebase. One team, one foundation.",proof:""},
-        {h:"Agency-delivered builds",p:"A white-label foundation that lets agencies ship native apps fast.",proof:"Proof: Used across multiple agency clients (NDA)."},
-        {h:"Re-engagement from day one",p:"Push notifications and retargeting available at launch, not as an afterthought.",proof:""},
-      ]
-    },
-    get:{
-      headline:"What you get",
-      bullets:["A fully native iOS app built to your brand","Custom screens, flows, and integrations","App Clips included on the same foundation","Ongoing release management without a rebuild cycle","A team invested in your outcomes, not just delivery"],
-    },
-    cta_band:{
-      headline:"See what your app\ncould look like.",
-      sub:"Try a Clip now. Then we'll scope your full app build.",
-      cta1:"Book a demo",
-      cta2:"Try a Clip"
-    },
-    faq:[
-      {q:"Do we need our own dev team?",a:"No. Reactiv handles the build and ongoing updates. Your team manages content and strategy."},
-      {q:"How fast can we launch?",a:"Typically 2 to 4 weeks depending on scope and integrations."},
-      {q:"Can we customize the design fully?",a:"Yes. Reactiv supports fully custom screens, branded UI, and bespoke flows."},
-      {q:"What happens after launch?",a:"Reactiv manages releases, updates, and platform maintenance. You iterate on the experience."},
-    ]
-  },
-
-  // TODO: sol-ai page — confirm AI feature list with Zack before finalizing bullets
-  solAi: {
-    headline: "Your app should\nrun itself.",
-    sub: "Reactiv's AI-powered management layer automates the operational work of running a mobile app — so your team focuses on outcomes, not maintenance.",
-    cta1: "Book a demo",
-    cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
-    cta2: "Try a Clip",
-    cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
-    problem:{
-      headline:"Mobile apps have a\nhidden ops tax.",
-      sub:"After launch, most apps require constant attention — content updates, release management, A/B testing, push campaigns, and integration maintenance. Without a dedicated mobile team, apps go stale.",
-      bullets:["Content updates require dev involvement or a CMS","Release cycles slow down iteration","Push and re-engagement campaigns need manual setup","Integration changes break things downstream"],
-    },
-    native:{
-      headline:"Built-in automation\nfor ecommerce teams.",
-      sub:"Reactiv includes tooling that automates the ongoing work of managing a live mobile app — from content updates to push campaigns to release management.",
-      bullets:["Update app content and layout without a redeployment","Automated push campaign triggers based on in-app behavior","AI-assisted merchandising and content personalization","Release workflow automation with environment management","Integration health monitoring and alerting"],
-    },
-    steps:{
-      headline:"How it works",
-      label:"3 Steps",
-      steps:["Launch your app on the Reactiv foundation","Configure your automation rules and triggers","The platform handles updates, push, and release — you review and approve"],
-      note:"Less ops overhead. More time on growth."
-    },
-    usecases:{
-      headline:"What teams automate with Reactiv.",
-      cards:[
-        {h:"Content and merchandising updates",p:"Change banners, featured products, and layouts without a developer or a release.",proof:""},
-        {h:"Push campaign automation",p:"Trigger re-engagement push notifications based on Clip interactions, cart events, or custom rules.",proof:""},
-        {h:"AI-assisted personalization",p:"Surface relevant products and content based on customer behavior — automatically.",proof:""},
-        {h:"Release management",p:"Manage app versions, environments, and rollouts without manual release engineering.",proof:""},
-        {h:"Integration monitoring",p:"Automated alerts when integration endpoints change or degrade.",proof:""},
-        {h:"A/B testing",p:"Test app experiences and content without a full redeployment cycle.",proof:""},
-      ]
-    },
-    get:{
-      headline:"What you get",
-      bullets:["App content management without developer dependency","Automated push and re-engagement campaigns","AI-assisted merchandising and personalization","Release workflow and environment management built in","Less ops overhead, more iteration speed"],
-    },
-    cta_band:{
-      headline:"See how much your\nteam can automate.",
-      sub:"We'll map your current app management workflow to what Reactiv can automate.",
-      cta1:"Book a demo",
-      cta2:"Try a Clip"
-    },
-    faq:[
-      {q:"Does this require technical setup?",a:"No. The automation layer is configured through the Reactiv dashboard, not code."},
-      {q:"Can we still go into the code if we want?",a:"Yes. Teams with technical staff can access the codebase directly. The automation layer is additive, not restrictive."},
-      {q:"How is this different from a CMS?",a:"Reactiv's management layer is native-aware — it understands app context, push behavior, and release cycles, not just content fields."},
-      {q:"Is this available on all plans?",a:"Automation features are available on the full platform. Talk to us about what's right for your setup."},
-    ]
-  },
-
   // TODO: update sol-migrate ctaUrl from "#" to live migration guide when available
   solMigrate: {
     headline: "Switch to Reactiv.\nIn 2–4 weeks.",
-    sub: "This page is for the buyer who has already decided their current mobile app platform isn't working — they just need to know where to go next. Reactiv migrates most brands off Tapcart or a template app without a rebuild.",
+    sub: "This page is for the buyer who has already decided their current mobile app platform isn't working. They just need to know where to go next. Reactiv migrates most brands off Tapcart or a template app without a rebuild.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     heroStats:[
@@ -1014,24 +940,24 @@ const CONTENT = {
     },
     native:{
       headline:"Everything Tapcart promised.\nPlus what it couldn't deliver.",
-      sub:"Reactiv gives you full native flexibility — custom UI, App Clips, deep integrations, and a platform you can grow on. And you don't rebuild to get there.",
-      bullets:["Migrate your content and integrations in 2–4 weeks","Keep your Shopify stack connected, lose the limitations","App Clips included — acquisition and re-engagement from day one","Custom screens and flows Tapcart couldn't support","No engineering team required on your side"],
+      sub:"Reactiv gives you full native flexibility: custom UI, App Clips, deep integrations, and a platform you can grow on. And you don't rebuild to get there.",
+      bullets:["Migrate your content and integrations in 2–4 weeks","Keep your Shopify stack connected, lose the limitations","App Clips included, acquisition and re-engagement from day one","Custom screens and flows Tapcart couldn't support","No engineering team required on your side"],
     },
     steps:{
       headline:"How migration works",
       label:"3 Steps",
-      steps:["Audit your current Tapcart setup and integrations","Reactiv migrates content, maps integrations, and builds native","Launch on the new foundation — App Clips and full app together"],
+      steps:["Audit your current Tapcart setup and integrations","Reactiv migrates content, maps integrations, and builds native","Launch on the new foundation: App Clips and full app together"],
       note:"No rebuilding from scratch. No downtime."
     },
     usecases:{
       headline:"What Reactiv unlocks\nafter migration.",
       cards:[
-        {h:"App Clips for acquisition",p:"Run ads directly to a native Clip experience. Tapcart can't do this.",proof:"Proof: 3x ROAS lift post-migration (NDA)."},
-        {h:"2x conversion rate",p:"Native app experiences convert at 2x vs. mobile web — and vs. Tapcart template apps.",proof:"Proof: Post-migration conversion lift (NDA)."},
+        {h:"App Clips for acquisition",p:"Run ads directly to a native Clip experience. Tapcart can't do this.",proof:"Proof: 3x ROAS lift post-migration."},
+        {h:"2x conversion rate",p:"Native app experiences convert at 2x vs. mobile web, and vs. Tapcart template apps.",proof:"Proof: Post-migration conversion lift."},
         {h:"Custom screens and flows",p:"Build the experiences your brand actually needs, not what the template allows.",proof:""},
-        {h:"Push re-engagement from day one",p:"Retarget Clip visitors and app users with push — wired in at launch.",proof:""},
-        {h:"Deeper integrations",p:"Connect Klaviyo, Braze, Attentive, and your OMS — not just Shopify basics.",proof:""},
-        {h:"17% higher AOV",p:"Brands on Reactiv see higher average order value from native checkout and upsell flows.",proof:"Proof: Post-migration AOV lift (NDA)."},
+        {h:"Push re-engagement from day one",p:"Retarget Clip visitors and app users with push, wired in at launch.",proof:""},
+        {h:"Deeper integrations",p:"Connect Klaviyo, Braze, Attentive, and your OMS, not just Shopify basics.",proof:""},
+        {h:"17% higher AOV",p:"Brands on Reactiv see higher average order value from native checkout and upsell flows.",proof:"Proof: Post-migration AOV lift."},
       ]
     },
     get:{
@@ -1055,7 +981,7 @@ const CONTENT = {
 
   enterprise: {
     headline: "Enterprise mobile.\nWithout the enterprise build.",
-    sub: "Custom mobile outcomes — deep integrations, full native capability, your brand — delivered in weeks on a managed platform. No dev team required.",
+    sub: "Custom mobile outcomes: deep integrations, full native capability, your brand, delivered in weeks on a managed platform. No dev team required.",
     cta1: "Talk to our enterprise team",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     qr: false,
@@ -1068,32 +994,36 @@ const CONTENT = {
       label:"Why App Builders and custom dev aren't what's best for your business →",
       href:"#"
     },
+    technicalLink:{
+      label:"For technical evaluators: API docs, architecture, and security details →",
+      route:"developers"
+    },
     argument:{
       headline:"The custom build argument doesn't hold.",
-      sub:"Enterprise brands evaluate custom mobile development and run into the same three problems: 9–12 month timelines, 7-figure budgets, and a dedicated mobile team to maintain it forever. Reactiv delivers the same outcomes — custom screens, deep integrations, full native capability — on a managed platform that ships in weeks.",
-      bullets:["Custom screens and branded UI — no templates","Deep integrations: Shopify, Klaviyo, Braze, Attentive, Yotpo, custom APIs","Full native iOS app + App Clips on one foundation","White-glove implementation — Reactiv manages the build","Enterprise SLA, security, and compliance documentation available","AWS infrastructure — built for scale"],
+      sub:"Enterprise brands evaluate custom mobile development and run into the same three problems: 9–12 month timelines, 7-figure budgets, and a dedicated mobile team to maintain it forever. Reactiv delivers the same outcomes: custom screens, deep integrations, full native capability, on a managed platform that ships in weeks.",
+      bullets:["Custom screens and branded UI, no templates","Deep integrations: Shopify, Klaviyo, Braze, Attentive, Yotpo, custom APIs","Full native iOS app + App Clips on one foundation","White-glove implementation. Reactiv manages the build","Enterprise SLA, security, and compliance documentation available","AWS infrastructure, built for scale"],
     },
     process:{
       headline:"How enterprise delivery works.",
       label:"4 Steps",
-      steps:["Discovery — scope your app experience, integrations, and requirements","Build — Reactiv builds on the managed foundation, your team reviews","Launch — App and Clips live in 2–4 weeks","Operate — ongoing updates, releases, and support without rebuilding"],
+      steps:["Discovery: scope your app experience, integrations, and requirements","Build: Reactiv builds on the managed foundation, your team reviews","Launch: App and Clips live in 2–4 weeks","Operate: ongoing updates, releases, and support without rebuilding"],
       note:"Enterprise outcomes. Weeks, not quarters."
     },
     proof:{
       headline:"Enterprise brands using Reactiv.",
       cards:[
-        {h:"Indigo — Enterprise retailer",p:"Launched a native app integrated with the full retail stack. App Clips and full native, one platform.",proof:"Enterprise retailer — integrated with existing stack"},
-        {h:"Mejuri — Luxury & premium DTC",p:"Premium DTC with a brand-led native experience. White-glove delivery on a 2–4 week launch cadence.",proof:"Premium DTC launched on Reactiv"},
+        {h:"Indigo: Enterprise retailer",p:"Launched a native app integrated with the full retail stack. App Clips and full native, one platform.",proof:"Enterprise retailer, integrated with existing stack"},
+        {h:"Mejuri: Luxury & premium DTC",p:"Premium DTC with a brand-led native experience. White-glove delivery on a 2–4 week launch cadence.",proof:"Premium DTC launched on Reactiv"},
         {h:"UK/international retailer",p:"Shipped custom enterprise app requirements without a multi-quarter in-house rebuild.",proof:"Enterprise scope delivered"},
       ]
     },
     cta_band:{
       headline:"Let's scope your build.",
-      sub:"Tell us what you need. We'll show you what Reactiv delivers — and how fast.",
+      sub:"Tell us what you need. We'll show you what Reactiv delivers, and how fast.",
       cta1:"Talk to our enterprise team"
     },
     faq:[
-      {q:"How is this different from building a custom app?",a:"Reactiv delivers custom outcomes — bespoke screens, deep integrations, your brand — on a managed foundation. You get the results without the dev team, timeline, or maintenance burden."},
+      {q:"How is this different from building a custom app?",a:"Reactiv delivers custom outcomes: bespoke screens, deep integrations, your brand, on a managed foundation. You get the results without the dev team, timeline, or maintenance burden."},
       {q:"What does 'enterprise-grade' mean for Reactiv?",a:"SLA, compliance documentation, AWS infrastructure, role-based access, and a dedicated implementation team. Ask us for specifics."},
       {q:"How long does implementation take?",a:"2–4 weeks for most enterprise builds, depending on integration complexity and custom scope."},
       {q:"Do we need a technical team on our side?",a:"No. Reactiv manages the full build. Your team defines the experience and reviews progress."},
@@ -1101,14 +1031,14 @@ const CONTENT = {
   },
 
   partnersAgencies: {
-    headline: "70% of Reactiv's pipeline\ncomes through agency partners.",
-    sub: "When your client is mid-Shopify migration, mobile can't be an afterthought. Agency partners hand clients to Reactiv — we handle the build, you stay the trusted advisor.",
+    headline: "Your Shopify clients need mobile.\nWe handle the build.",
+    sub: "Full native apps and App Clips for ads, QR, and in-store. Anything your clients need, you can build. Not a template.",
     cta1: "Apply to partner",
     cta1Url: "#",
-    bullets:["Refer Reactiv when clients need a native mobile app","We handle the build — you stay the trusted advisor","Migration signal: ideal referral moment is a Shopify migration","Co-branded assets and migration leave-behinds available","Referral structure available — talk to us"],
+    bullets:["Refer Reactiv for full native apps and App Clips","We handle the build, you stay the trusted advisor","Migration signal: ideal referral moment is a Shopify migration","Co-branded assets and migration leave-behinds available","Referral structure available. Talk to us"],
     migrationCallout:{
       headline:"When your client is mid-migration,\nhand them this.",
-      sub:"Partner one-pager covering the Reactiv migration path — timeline, integrations, and the mobile story you've been trying to tell.",
+      sub:"Partner one-pager covering the Reactiv migration path: timeline, integrations, and the mobile story you've been trying to tell.",
       cta:"Get the partner one-pager →",
       href:"#"
     },
@@ -1127,11 +1057,11 @@ const CONTENT = {
   },
 
   partnersTech: {
-    headline: "Build for the Shopify stack\nyour clients already run.",
-    sub: "Reactiv integrates natively with the Shopify ecosystem. If your product serves Shopify brands, Reactiv extends your mobile reach — with maintained, versioned integrations built into the platform.",
+    headline: "Integrate with us.\nGet listed.\nBe found.",
+    sub: "If your product serves Shopify brands, integrate with Reactiv. Get listed in our integrations catalog. Reach every Reactiv customer evaluating their stack.",
     cta1: "Apply to partner",
     cta1Url: "#",
-    bullets:["Built for the Shopify stack your clients already run","Native integration with major ecomm, CRM, and loyalty platforms","Co-marketing and joint GTM opportunities","AWS partnership — infrastructure-level alignment","API and SDK access for deep product integration"],
+    bullets:["Built for the Shopify stack your clients already run","Native integration with major ecomm, CRM, and loyalty platforms","Co-marketing and joint GTM opportunities","AWS partnership: infrastructure-level alignment","API and SDK access for deep product integration"],
     keyPartners:{
       headline:"Key integration partners.",
       chips:["Klaviyo","Braze","Attentive","Yotpo","Recharge"]
@@ -1146,7 +1076,7 @@ const CONTENT = {
   // TODO: wire partners-apply form to Typeform/HubSpot when ready
   partnersApply: {
     headline: "Apply to partner\nwith Reactiv.",
-    sub: "Whether you're a dev agency, Shopify partner, or technology platform — tell us about your business and we'll be in touch.",
+    sub: "Whether you're a dev agency, Shopify partner, or technology platform. Tell us about your business and we'll be in touch.",
     cta1: "Submit application",
     cta1Url: "#",
     formFields:["Name","Company","Website","Partner type (Agency / Technology / Other)","How do you see us working together?"]
@@ -1154,13 +1084,13 @@ const CONTENT = {
 
   solutionsHub: {
     headline: "What's your mobile\nchallenge?",
-    sub: "Choose the situation that fits your brand — we'll show you exactly how Reactiv solves it.",
+    sub: "Choose the situation that fits your brand. We'll show you exactly how Reactiv solves it.",
     cards: [
       {h:"Increase Ad Conversion", p:"Your clicks are landing on mobile web. They shouldn't be.", route:"sol-ads"},
       {h:"Turn Mobile Visitors Into App Users", p:"You have an app. Getting people to download it is the battle.", route:"sol-installs"},
       {h:"Build Your Mobile App on Shopify", p:"You're on Shopify (or getting there). Your mobile stack should be too.", route:"sol-shopify"},
       {h:"Switch to Reactiv", p:"Your current platform isn't delivering. Here's where to go next.", route:"sol-migrate"},
-      {h:"Innovate at Retail", p:"QR codes, NFC, in-store displays — all pointing to the wrong experience.", route:"sol-retail"},
+      {h:"Innovate at Retail", p:"QR codes, NFC, in-store displays, all pointing to the wrong experience.", route:"sol-retail"},
       {h:"Power Venues & Events", p:"Getting fans to download an app is a barrier. There's a better way.", route:"sol-venues"},
     ],
     cta_band:{
@@ -1176,7 +1106,7 @@ const CONTENT = {
     cards: [
       {h:"Blog", p:"Articles on mobile commerce, App Clips, and growth.", route:"resources-blog", comingSoon:false},
       {h:"Guides", p:"In-depth guides and downloadable assets.", route:"resources-guides", comingSoon:false},
-      {h:"Developers", p:"Technical docs, APIs, and integration references.", route:"developers", comingSoon:true},
+      {h:"Developers", p:"Technical docs, APIs, and integration references.", route:"developers", comingSoon:false},
       {h:"Partner Materials", p:"Assets for agency and technology partners.", route:null, comingSoon:true},
     ]
   },
@@ -1187,9 +1117,9 @@ const CONTENT = {
     pillars: ["All","Apps Growth","Custom Without the Build","True Partner"],
     posts: [
       {pillar:"Apps Growth", title:"Your Mobile App Is Your Highest-Converting Acquisition Channel", excerpt:"No competitor is making this argument. Here's the data.", href:"#", badge:"NEW"},
-      {pillar:"Apps Growth", title:"Death to the Mobile Browser? Why App Clips Will Change Mobile Shopping", excerpt:"A strong POV on why the post-click experience is broken — and what fixes it.", href:"#"},
+      {pillar:"Apps Growth", title:"Death to the Mobile Browser? Why App Clips Will Change Mobile Shopping", excerpt:"A strong POV on why the post-click experience is broken, and what fixes it.", href:"#"},
       {pillar:"Apps Growth", title:"What Is an App Clip? The Complete Guide to iOS Mini Apps", excerpt:"A clean explainer on the technology powering Reactiv's core product.", href:"#"},
-      {pillar:"Apps Growth", title:"5 Ways to Increase Your ROAS with App Clips", excerpt:"The App Clips angle is present — and it's the one that matters for performance marketers.", href:"#"},
+      {pillar:"Apps Growth", title:"5 Ways to Increase Your ROAS with App Clips", excerpt:"The App Clips angle is present, and it's the one that matters for performance marketers.", href:"#"},
       {pillar:"Apps Growth", title:"What Push Notification Data Tells Us About CRO", excerpt:"Data-backed look at push as a conversion tool, not just a re-engagement channel.", href:"#"},
       {pillar:"Custom Without the Build", title:"Why App Builders and Custom Dev Aren't What's Best for Your Business", excerpt:"The clearest argument on the site for why the build-vs-buy debate has a clear answer.", href:"#"},
       {pillar:"Custom Without the Build", title:"How Reactiv Automates Scalable Mobile App Releases for Shopify Merchants", excerpt:"Technical depth on the managed platform model.", href:"#"},
@@ -1197,7 +1127,7 @@ const CONTENT = {
       {pillar:"True Partner", title:"How Top of the Mornin Drove 2x More Conversions", excerpt:"2x conversion rate, 17% AOV increase. The flagship proof asset.", href:"#", badge:"CASE STUDY"},
       {pillar:"True Partner", title:"How MSQC Stitched Its Way to Success with an Overnight Transformation", excerpt:"50K users in 2 weeks. 10% of revenue. The best switching story on the site.", href:"#", badge:"CASE STUDY"},
       {pillar:"True Partner", title:"Why Personalized Push Notifications Belong in Every Ecommerce Strategy", excerpt:"Maps to the retention and loyalty side of the app story.", href:"#"},
-      {pillar:"Apps Growth", title:"Mobile Conversion Rate Optimization", excerpt:"Strong tactical content. Maps to the core ICP — performance-focused eComm leaders.", href:"#"},
+      {pillar:"Apps Growth", title:"Mobile Conversion Rate Optimization", excerpt:"Strong tactical content. Maps to the core ICP: performance-focused eComm leaders.", href:"#"},
     ]
   },
 
@@ -1217,53 +1147,29 @@ const CONTENT = {
     subscribeNote:"New guides ship monthly. Subscribe for updates."
   },
 
-  partnersEngineering: {
-    headline: "Built for engineers\nwho don't cut corners.",
-    sub: "Technical documentation, architecture depth, and API references for the teams building on Reactiv.",
-    capabilities: [
-      {h:"API & Integrations", p:"Deep integration docs for Klaviyo, Recharge, Gorgias, and 50+ others. Shopify-native architecture."},
-      {h:"AI-Powered Infrastructure", p:"How Reactiv's AI Studio and automated release pipeline work under the hood."},
-      {h:"Security & Compliance", p:"SOC 2 documentation, data flows, and PII handling for enterprise procurement teams."},
-    ],
-    articles: [
-      {title:"Meet AI Studio Agent — Build a Mobile App at the Speed of Thought", excerpt:"Product launch deep-dive. How Reactiv's AI agent reduces mobile build time from weeks to hours.", tag:"AI / Infrastructure", href:"#", badge:"NEW"},
-      {title:"How Reactiv Automates Scalable Mobile App Releases for Shopify Merchants", excerpt:"The managed release pipeline — how Reactiv handles App Store submissions, versioning, and rollbacks.", tag:"Infrastructure", href:"#"},
-      {title:"Reactiv's Ecommerce API Is Leading the Way to a New Future", excerpt:"API architecture and integration depth for technical evaluators.", tag:"API", href:"#"},
-      {title:"Revolutionizing Mobile Commerce with AI-Powered Onboarding", excerpt:"How Reactiv's AI onboarding reduces time-to-launch without sacrificing customization depth.", tag:"AI", href:"#"},
-      {title:"Scaling Mobile Commerce with Uncompromised Quality", excerpt:"Engineering infrastructure and performance standards at scale.", tag:"Infrastructure", href:"#"},
-    ],
-    cta_band:{
-      primaryLabel:"Evaluating Reactiv for a client?",
-      primaryCta:"Apply to Partner",
-      primaryRoute:"partners-apply",
-      secondaryLabel:"Have technical questions?",
-      secondaryCta:"Talk to our engineering team",
-    }
-  },
-
   lpShopifyMigration: {
     eyebrow: "For brands migrating to Shopify",
     headline: "Your Shopify migration is\nthe perfect moment to\nget mobile right.",
-    sub: "Most brands rebuild their website and leave the mobile app for later. Later becomes a problem. Reactiv deploys your native app and App Clips alongside your migration — in 2–4 weeks.",
+    sub: "Most brands rebuild their website and leave the mobile app for later. Later becomes a problem. Reactiv deploys your native app and App Clips alongside your migration, in 2–4 weeks.",
     ctaLabel: "Book a demo",
     ctaUrl: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     stats: [
       {num:"2x", label:"Conversion vs. mobile web"},
       {num:"3x", label:"Ad conversion with App Clips"},
       {num:"2–4 weeks", label:"Migration timeline"},
-      {num:"13–15%", label:"Install rate from Clip traffic"},
+      {num:"15%", label:"Install rate from Clip traffic"},
     ],
     problem: {
       headline:"The mobile afterthought",
       bullets:[
         "Most Shopify migrations happen without a mobile strategy. The app gets postponed.",
         "Rebuilding your app 6 months after launch means rebuilding integrations you just configured.",
-        "App Clips — your highest-converting mobile entry point — can't be added retroactively without rework.",
+        "App Clips, your highest-converting mobile entry point, can't be added retroactively without rework.",
       ]
     },
     solution: [
       {title:"Launch together, not later", body:"Reactiv deploys your native app and App Clips in the same window as your Shopify migration. One launch. Full coverage."},
-      {title:"Native Shopify integrations from day one", body:"Klaviyo, Gorgias, Recharge, Yotpo — all wired into your app on the same stack you just configured for the web."},
+      {title:"Native Shopify integrations from day one", body:"Klaviyo, Gorgias, Recharge, Yotpo, all wired into your app on the same stack you just configured for the web."},
       {title:"No rebuild risk", body:"Built on Reactiv's managed platform, your app stays in sync with Shopify automatically. No dev team needed to maintain it."},
     ],
     caseStudy: {
@@ -1274,7 +1180,7 @@ const CONTENT = {
     },
     checklist: [
       "Native iOS + Android app deployed in 2–4 weeks",
-      "App Clips live on day one — no download required for customers",
+      "App Clips live on day one. No download required for customers",
       "Full Shopify integration (products, checkout, loyalty, reviews)",
       "Push notifications from day one",
       "Managed App Store submission and updates",
@@ -1297,20 +1203,20 @@ const CONTENT = {
       {num:"2x", label:"Conversion vs. mobile web"},
       {num:"3x", label:"Ad conversion with App Clips"},
       {num:"2–4 weeks", label:"Migration timeline"},
-      {num:"13–15%", label:"Install rate from Clip traffic"},
+      {num:"15%", label:"Install rate from Clip traffic"},
     ],
     problem: {
       headline:"The platform ceiling",
       bullets:[
         "Tapcart's integration depth doesn't match the complexity of a modern Shopify stack.",
         "Service quality hasn't kept pace with what enterprise brands actually need.",
-        "You've hit the ceiling — and rebuilding on the same platform won't raise it.",
+        "You've hit the ceiling, and rebuilding on the same platform won't raise it.",
       ]
     },
     solution: [
       {title:"Migrate in 2–4 weeks", body:"Reactiv's migration team handles the full move. Your customers don't notice. Your team doesn't get distracted."},
-      {title:"Integration depth that matches your stack", body:"Klaviyo, Gorgias, Recharge, Attentive, Yotpo — Reactiv connects everything Tapcart couldn't."},
-      {title:"App Clips included", body:"Tapcart doesn't have App Clips. Reactiv does — and they convert at 3x the rate of mobile web."},
+      {title:"Integration depth that matches your stack", body:"Klaviyo, Gorgias, Recharge, Attentive, Yotpo: Reactiv connects everything Tapcart couldn't."},
+      {title:"App Clips included", body:"Tapcart doesn't have App Clips. Reactiv does, and they convert at 3x the rate of mobile web."},
     ],
     caseStudy: {
       customer:"Missouri Star Quilt Co.",
@@ -1320,11 +1226,11 @@ const CONTENT = {
     },
     checklist: [
       "Full migration from Tapcart in 2–4 weeks",
-      "App Clips — the feature Tapcart doesn't offer",
+      "App Clips: the feature Tapcart doesn't offer",
       "Deeper integrations across your entire Shopify stack",
       "3x ad conversion vs. mobile web with App Clips",
       "White-glove delivery team",
-      "No renegotiation — Reactiv's pricing is transparent",
+      "No renegotiation. Reactiv's pricing is transparent",
     ],
     ctaBlock: {
       headline:"You've already made\nthe decision.",
@@ -1336,7 +1242,7 @@ const CONTENT = {
   // TODO: add Ross-approved Tapcart callout copy when confirmed
   lpTapcart: {
     headline: "Done with Tapcart?",
-    sub: "Reactiv migrates Tapcart customers in 2–4 weeks. More flexibility, deeper integrations, App Clips included — and a team that actually delivers.",
+    sub: "Reactiv migrates Tapcart customers in 2–4 weeks. More flexibility, deeper integrations, App Clips included, and a team that actually delivers.",
     cta1: "Book a migration call",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     urgency: "Most migrations complete in 2–4 weeks. No rebuilding from scratch.",
@@ -1349,9 +1255,9 @@ const CONTENT = {
       {h:"17% higher AOV",p:"Brands on Reactiv see higher average order value from native checkout."},
     ],
     proof:[
-      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",proof:"2x conversion (NDA)"},
-      {client:"Shopify migration team",outcome:"Moved off a template app to full native in 2 weeks.",proof:"2-week migration (NDA)"},
-      {client:"Retail group",outcome:"Combined Clips for acquisition with the full app for retention.",proof:"65% lower CAC (NDA)"},
+      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",proof:"2x conversion"},
+      {client:"Shopify migration team",outcome:"Moved off a template app to full native in 2 weeks.",proof:"2-week migration"},
+      {client:"Retail group",outcome:"Combined Clips for acquisition with the full app for retention.",proof:"65% lower CAC"},
     ],
     cta_band:{
       headline:"Let's map your migration.",
@@ -1362,21 +1268,21 @@ const CONTENT = {
 
   lpShopify: {
     headline: "Migrating to Shopify?\nDon't defer mobile.",
-    sub: "Most brands rebuild their website on Shopify and push mobile to Phase 2. Phase 2 never comes. Reactiv launches your native app alongside your Shopify migration — in 2–4 weeks.",
+    sub: "Most brands rebuild their website on Shopify and push mobile to Phase 2. Phase 2 never comes. Reactiv launches your native app alongside your Shopify migration, in 2–4 weeks.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     urgency: "Launch mobile with your Shopify go-live. Not after.",
     why:[
-      {h:"Native Shopify integration",p:"Products, orders, customers — synced natively. No middleware, no workarounds."},
+      {h:"Native Shopify integration",p:"Products, orders, customers, synced natively. No middleware, no workarounds."},
       {h:"App Clips from day one",p:"Acquisition Clips live alongside your site launch. Don't leave traffic on the table."},
       {h:"2–4 week launch",p:"Scope, build, and launch in parallel with your Shopify migration timeline."},
       {h:"One foundation",p:"App and Clips on the same codebase. No rebuilding later."},
       {h:"No dev team required",p:"Reactiv manages the full build. Your team defines the experience."},
-      {h:"Built for Shopify brands",p:"Every integration, every flow — built for the Shopify ecosystem."},
+      {h:"Built for Shopify brands",p:"Every integration, every flow, built for the Shopify ecosystem."},
     ],
     proof:[
-      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",proof:"2x conversion (NDA)"},
-      {client:"Enterprise retailer",outcome:"Launched a native app without building in-house. 17% AOV lift.",proof:"17% AOV lift (NDA)"},
+      {client:"Shopify DTC brand",outcome:"Migrated from Tapcart in 3 weeks. 2x conversion rate on mobile.",proof:"2x conversion"},
+      {client:"Enterprise retailer",outcome:"Launched a native app without building in-house. 17% AOV lift.",proof:"17% AOV lift"},
     ],
     cta_band:{
       headline:"Launch mobile with\nyour Shopify go-live.",
@@ -1394,7 +1300,7 @@ const CONTENT = {
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     story:{
       headline:"Why we built Reactiv.",
-      body:"The mobile app market for commerce brands was broken in two directions. Template tools like Tapcart were fast but limited — brands hit the ceiling the moment they needed anything custom. Custom builds were capable but cost 7 figures and 9 months, and still needed a full engineering team to maintain. Neither option treated mobile as a growth channel. We built Reactiv to close that gap: full native capability, on a managed platform, that launches in weeks — not quarters."
+      body:"The mobile app market for commerce brands was broken in two directions. Template tools like Tapcart were fast but limited. Brands hit the ceiling the moment they needed anything custom. Custom builds were capable but cost 7 figures and 9 months, and still needed a full engineering team to maintain. Neither option treated mobile as a growth channel. We built Reactiv to close that gap: full native capability, on a managed platform, that launches in weeks, not quarters."
     },
     values:[
       {h:"Delivery is a commitment",p:"We don't hand off a build and disappear. We're invested in the outcomes."},
@@ -1409,25 +1315,62 @@ const CONTENT = {
     }
   },
 
+  contactUs: {
+    headline: "Get in touch.",
+    sub: "Whether you're evaluating the platform, migrating from another vendor, or exploring a partnership, we'll get back to you fast.",
+    cta1: "Book a demo",
+    cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
+    channels: [
+      {h:"Sales & demos", p:"See the platform, map it to your stack, and get a scoped quote.", linkLabel:"Book a demo →", linkUrl:"https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7"},
+      {h:"General inquiries", p:"Press, partnerships, or anything else that doesn't fit a demo.", linkLabel:"hello@reactiv.ai", linkUrl:"mailto:hello@reactiv.ai"},
+      {h:"Partner with us", p:"Agencies, technology partners, and referral partners.", linkLabel:"Apply to partner →", linkRoute:"partners-apply"},
+      {h:"Technical & security questions", p:"API docs, architecture, SOC 2, and procurement review packets.", linkLabel:"See developer resources →", linkRoute:"developers"},
+    ],
+    form: {
+      headline: "Send us a message.",
+      sub: "Tell us a little about what you're working on. We'll reply within one business day.",
+      fields: ["Name","Work email","Company","Website","How can we help?"]
+    },
+    details: {
+      headline: "Other ways to reach us.",
+      items: [
+        {label:"Email", value:"hello@reactiv.ai", href:"mailto:hello@reactiv.ai"},
+        {label:"LinkedIn", value:"linkedin.com/company/reactiv-ai", href:"https://www.linkedin.com/company/reactiv-ai"},
+      ]
+    }
+  },
+
   developers: {
-    headline: "Partner with Reactiv.",
-    sub: "Are you a development agency or Shopify partner building for ecommerce brands? Reactiv is the foundation — you deliver the custom experience. 70% of our pipeline comes through partners like you.",
+    headline: "Built for engineers\nwho don't cut corners.",
+    sub: "Technical documentation, architecture depth, API references, and SDKs for the teams building on Reactiv, whether you're an in-house engineer evaluating the platform or an agency shipping client work.",
     cta1: "Book a demo",
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     cta2: "Try a Clip",
     cta2Url: "https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips",
     qr: false,
+    capabilities: [
+      {h:"API & Integrations", p:"Deep integration docs for Klaviyo, Recharge, Gorgias, and 50+ others. Shopify-native architecture."},
+      {h:"AI-Powered Infrastructure", p:"How Reactiv's AI Studio and automated release pipeline work under the hood."},
+      {h:"Security & Compliance", p:"SOC 2 documentation, data flows, and PII handling for enterprise procurement teams."},
+    ],
+    articles: [
+      {title:"Meet AI Studio Agent: Build a Mobile App at the Speed of Thought", excerpt:"Product launch deep-dive. How Reactiv's AI agent reduces mobile build time from weeks to hours.", tag:"AI / Infrastructure", href:"#", badge:"NEW"},
+      {title:"How Reactiv Automates Scalable Mobile App Releases for Shopify Merchants", excerpt:"The managed release pipeline: how Reactiv handles App Store submissions, versioning, and rollbacks.", tag:"Infrastructure", href:"#"},
+      {title:"Reactiv's Ecommerce API Is Leading the Way to a New Future", excerpt:"API architecture and integration depth for technical evaluators.", tag:"API", href:"#"},
+      {title:"Revolutionizing Mobile Commerce with AI-Powered Onboarding", excerpt:"How Reactiv's AI onboarding reduces time-to-launch without sacrificing customization depth.", tag:"AI", href:"#"},
+      {title:"Scaling Mobile Commerce with Uncompromised Quality", excerpt:"Engineering infrastructure and performance standards at scale.", tag:"Infrastructure", href:"#"},
+    ],
     twoDoors:{
       headline:"Two ways to partner.",
       sub:"Whether you're building the full app for a client or adding Clips to their existing stack, the same platform supports both.",
       cards:[
-        {h:"Build client apps on Reactiv",p:"Use Reactiv as the foundation — deliver custom mobile apps for Shopify brands without building from scratch.",link:"For agencies",linkHref:"partners-agencies"},
+        {h:"Build client apps on Reactiv",p:"Use Reactiv as the foundation to deliver custom mobile apps for Shopify brands without building from scratch.",link:"For agencies",linkHref:"partners-agencies"},
         {h:"Add Clips to client apps",p:"Extend existing client apps with App Clips for instant conversion moments.",link:"For technology partners",linkHref:"partners-technology"}
       ]
     },
     tradeoffs:{
       headline:"Anything your clients\nneed, you can build.",
-      sub:"Reactiv is built for agencies and dev shops that need flexibility — not templates.",
+      sub:"Reactiv is built for agencies and dev shops that need flexibility, not templates.",
       bullets:["Custom screens and flows for each client","Deep integrations with Shopify and their stack","Store and location-aware experiences","App Clips and full apps on one foundation"],
       cta:"Try a Clip",
       ctaUrl:"https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips"
@@ -1435,7 +1378,7 @@ const CONTENT = {
     steps:{
       headline:"A simple mental model.",
       label:"Think of it in three layers.",
-      steps:["Build , Core app experiences, commerce, content, accounts.","Extend , Custom modules, integrations, bespoke UI.","Operate , Release updates, configure experiences, monitor performance."],
+      steps:["Build: Core app experiences, commerce, content, accounts.","Extend: Custom modules, integrations, bespoke UI.","Operate: Release updates, configure experiences, monitor performance."],
       note:"One foundation. Every layer stays connected."
     },
     whereWins:{
@@ -1607,7 +1550,7 @@ function faqSection(items){
 }
 
 function footerHTML(){
-  const pendingTag='<span style="display:inline-block;background:#facc15;color:#000;font-size:11px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:8px;">[Decision needed — not in confirmed sitemap]</span>';
+  const pendingTag='<span style="display:inline-block;background:#facc15;color:#000;font-size:11px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:8px;">[Decision needed: not in confirmed sitemap]</span>';
   return `<footer><div class="footer-inner"><div class="footer-top">`+
     `<div class="footer-col"><h4>Product</h4>`+
       `<a onclick="route('platform')">Platform</a>`+
@@ -1627,7 +1570,7 @@ function footerHTML(){
       `<a href="mailto:hello@reactiv.ai">Email</a>`+
       `<a href="https://www.linkedin.com/company/reactiv-ai" target="_blank" rel="noopener">LinkedIn</a>`+
       `<a href="#">Careers</a>`+
-      `<a href="/contact-us">Contact Us</a>`+
+      `<a onclick="route('contact-us')">Contact Us</a>`+
     `</div>`+
     `<div class="footer-col"><h4>Resources</h4>`+
       `<a onclick="route('customers')">Customers</a>`+
@@ -1650,7 +1593,7 @@ function buildHome(){
   const funnel=`<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text">${d.section1.label?`<div class="section-label">${d.section1.label}</div>`:''}<h2>${d.section1.headline.replace(/\n/g,'<br>')}</h2><ol class="steps-list" style="margin:20px 0 28px">${d.section1.steps.map(s=>`<li>${s}</li>`).join('')}</ol><a href="#" onclick="event.preventDefault(); route('${d.section1.ctaUrl}')" class="btn btn-outline-dark">${d.section1.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`;
   const enterpriseLane=`<section><div class="wrap"><h2>${el.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${el.sub}</p><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${el.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p></div>`).join('')}</div><div style="margin-top:28px"><a href="#" onclick="event.preventDefault();route('${el.ctaRoute}')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${el.cta}</a></div></div></section>`;
   const testimonials=`<section class="alt"><div class="wrap"><h2>${tm.headline.replace(/\n/g,'<br>')}</h2><div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:32px">${tm.items.map(t=>`<div class="card"><div class="section-label" style="margin-bottom:10px">${t.signal}</div><p style="font-size:15px;line-height:1.5;color:var(--c-text);margin-bottom:12px">“${t.quote}”</p><h3 style="font-size:14px">${t.client}</h3></div>`).join('')}</div></div></section>`;
-  p.innerHTML=heroSection(d,false)+customerLogoStrip()+
+  p.innerHTML=heroSection(d,d.qr)+customerLogoStrip()+
   `<section><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><div class="section-label">${st.label}</div><h2>${st.heading.replace(/\n/g,'<br>')}</h2><p class="section-sub-sm">${st.sub}</p></div></div></div></section>`+
   statsStrip+
   funnel+
@@ -1691,14 +1634,16 @@ function buildCustomers(){
   const d=CONTENT.customers,p=document.getElementById('page-customers');
   const trust=`<div class="logo-strip-section"><div class="wrap"><div class="logo-strip-label">${d.trustLabel}</div><div class="logo-strip">${d.trustPills.map(t=>`<div class="logo-pill">${t}</div>`).join('')}</div></div></div>`;
   const statsHeader=d.statsHeader?`<section><div class="wrap"><div class="stats-row" style="margin:0">${d.statsHeader.map(s=>`<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div></div></section>`:'';
+  const featured=d.featured?`<section><div class="wrap"><h2>${d.featured.headline}</h2><p class="section-sub">${d.featured.sub}</p><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${d.featured.cards.map(c=>`<div class="card" style="border-left:3px solid #111"><h3>${c.client}</h3><p style="font-size:14px;font-weight:700;color:var(--c-text);margin:6px 0 10px">${c.stat}</p><p>${c.outcome}</p>${c.href?`<a href="${c.href}" class="card-link">Read case study →</a>`:''}</div>`).join('')}</div></div></section>`:'';
   const fb=`<div class="filter-bar" id="cust-filters">${d.filters.map((f,i)=>`<button class="filter-pill${i===0?' active':''}" data-filter="${f}">${f}</button>`).join('')}</div>`;
+  const gridHeading=`<div class="section-label" style="margin-bottom:16px">More customer proof</div>`;
   const cg=`<div class="card-grid" id="cust-cards">${d.cards.map(c=>{
     const agencyBadge=c.agencyPartner?`<span class="card-tag" style="background:#111;color:#fff">Agency Partner</span>`:'';
     const agencyStyle=c.agencyPartner?'style="border-left:3px solid #111"':'';
     return `<div class="card" data-tags="${c.tags.join(',')}" ${agencyStyle}><h3>${c.client}</h3><p>${c.outcome}</p><div>${agencyBadge}${c.tags.filter(t=>t!=='Agency Partner').map(t=>`<span class="card-tag">${t}</span>`).join('')}</div><p class="proof">${c.proof}</p></div>`;
   }).join('')}</div>`;
   const tr=`<section><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.transition.headline}</h2><p class="section-sub">${d.transition.sub}</p><a href="#" onclick="event.preventDefault();route('platform')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.transition.link}</a></div><div class="col-img">${imgP()}</div></div></div></section>`;
-  p.innerHTML=heroSection(d,false)+trust+statsHeader+`<section><div class="wrap">${fb}${cg}</div></section>`+tr+ctaBand(d.ctaband)+faqSection(d.faq)+footerHTML();
+  p.innerHTML=heroSection(d,false)+trust+statsHeader+featured+`<section class="alt"><div class="wrap">${gridHeading}${fb}${cg}</div></section>`+tr+ctaBand(d.ctaband)+faqSection(d.faq)+footerHTML();
   p.querySelector('#cust-filters').addEventListener('click',e=>{
     const btn=e.target.closest('.filter-pill');
     if(!btn)return;
@@ -1746,14 +1691,6 @@ function buildSolInstalls(){
   document.getElementById('page-sol-installs').innerHTML=solPage(CONTENT.solInstalls,'usecases');
 }
 
-function buildSolNative(){
-  document.getElementById('page-sol-native').innerHTML=solPage(CONTENT.solNative,'usecases');
-}
-
-function buildSolAi(){
-  document.getElementById('page-sol-ai').innerHTML=solPage(CONTENT.solAi,'usecases');
-}
-
 function buildSolMigrate(){
   document.getElementById('page-sol-migrate').innerHTML=solPage(CONTENT.solMigrate,'usecases');
 }
@@ -1766,14 +1703,15 @@ function buildEnterprise(){
   const d=CONTENT.enterprise,p=document.getElementById('page-enterprise');
   const t=d.testimonial;
   const testimonialBlock=t?`<section><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><div class="section-label">${t.signal}</div><h2 style="font-size:clamp(22px,3vw,30px)">“${t.quote}”</h2><p class="section-sub-sm" style="margin-top:16px;font-weight:700;color:var(--c-text)">${t.client}</p></div></div></div></section>`:'';
-  const blogLink=d.blogLink?`<div style="padding:0 40px 60px;text-align:center"><a href="${d.blogLink.href}" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.blogLink.label}</a></div>`:'';
+  const blogLink=d.blogLink?`<div style="padding:0 40px 20px;text-align:center"><a href="${d.blogLink.href}" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.blogLink.label}</a></div>`:'';
+  const technicalLink=d.technicalLink?`<div style="padding:0 40px 60px;text-align:center"><a href="#" onclick="event.preventDefault();route('${d.technicalLink.route}')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.technicalLink.label}</a></div>`:'';
   p.innerHTML=heroSection(d,d.qr)+
   customerLogoStrip()+
   testimonialBlock+
   `<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.argument.headline}</h2><p class="section-sub">${d.argument.sub}</p><ul class="feature-list">${d.argument.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
   stepsSection(d.process)+
   `<section class="alt"><div class="wrap"><h2>${d.proof.headline}</h2><div class="card-grid">${d.proof.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.proof?`<p class="proof">${c.proof}</p>`:''}</div>`).join('')}</div></div></section>`+
-  ctaBand(d.cta_band)+blogLink+faqSection(d.faq)+footerHTML();
+  ctaBand(d.cta_band)+blogLink+technicalLink+faqSection(d.faq)+footerHTML();
 }
 
 function buildPlatformAppclips(){
@@ -1790,6 +1728,8 @@ function buildPlatformNativeapp(){
   p.innerHTML=heroSection(d,false)+
   `<section><div class="wrap"><h2>${d.capabilities.headline}</h2>${cardGrid(d.capabilities.cards)}</div></section>`+
   stepsSection(d.process)+
+  `<section class="alt"><div class="wrap"><h2>${d.usecases.headline}</h2>${cardGrid(d.usecases.cards)}</div></section>`+
+  whatYouGet(d.get)+
   ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
 }
 
@@ -1808,10 +1748,11 @@ function buildPlatformIntegrations(){
 function buildPlatformSecurity(){
   const d=CONTENT.platformSecurity,p=document.getElementById('page-platform-security');
   const sections=d.sections?`<section class="alt"><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(2,1fr)">${d.sections.map(s=>`<div class="card"><h3>${s.h}</h3><p>${s.p}</p></div>`).join('')}</div></div></section>`:'';
+  const technicalLink=d.technicalLink?`<div style="padding:0 40px 60px;text-align:center"><a href="#" onclick="event.preventDefault();route('${d.technicalLink.route}')" style="font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${d.technicalLink.label}</a></div>`:'';
   p.innerHTML=heroSection(d,false)+
   `<section><div class="wrap"><div class="two-col"><div class="col-text"><ul class="feature-list">${d.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div><div class="col-img">${imgP()}</div></div></div></section>`+
   sections+
-  ctaBand(d.cta_band)+footerHTML();
+  ctaBand(d.cta_band)+technicalLink+footerHTML();
 }
 
 function minimalNav(){
@@ -1867,13 +1808,19 @@ function buildPartnersTech(){
 
 function buildPartnersApply(){
   const d=CONTENT.partnersApply,p=document.getElementById('page-partners-apply');
-  const form=`<section><div class="wrap" style="max-width:640px"><form onsubmit="event.preventDefault();alert('Thanks — we will be in touch.');">${d.formFields.map(f=>`<div style="margin-bottom:20px"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">${f}</label>${f.toLowerCase().includes('how do you')?`<textarea rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"></textarea>`:`<input type="text" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px">`}</div>`).join('')}<button type="submit" class="btn btn-primary" style="margin-top:8px">${d.cta1}</button></form></div></section>`;
+  const form=`<section><div class="wrap" style="max-width:640px"><form onsubmit="event.preventDefault();alert('Thanks. We will be in touch.');">${d.formFields.map(f=>`<div style="margin-bottom:20px"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">${f}</label>${f.toLowerCase().includes('how do you')?`<textarea rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"></textarea>`:`<input type="text" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px">`}</div>`).join('')}<button type="submit" class="btn btn-primary" style="margin-top:8px">${d.cta1}</button></form></div></section>`;
   p.innerHTML=heroSection(d,false)+form+footerHTML();
 }
 
 function buildDevelopers(){
   const d=CONTENT.developers,p=document.getElementById('page-developers');
+  const caps=d.capabilities?`<section><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${d.capabilities.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p></div>`).join('')}</div></div></section>`:'';
+  const articles=d.articles?`<section class="alt"><div class="wrap"><h2>Technical articles</h2><div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:24px">${d.articles.map(a=>{
+    const badge=a.badge?`<span class="card-tag" style="background:#facc15;color:#000;margin-left:6px">${a.badge}</span>`:'';
+    return `<div class="card" style="display:flex;flex-direction:column;gap:8px"><div><span class="card-tag" style="margin:0">${a.tag}</span>${badge}</div><h3 style="margin-top:6px">${a.title}</h3><p>${a.excerpt}</p><a href="${a.href}" class="card-link">Read →</a></div>`;
+  }).join('')}</div></div></section>`:'';
   p.innerHTML=heroSection(d,false)+
+  caps+articles+
   `<section><div class="wrap"><h2>${d.twoDoors.headline}</h2><p class="section-sub">${d.twoDoors.sub}</p><div class="card-grid" style="grid-template-columns:1fr 1fr">${d.twoDoors.cards.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p>${c.link?`<a href="#" class="card-link" onclick="event.preventDefault(); route('${c.linkHref}')">${c.link}</a>`:''}</div>`).join('')}</div></div></section>`+
   `<section class="alt"><div class="wrap"><div class="two-col reverse"><div class="col-text"><h2>${d.tradeoffs.headline.replace(/\n/g,'<br>')}</h2><p class="section-sub">${d.tradeoffs.sub}</p><ul class="feature-list">${d.tradeoffs.bullets.map(b=>`<li>${b}</li>`).join('')}</ul><a href="https://appclip.apple.com/id?p=com.reactivapp.reactivapp-merch.Clip&action=landingPage&value=pages/clips" class="btn btn-outline-dark" style="margin-top:8px">${d.tradeoffs.cta}</a></div><div class="col-img">${imgP()}</div></div></div></section>`+
   stepsSection(d.steps)+
@@ -1934,24 +1881,11 @@ function buildResourcesBlog(){
 
 function buildResourcesGuides(){
   const d=CONTENT.resourcesGuides,p=document.getElementById('page-resources-guides');
-  const featured=`<section><div class="wrap"><div class="card" style="padding:40px;display:flex;flex-direction:column;gap:14px"><span class="card-tag" style="background:#facc15;color:#000;align-self:flex-start">${d.featured.tag}</span><h3 style="font-size:24px">${d.featured.title}</h3><p style="font-size:15px">${d.featured.body}</p><a href="#" onclick="event.preventDefault()" class="btn btn-outline-dark" style="align-self:flex-start;opacity:.55;cursor:not-allowed" title="Coming soon — check back at launch">${d.featured.cta}</a></div></div></section>`;
+  const featured=`<section><div class="wrap"><div class="card" style="padding:40px;display:flex;flex-direction:column;gap:14px"><span class="card-tag" style="background:#facc15;color:#000;align-self:flex-start">${d.featured.tag}</span><h3 style="font-size:24px">${d.featured.title}</h3><p style="font-size:15px">${d.featured.body}</p><a href="#" onclick="event.preventDefault()" class="btn btn-outline-dark" style="align-self:flex-start;opacity:.55;cursor:not-allowed" title="Coming soon. Check back at launch">${d.featured.cta}</a></div></div></section>`;
   const placeholders=`<section class="alt"><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(2,1fr)">${d.placeholders.map(ph=>`<div class="card" style="opacity:.55"><h3>${ph.title}</h3><span class="card-tag" style="margin-top:10px">Coming soon</span></div>`).join('')}</div></div></section>`;
-  const subscribe=`<section><div class="wrap" style="max-width:560px;text-align:center"><p class="section-sub-sm" style="margin:0 auto 16px">${d.subscribeNote}</p><form onsubmit="event.preventDefault();alert('Thanks — we will be in touch.');" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><input type="email" placeholder="you@brand.com" style="flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"><button type="submit" class="btn btn-primary">Notify me</button></form></div></section>`;
+  const subscribe=`<section><div class="wrap" style="max-width:560px;text-align:center"><p class="section-sub-sm" style="margin:0 auto 16px">${d.subscribeNote}</p><form onsubmit="event.preventDefault();alert('Thanks. We will be in touch.');" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><input type="email" placeholder="you@brand.com" style="flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"><button type="submit" class="btn btn-primary">Notify me</button></form></div></section>`;
   p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
   featured+placeholders+subscribe+footerHTML();
-}
-
-function buildPartnersEngineering(){
-  const d=CONTENT.partnersEngineering,p=document.getElementById('page-partners-engineering');
-  const caps=`<section><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(3,1fr)">${d.capabilities.map(c=>`<div class="card"><h3>${c.h}</h3><p>${c.p}</p></div>`).join('')}</div></div></section>`;
-  const articles=`<section class="alt"><div class="wrap"><h2>Technical articles</h2><div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:24px">${d.articles.map(a=>{
-    const badge=a.badge?`<span class="card-tag" style="background:#facc15;color:#000;margin-left:6px">${a.badge}</span>`:'';
-    return `<div class="card" style="display:flex;flex-direction:column;gap:8px"><div><span class="card-tag" style="margin:0">${a.tag}</span>${badge}</div><h3 style="margin-top:6px">${a.title}</h3><p>${a.excerpt}</p><a href="${a.href}" class="card-link">Read →</a></div>`;
-  }).join('')}</div></div></section>`;
-  const cb=d.cta_band;
-  const ctaBlock=`<div class="cta-band"><div class="wrap" style="text-align:center"><p class="section-sub" style="margin:0 auto 12px">${cb.primaryLabel}</p><a href="#" onclick="event.preventDefault();route('${cb.primaryRoute}')" class="btn btn-primary">${cb.primaryCta}</a><div style="margin-top:24px;font-size:14px"><span class="footer-copy">${cb.secondaryLabel}</span> <a href="${CONTENT.nav.ctaUrl}" style="font-weight:600;text-decoration:underline;text-underline-offset:3px">${cb.secondaryCta} →</a></div></div></div>`;
-  p.innerHTML=heroSection({headline:d.headline,sub:d.sub,cta1:null},false).replace(/<div class="hero-ctas">[\s\S]*?<\/div>/,'')+
-  caps+articles+ctaBlock+footerHTML();
 }
 
 function campaignLP(d){
@@ -1974,6 +1908,17 @@ function buildLpTapcartMigration(){
   document.getElementById('page-lp-tapcart-migration').innerHTML=campaignLP(CONTENT.lpTapcartMigration);
 }
 
+function buildContactUs(){
+  const d=CONTENT.contactUs,p=document.getElementById('page-contact-us');
+  const channels=`<section><div class="wrap"><div class="card-grid" style="grid-template-columns:repeat(2,1fr)">${d.channels.map(c=>{
+    const linkAttrs=c.linkRoute?`href="#" onclick="event.preventDefault();route('${c.linkRoute}')"`:`href="${c.linkUrl}"${c.linkUrl&&c.linkUrl.startsWith('http')?' target="_blank" rel="noopener"':''}`;
+    return `<div class="card"><h3>${c.h}</h3><p>${c.p}</p><a ${linkAttrs} class="card-link">${c.linkLabel}</a></div>`;
+  }).join('')}</div></div></section>`;
+  const form=`<section class="alt"><div class="wrap" style="max-width:640px"><h2>${d.form.headline}</h2><p class="section-sub">${d.form.sub}</p><form onsubmit="event.preventDefault();alert('Thanks. We will be in touch.');">${d.form.fields.map(f=>`<div style="margin-bottom:20px"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px">${f}</label>${f.toLowerCase().includes('how can')?`<textarea rows="5" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px"></textarea>`:`<input type="${f.toLowerCase().includes('email')?'email':'text'}" style="width:100%;padding:10px 12px;border:1px solid var(--c-border);border-radius:var(--r);font-family:inherit;font-size:14px">`}</div>`).join('')}<button type="submit" class="btn btn-primary" style="margin-top:8px">Send message</button></form></div></section>`;
+  const details=`<section><div class="wrap" style="text-align:center;max-width:640px"><h2>${d.details.headline}</h2><div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;align-items:center">${d.details.items.map(it=>`<div><span class="section-label" style="display:inline-block;margin-right:12px">${it.label}</span><a href="${it.href}"${it.href.startsWith('http')?' target="_blank" rel="noopener"':''} style="font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px">${it.value}</a></div>`).join('')}</div></div></section>`;
+  p.innerHTML=heroSection(d,false)+channels+form+details+footerHTML();
+}
+
 function route(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const t=document.getElementById('page-'+page);
@@ -1991,7 +1936,7 @@ function route(page){
 buildNav();
 buildDevelopers();buildCustomers();
 buildSolRetail();buildSolVenues();buildSolInstalls();
-buildSolNative();buildSolAi();buildSolMigrate();buildSolShopify();
+buildSolMigrate();buildSolShopify();
 buildEnterprise();
 buildPartnersAgencies();buildPartnersTech();buildPartnersApply();
 buildPlatformAppclips();buildPlatformNativeapp();buildPlatformIntegrations();buildPlatformSecurity();
@@ -1999,8 +1944,8 @@ buildLpTapcart();buildLpShopify();buildAbout();
 buildHome();buildPlatform();buildAppClips();
 buildSolAds();
 buildSolutionsHub();buildResourcesHub();buildResourcesBlog();buildResourcesGuides();
-buildPartnersEngineering();
 buildLpShopifyMigration();buildLpTapcartMigration();
+buildContactUs();
 
 const startPage=location.hash.replace('#','')||'home';
 route(startPage);
