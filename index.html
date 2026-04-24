@@ -149,6 +149,18 @@ footer{background:var(--c-bg-alt);padding:60px 40px 32px;border-top:1px solid va
 .tcard-stat-num-sm{font-size:20px;font-weight:800;color:var(--c-text)}
 .tcard-stat-label-sm{font-size:12px;color:var(--c-sub)}
 .tcard-inline{max-width:520px;margin:32px auto 0}
+.int-catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.int-card{display:flex;gap:12px;align-items:center;padding:16px;border:1px solid var(--c-border);border-radius:6px;background:#fff;transition:.15s}
+.int-card:hover{border-color:#999}
+.int-logo{width:40px;height:40px;border-radius:8px;background:var(--c-bg-alt);color:var(--c-text);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;letter-spacing:.02em}
+.int-name{font-size:14px;font-weight:700;color:var(--c-text);line-height:1.2}
+.int-desc{font-size:12px;color:var(--c-sub);margin-top:3px;line-height:1.35}
+.int-body{min-width:0;flex:1}
+.int-category{margin-bottom:40px}
+.int-category[data-cat-hidden]{display:none}
+.int-footnote{font-size:12px;color:var(--c-sub);font-style:italic;margin-top:8px;text-align:center}
+@media(max-width:900px){.int-catalog{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.int-catalog{grid-template-columns:1fr}}
 @media(max-width:700px){
 nav{padding:0 20px}
 .nav-links{display:none}
@@ -483,14 +495,62 @@ const CONTENT = {
     cta1Url: "https://info.reactiv.ai/meetings/reactiv/reactiv-plus?uuid=146d79a9-120f-4960-8c7f-25a4632e83c7",
     catalogHeading:"Works with your entire Shopify stack",
     categories:[
-      {label:"Marketing Automation", chips:["Klaviyo","Braze","Attentive"]},
-      {label:"Loyalty & Rewards", chips:["LoyaltyLion","Yotpo"]},
-      {label:"Customer Support", chips:["Gorgias","Zendesk","Zowie"]},
-      {label:"Analytics", chips:["GA4","Firebase"]},
-      {label:"Reviews & UGC", chips:["Yotpo Reviews"]},
-      {label:"Subscriptions", chips:["Recharge"]},
-      {label:"Notifications", chips:["OneSignal"]},
+      {label:"Commerce", items:[
+        {name:"Shopify", desc:"Native products, orders, and customer sync"},
+        {name:"Shopify Plus", desc:"Enterprise Shopify with deeper workflows"},
+        {name:"Hydrogen", desc:"Shopify headless framework support"},
+      ]},
+      {label:"Marketing / CRM", items:[
+        {name:"Klaviyo", desc:"Segmentation, flows, and push from your CRM"},
+        {name:"Braze", desc:"Enterprise cross-channel messaging"},
+        {name:"Attentive", desc:"SMS with native mobile handoff"},
+        {name:"Iterable", desc:"Lifecycle marketing across channels"},
+        {name:"Omnisend", desc:"Ecommerce email and SMS automation"},
+      ]},
+      {label:"Loyalty / Reviews", items:[
+        {name:"Yotpo", desc:"Reviews, loyalty, and referrals in-app"},
+        {name:"LoyaltyLion", desc:"Native points, tiers, and rewards"},
+        {name:"Stamped", desc:"UGC and reviews in app views"},
+        {name:"Okendo", desc:"Review widgets and loyalty"},
+        {name:"Junip", desc:"Lightweight reviews and ratings"},
+      ]},
+      {label:"Subscriptions", items:[
+        {name:"Recharge", desc:"Native subscription management"},
+        {name:"Stay AI", desc:"AI-powered subscription optimization"},
+        {name:"Skio", desc:"Modern subscriptions for Shopify"},
+        {name:"Bold Subscriptions", desc:"Flexible subscription workflows"},
+      ]},
+      {label:"Support", items:[
+        {name:"Gorgias", desc:"Customer support from your inbox"},
+        {name:"Reamaze", desc:"Multichannel support and live chat"},
+        {name:"Zendesk", desc:"Enterprise support and ticketing"},
+      ]},
+      {label:"Analytics", items:[
+        {name:"Heap", desc:"Auto-capture product analytics"},
+        {name:"Mixpanel", desc:"Event analytics and funnels"},
+        {name:"Amplitude", desc:"Product analytics at scale"},
+        {name:"Triple Whale", desc:"Ecommerce performance analytics"},
+        {name:"Northbeam", desc:"Attribution and media mix"},
+      ]},
+      {label:"Search / Merch", items:[
+        {name:"Searchspring", desc:"Search, merchandising, personalization"},
+        {name:"Klevu", desc:"AI-powered search and recommendations"},
+        {name:"Boost Commerce", desc:"Search, filter, and upsell"},
+      ]},
+      {label:"Payments", items:[
+        {name:"Stripe", desc:"Native card and wallet payments"},
+        {name:"Shop Pay", desc:"One-tap Shopify checkout"},
+        {name:"Apple Pay", desc:"Native Apple Pay support"},
+        {name:"Afterpay", desc:"Buy-now-pay-later in checkout"},
+        {name:"Klarna", desc:"Flexible installment payments"},
+      ]},
+      {label:"OMS / Returns", items:[
+        {name:"Loop Returns", desc:"Native returns and exchanges"},
+        {name:"AfterShip", desc:"Shipment tracking and notifications"},
+        {name:"ShipBob", desc:"3PL order fulfillment"},
+      ]},
     ],
+    footnote:"Integrations list is indicative. Contact us to confirm your specific stack.",
     shopifyEcosystem:{
       headline:"Built for the Shopify ecosystem.",
       sub:"Reactiv is a Shopify-native platform. Every integration is maintained, versioned, and ready for enterprise procurement review. No custom middleware, no brittle webhooks."
@@ -1813,14 +1873,32 @@ function buildPlatformNativeapp(){
 
 function buildPlatformIntegrations(){
   const d=CONTENT.platformIntegrations,p=document.getElementById('page-platform-integrations');
-  const cats=d.categories.map(c=>`<div style="margin-bottom:40px"><div class="section-label">${c.label}</div><div class="int-row">${c.chips.map(ch=>`<div class="int-chip">${ch}</div>`).join('')}</div></div>`).join('');
-  const catalogHeader=d.catalogHeading?`<h2 style="margin-bottom:32px">${d.catalogHeading}</h2>`:'';
+  const intInitials=n=>{const w=(n||'').split(/\s+/).filter(Boolean);if(!w.length)return'·';if(w.length===1)return w[0].slice(0,2).toUpperCase();return w.slice(0,2).map(x=>x[0]).join('').toUpperCase();};
+  const catalogHeader=d.catalogHeading?`<h2 style="margin-bottom:24px">${d.catalogHeading}</h2>`:'';
+  const filters=['All',...d.categories.map(c=>c.label)];
+  const filterBar=`<div class="filter-bar" id="int-filters">${filters.map((f,i)=>`<button class="filter-pill${i===0?' active':''}" data-filter="${f}">${f}</button>`).join('')}</div>`;
+  const cats=d.categories.map(c=>{
+    const cards=c.items.map(it=>`<div class="int-card"><div class="int-logo">${intInitials(it.name)}</div><div class="int-body"><div class="int-name">${it.name}</div><div class="int-desc">${it.desc}</div></div></div>`).join('');
+    return `<div class="int-category" data-cat="${c.label}"><div class="section-label" style="margin-bottom:8px">${c.label}</div><div class="int-catalog">${cards}</div></div>`;
+  }).join('');
+  const footnote=d.footnote?`<p class="int-footnote">${d.footnote}</p>`:'';
   const ecosystem=d.shopifyEcosystem?`<section class="alt"><div class="wrap"><div class="two-col"><div class="col-text"><h2>${d.shopifyEcosystem.headline}</h2><p class="section-sub">${d.shopifyEcosystem.sub}</p></div><div class="col-img">${imgP()}</div></div></div></section>`:'';
   p.innerHTML=heroSection(d,false)+
-  `<section><div class="wrap">${catalogHeader}${cats}</div></section>`+
+  `<section><div class="wrap">${catalogHeader}${filterBar}<div id="int-cats">${cats}</div>${footnote}</div></section>`+
   ecosystem+
   `<section><div class="wrap"><div class="two-col"><div class="col-img">${imgP()}</div><div class="col-text"><h2>${d.custom.headline}</h2><p class="section-sub">${d.custom.sub}</p><a href="${d.cta1Url}" class="btn btn-outline-dark">${d.custom.cta}</a></div></div></div></section>`+
   ctaBand(d.cta_band)+faqSection(d.faq)+footerHTML();
+  p.querySelector('#int-filters').addEventListener('click',e=>{
+    const btn=e.target.closest('.filter-pill');
+    if(!btn)return;
+    p.querySelectorAll('#int-filters .filter-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    p.querySelectorAll('#int-cats .int-category').forEach(cat=>{
+      if(f==='All'||cat.dataset.cat===f) cat.removeAttribute('data-cat-hidden');
+      else cat.setAttribute('data-cat-hidden','');
+    });
+  });
 }
 
 function buildPlatformSecurity(){
