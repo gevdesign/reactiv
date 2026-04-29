@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   const response = NextResponse.json({ ok: true })
-  response.cookies.set('site-auth', process.env.SITE_PASSWORD!, {
+  response.cookies.set('site-auth', '1', {
     httpOnly: true,
     secure: true,
     sameSite: 'strict',

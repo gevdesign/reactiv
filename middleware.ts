@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const auth = request.cookies.get('site-auth')?.value
-  if (auth === process.env.SITE_PASSWORD) {
+  if (auth === '1') {
     return NextResponse.next()
   }
   const loginUrl = new URL('/login', request.url)
