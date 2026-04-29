@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
